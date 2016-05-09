@@ -14,10 +14,10 @@ Version 1.0.0 will be released when the public API is stable.
 * Moved keybrd_DH library (DodoHand) from keybrd repository to this repository
 * Moved sections of code from mainSketch.cpp to:
 
-    src/objects_ports.h<br>
-    src/objects_LEDs.h<br>
-    src/objects_codes.h<br>
-    src/objects_matrix.h
+    src/instantiations_ports.h<br>
+    src/instantiations_LEDs.h<br>
+    src/instantiations_codes.h<br>
+    src/instantiations_matrix.h
 
 ### Added
 * MouseSpeed
