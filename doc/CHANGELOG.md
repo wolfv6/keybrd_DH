@@ -11,7 +11,7 @@ Version 1.0.0 will be released when the public API is stable.
 ### Changed
 * Replaced SMB classes with StateStickyMouseButtons and Row_DH::keyWasPressed() 
 * Replaced LayerManager with StateLayers
-* Moved keybrd_DH library (DodoHand) from keybrd repository to this repository
+* Moved keybrd_DH library from core keybrd repository to this repository
 * Moved sections of code from mainSketch.cpp to:
 
     src/instantiations_ports.h<br>

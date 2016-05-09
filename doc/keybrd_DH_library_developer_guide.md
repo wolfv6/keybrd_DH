@@ -33,7 +33,7 @@ The classes are found in two libraries:
     keybrd/src/
     keybrd_DH/src/
 
-*class names tagged with '*' are located in core keybrd library
+Class names tagged with '*' are located in core keybrd library.
 
 Class inheritance diagrams
 ```
@@ -91,7 +91,7 @@ Objects are expressed in two or more lines:
     class name on top
     object name(s) below
 
-*class names tagged with '*' are in keybrd library
+Class names tagged with '*' are in keybrd library.
 
 state, layers, and layered associations
 ```
