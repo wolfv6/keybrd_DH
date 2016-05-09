@@ -1,4 +1,4 @@
-/* DH_2565.ino DataHand QWERTY layout
+/* keybrd_DH.ino DataHand QWERTY layout
 for DodoHand project on https://github.com/dodohand/dodohand
 and https://geekhack.org/index.php?topic=41422.0
 

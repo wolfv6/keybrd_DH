@@ -1,6 +1,6 @@
 keybrd_DH Library Developer's Guide
-==================================
-This keybrd_DH Library is for the DodoHand keyboard.
+===================================
+The keybrd_DH library is an extension of the [keybrd library](https://github.com/wolfv6/keybrd) for emulating the DataHand keyboard.
 
 ## Code_Layer class naming conventions
 Code_Layer class names are concatenations of "Code_", layer, and persistence.
@@ -12,24 +12,27 @@ Persistence is one of:
 Object names are based on descriptions in DataHandProIIUserGuide.pdf, except for "modes" which are called "layers" in the keybrd library.
 
 CODE PREFIXES
-l_   layer
-lr_  left-right layered toggled by LRModf
-mb_  mouse button
-mq_  mouse quick
-ms_  mouse slow
-mqA_ layered mouse-quick and arrow
-msA_ layered mouse-slow and arrow
-n_   number
-o_   lock for o_capsLock o_scrollLock
-p_   protected
-s_   scancode
-t_   toggle
+
+    l_   layer
+    lr_  layered toggled left-right by LRModf
+    mb_  mouse button
+    mq_  mouse quick
+    ms_  mouse slow
+    mqA_ layered mouse-quick and arrow
+    msA_ layered mouse-slow and arrow
+    n_   number
+    o_   lock for o_capsLock o_scrollLock
+    p_   protected
+    s_   scancode
+    t_   toggle
 
 ## Class diagrams
 These diagrams depict all StateLayers, Layered, and Layered classes used in DH.
 The classes are found in two libraries:
-    keybrd_proj/keybrd/src/
-    keybrd_proj/keybrd_DH/src/
+
+    keybrd/src/
+    keybrd_DH/src/
+
 *class names tagged with '*' are located in core keybrd library
 
 Class inheritance diagrams
@@ -83,7 +86,11 @@ Class inheritance diagrams
 ```
 
 ## Association diagrams
-Objects are expressed in two or more lines: class name on top, object name(s) below
+Objects are expressed in two or more lines:
+
+    class name on top
+    object name(s) below
+
 *class names tagged with '*' are in keybrd library
 
 state, layers, and layered associations
@@ -168,21 +175,23 @@ protected objects
 	 |_________________________________________
 	           \                      \        \
 	     Code_LayerLockMF_Protector   Code_StickyMouseButton   Row_UnstickMouseButtons
-	     l_MFLock __________________  mb_1      mb_2      ____ row_L2
-	                                \  |         |       /
-	                                  StateStickyMouseButtons
-	                                  mouseButtons
+	     l_MFLock ________________    mb_1      mb_2     _____ row_L2
+	                              \    |         |      /
+	                              StateStickyMouseButtons
+	                              mouseButtons
 
 ```
 
 ## LRModf-numLock scancode table
 This table was used to figure out how LRModf and numLock determine what scancodes get sent.
-tests are in
-    Arduino/keybrd_proj/keybrd_DH/examples/DH_2565/test_keycode.md
-    Arduino/keybrd_proj/keybrd_DH/examples/DH_1363_bb_Layers/DH_1363_bb_test.ino
+tests are in:
+
+    [test_keycode.md](../examples/keybrd_DH/test_keycode.md)
+    [keybrd_DH_unit_tests.ino](../examples/keybrd_DH_unit_tests/keybrd_DH_unit_tests.ino)
 
 LRModf keys effected by numLock are followed by either numLockOn or numLockOff
 
+```
 Code_LayerState_Toggle                          StateLayers_DH
 LRModf left             LRModf right            isNumLocked false       isNumLocked true
 ALL LAYERS --------------------------------------------------------------------------------------
@@ -230,6 +239,7 @@ KEY_PAGE_END            KEYPAD_1 numLockOff
                                                             KEYPAD_8 numLockOff
 
  ------------------------------------------------------------------------------------------------
-use lazy synNumLock because if typing keypad numbers is faster than USB keyboard_leds,
+```
+Use lazy synNumLock because if typing keypad numbers is faster than USB keyboard_leds,
  then numLock will not synchronize with isNumLocked
-this could happen when simultaneously pressing multiple Code_LayeredNumber
+This could happen when simultaneously pressing multiple Code_LayeredNumber
