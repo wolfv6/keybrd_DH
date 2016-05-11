@@ -3,7 +3,7 @@ keybrd_DH Library Developer's Guide
 The keybrd_DH library is an extension of the [keybrd library](https://github.com/wolfv6/keybrd) for emulating the DataHand keyboard.
 
 ## Code_Layer class naming conventions
-Code_Layer class names are concatenations of "Code_", layer, and persistence.
+Code_Layer class names are concatenations of "Code_", layer name, and persistence.
 Persistence is one of:
 * "Lock" - layer remains active after the layer key is released
 * "Hold" - layer is active for as long as layer key is held down
@@ -26,7 +26,7 @@ CODE PREFIXES
     s_   scancode
     t_   toggle
 
-## Class diagrams
+## Class inheritance diagrams
 These diagrams depict all StateLayers, Layered, and Layered classes used in DH.
 The classes are found in two libraries:
 
@@ -85,7 +85,7 @@ Class inheritance diagrams
 
 ```
 
-## Association diagrams
+## Dependency diagrams
 Objects are expressed in two or more lines:
 
     class name on top
@@ -93,7 +93,7 @@ Objects are expressed in two or more lines:
 
 Class names tagged with '*' are in keybrd library.
 
-state, layers, and layered associations
+State, Layers, and Layered dependencies
 ```
 	                        StateLayers_DH
 	            ___________ stateLayer_DH ____________
@@ -132,7 +132,7 @@ state, layers, and layered associations
 
 ```
 
-protected objects
+Protected dependencies
 ```
     Code_NASLock_Protector
 	l_NASLock.isPressed()
@@ -243,3 +243,5 @@ KEY_PAGE_END            KEYPAD_1 numLockOff
 Use lazy synNumLock because if typing keypad numbers is faster than USB keyboard_leds,
  then numLock will not synchronize with isNumLocked
 This could happen when simultaneously pressing multiple Code_LayeredNumber
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">keybrd tutorial</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/wolfv6/keybrd" property="cc:attributionName" rel="cc:attributionURL">Wolfram Volpi</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/wolfv6/keybrd/issues/new" rel="cc:morePermissions">https://github.com/wolfv6/keybrd/issues/new</a>.
