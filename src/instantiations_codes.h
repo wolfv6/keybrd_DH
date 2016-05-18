@@ -16,6 +16,8 @@
 
 //LED
 #include "LED.h"
+#include <LED_AVR.h>
+#include <LED_PCA9655E.h>
 
 //StateLayers
 class StateLayersInterface;
@@ -158,7 +160,16 @@ Code_ScS s_question(KEY_SLASH);
 //            NORMAL  NAS          NAS         MF
 enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
 
-/* todo fix layer LEDs */
+//layer LEDs
+LED_PCA9655E LED_R16_1green(port1_R, 1<<6);     //LED_D6_3  NORMAL
+LED_PCA9655E LED_R15_2blue(port1_R, 1<<5);      //LED_2     NAS TEN_KEY_OFF (or TEN_KEY_ON)
+LED_AVR LED_LB7_4yellow(PORTB, 1<<7);           //LED_2     MF
+
+LED_AVR LED_LB4_3yellow(PORTB, 1<<4);           //          NumLock
+//LED_AVR LED_LD6_3yellow(PORTD, 1<<6);           //LED_D6_3  NumLock, only Teensy's on-board LED
+//LED_AVR LED_LD7_3yellow(PORTD, 1<<7);           //          NumLock, dim
+
+LED_PCA9655E LED_R06_3red(port0_R, 1<<6);       //LED_0     TEN_KEY_ON
 //mode indicator LEDs      NORMAL           TEN_KEY_OFF     TEN_KEY_ON    MF
 LED * ptrsLayerLEDs[] = { &LED_R16_1green, &LED_R15_2blue, &LED_R06_3red, &LED_LB7_4yellow,
 //                       NUM_LOCK
@@ -179,7 +190,8 @@ Code_NASLock_Protector l_NASLock(stateLayers_NAS);
 Code_LayerLock l_tenKeyOff(TEN_KEY_OFF, stateLayers_NAS);
 Code_LayerLock l_tenKeyOn(TEN_KEY_ON, stateLayers_NAS);
 
-StateLayers_MF stateLayers_MF(LED_R07_4yellow); //MOUSE_ON LED
+LED_PCA9655E LED_R07_4yellow(port0_R, 1<<7);    //LED_1     MOUSE_ON
+StateLayers_MF stateLayers_MF(LED_R07_4yellow);
 Code_LayerLock l_mouseOn(0, stateLayers_MF);
 Code_LayerLock l_arrowOn(1, stateLayers_MF);
 
@@ -222,9 +234,11 @@ Code_LayeredDoublePressToggle& Row_DH::refAlt = t_alt;
 StateLayersInterface& Code_LayeredScSc::refStateLayers = t_LRModf;
 
 // --------------- LOCK CODES ------------------
+LED_AVR LED_LB6_1green(PORTB, 1<<6);            //LED_0     CapsLock
 Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_LB6_1green);
+
+LED_AVR LED_LB5_2yellow(PORTB, 1<<5);           //LED_1     ScrollLock
 Code_LEDLock o_scrollLock(KEY_SCROLL_LOCK, LED_LB5_2yellow);
-//Code_LEDLock o_numLock(KEY_NUM_LOCK, LED_LB4_3yellow); todo
 
 // -------------- MOUSE CODES ------------------
 Code_Mouse_Quick mq_right(1<<1);
