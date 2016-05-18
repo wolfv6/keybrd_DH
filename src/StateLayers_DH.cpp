@@ -2,15 +2,20 @@
 
 void StateLayers_DH::setActiveLayer(const uint8_t layer)
 {
+    ptrsLayerLEDs[activeLayer]->off();
     activeLayer = layer;
-/* todo
-add layer indicator LED, see
- keybrd_multi-layer/LayerManager_LED
- keybrd/examples/multi-layer/keybrd_multi-layer_2333_bb_LED_nogit/keybrd_multi-layer_2333_bb_LED.ino
-        ptrsLayerLEDs[activeLayer]->off();
-        activeLayer = layerCode;
-        ptrsLayerLEDs[activeLayer]->on();
-*/
+    ptrsLayerLEDs[activeLayer]->on();
+
+    // NumLock only works in TEN_KEY_ON layer
+    if ( (activeLayer == TEN_KEY_ON) && (lazyNumLock == 1) )
+    {
+        ptrsLayerLEDs[4]->on();
+        //todo move NUM_LOCK LED to const variable? see if free SRAM changes
+    }
+    else
+    {
+        ptrsLayerLEDs[4]->off();
+    }
 }
 
 //update numLock and return layer for Code_LayeredNav

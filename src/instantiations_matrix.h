@@ -1,5 +1,5 @@
-#ifndef OBJECTS_MATRIX_H
-#define OBJECTS_MATRIX_H
+#ifndef INSTANTIATIONS_MATRIX_H
+#define INSTANTIATIONS_MATRIX_H
 
 #include <Row_DH.h>
 #include <Matrix.h>

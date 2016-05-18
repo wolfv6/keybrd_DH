@@ -2,6 +2,10 @@ keybrd_DH Library Developer's Guide
 ===================================
 The keybrd_DH library is an extension of the [keybrd library](https://github.com/wolfv6/keybrd) for emulating the DataHand keyboard.
 
+## Layer scheme
+The layer scheme is based on the DataHand keyboard described in DataHandProIIUserGuide.pdf.
+todo explain
+
 ## Code_Layer class naming conventions
 Code_Layer class names are concatenations of "Code_", layer name, and persistence.
 Persistence is one of:
@@ -96,19 +100,19 @@ Class names tagged with '*' are in keybrd library.
 State, Layers, and Layered dependencies
 ```
 	                        StateLayers_DH
-	            ___________ stateLayer_DH ____________
+	            ___________ stateLayers_DH ____________
 	           /                |                     \
 	Code_LayerLock*             |              Code_LayerLockMF_Protector
 	l_NormalLock                |              l_MFLock
 	                        StateLayers_NAS
-	            ___________ stateLayer_NAS _____________________
+	            ___________ stateLayers_NAS _____________________
 	           /              /                \                \
 	Code_NASHold   Code_NASLock_Protector   Code_LayerLock*  Code_LayerLock*
 	l_NASHold      l_NASLock                l_tenKeyOff      l_tenKeyOn
 
 
 	                        StateLayers*
-	                        stateLayer_MF
+	                        stateLayers_MF
 	                        /         \
 	              Code_LayerLock*   Code_LayerLock*
 	              l_mouseOn         l_arrowOn
@@ -121,7 +125,7 @@ State, Layers, and Layered dependencies
 	                      \         /        lr_shift           t_ctrl
 	                       \       /         rl_shift           t_alt
 	                     StateLayers_DH     
-	     _______________ stateLayer_DH _____________
+	     _______________ stateLayers_DH _____________
 	    /////               ||||                  \ \ 
 	Code_LayeredNav      Code_LayeredOperator   Code_LayeredNumber
 	lr_insert            lr_plus                n_0 through n_9
@@ -173,7 +177,7 @@ Protected dependencies
 	 |           mouseMove
 	 |
 	 |_________________________________________
-	           \                      \        \
+	                                  \        \
 	     Code_LayerLockMF_Protector   Code_StickyMouseButton   Row_UnstickMouseButtons
 	     l_MFLock ________________    mb_1      mb_2     _____ row_L2
 	                              \    |         |      /
@@ -244,4 +248,4 @@ Use lazy synNumLock because if typing keypad numbers is faster than USB keyboard
  then numLock will not synchronize with isNumLocked
 This could happen when simultaneously pressing multiple Code_LayeredNumber
 
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">keybrd tutorial</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/wolfv6/keybrd" property="cc:attributionName" rel="cc:attributionURL">Wolfram Volpi</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/wolfv6/keybrd/issues/new" rel="cc:morePermissions">https://github.com/wolfv6/keybrd/issues/new</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">keybrd guide</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/wolfv6/keybrd" property="cc:attributionName" rel="cc:attributionURL">Wolfram Volpi</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/wolfv6/keybrd/issues/new" rel="cc:morePermissions">https://github.com/wolfv6/keybrd/issues/new</a>.

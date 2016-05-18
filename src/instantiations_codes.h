@@ -1,5 +1,5 @@
-#ifndef OBJECTS_CODES_H
-#define OBJECTS_CODES_H
+#ifndef INSTANTIATIONS_CODES_H
+#define INSTANTIATIONS_CODES_H
 
 //Code
 #include <Code_Shift.h>
@@ -14,11 +14,14 @@
 #include <Code_Mouse_Slow.h>
 #include <Code_Mouse_Quick.h>
 
+//LED
+#include "LED.h"
+
 //StateLayers
 class StateLayersInterface;
-#include <StateLayers.h>
 #include <StateLayers_DH.h>
 #include <StateLayers_NAS.h>
+#include <StateLayers_MF.h>
 
 //StateLayer controllers
 #include <Code_NASHold.h>
@@ -94,7 +97,7 @@ Code_Sc s_graves(KEY_TILDE);                      //`
 Code_Sc s_comma(KEY_COMMA);
 Code_Sc s_period(KEY_PERIOD);
 Code_Sc s_slash(KEY_SLASH);
-//Code_Sc s_capsLock(KEY_CAPS_LOCK);
+//Code_Sc s_capsLock(KEY_CAPS_LOCK); todo
 
 Code_Sc s_F1(KEY_F1);
 Code_Sc s_F2(KEY_F2);
@@ -110,14 +113,14 @@ Code_Sc s_F11(KEY_F11);
 Code_Sc s_F12(KEY_F12);
 
 Code_Sc s_printscreen(KEY_PRINTSCREEN);
-//Code_Sc s_scrollLock(KEY_SCROLL_LOCK);
+//Code_Sc s_scrollLock(KEY_SCROLL_LOCK); todo
 Code_Sc s_pause(KEY_PAUSE);
-//Code_Sc s_insert(KEY_INSERT);
+//Code_Sc s_insert(KEY_INSERT); todo
 Code_Sc s_home(KEY_HOME);
-//Code_Sc s_pageUp(KEY_PAGE_UP);
+//Code_Sc s_pageUp(KEY_PAGE_UP); todo
 //Code_Sc s_delete(KEY_DELETE);
 Code_Sc s_end(KEY_END);
-//Code_Sc s_pageDown(KEY_PAGE_DOWN);
+//Code_Sc s_pageDown(KEY_PAGE_DOWN); todo
 Code_Sc s_right(KEY_RIGHT);                      //arrow
 Code_Sc s_left(KEY_LEFT);
 Code_Sc s_down(KEY_DOWN);
@@ -155,10 +158,18 @@ Code_ScS s_question(KEY_SLASH);
 //            NORMAL  NAS          NAS         MF
 enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
 
+/* todo fix layer LEDs */
+//mode indicator LEDs      NORMAL           TEN_KEY_OFF     TEN_KEY_ON    MF
+LED * ptrsLayerLEDs[] = { &LED_R16_1green, &LED_R15_2blue, &LED_R06_3red, &LED_LB7_4yellow,
+//                       NUM_LOCK
+                        &LED_LB4_3yellow };
+const uint8_t LED_COUNT = sizeof(ptrsLayerLEDs)/sizeof(*ptrsLayerLEDs);
+
 Code_LayerState_Toggle t_LRModf;
 Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refStateLayers = t_LRModf;
 
-StateLayers_DH stateLayers_DH(t_LRModf, TEN_KEY_ON);
+//StateLayers_DH stateLayers_DH(t_LRModf, TEN_KEY_ON);
+StateLayers_DH stateLayers_DH(t_LRModf, TEN_KEY_ON, ptrsLayerLEDs, LED_COUNT);
 Code_LayerLock l_normalLock(NORMAL, stateLayers_DH);
 Code_LayerLockMF_Protector l_MFLock(MF, stateLayers_DH);
 
@@ -168,16 +179,9 @@ Code_NASLock_Protector l_NASLock(stateLayers_NAS);
 Code_LayerLock l_tenKeyOff(TEN_KEY_OFF, stateLayers_NAS);
 Code_LayerLock l_tenKeyOn(TEN_KEY_ON, stateLayers_NAS);
 
-StateLayers stateLayers_MF;
+StateLayers_MF stateLayers_MF(LED_R07_4yellow); //MOUSE_ON LED
 Code_LayerLock l_mouseOn(0, stateLayers_MF);
 Code_LayerLock l_arrowOn(1, stateLayers_MF);
-
-/* todo fix layer LEDs
-//mode indicator LEDs      NORMAL           TEN_KEY_OFF     TEN_KEY_ON     MOUSE_ON          ARROW_ON
-LED * ptrsLayerLEDs[] = { &LED_R16_1green, &LED_R15_2blue, &LED_R06_3red, &LED_R07_4yellow, &LED_LB7_4yellow };
-const uint8_t LED_COUNT = sizeof(ptrsLayerLEDs)/sizeof(*ptrsLayerLEDs);
-LayerManager layerManager(ptrsLayerLEDs, LED_COUNT, NORMAL);
-*/
 
 StateLayersInterface& Key_LayeredKeysArray::refStateLayers = stateLayers_DH;
 
@@ -220,7 +224,7 @@ StateLayersInterface& Code_LayeredScSc::refStateLayers = t_LRModf;
 // --------------- LOCK CODES ------------------
 Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_LB6_1green);
 Code_LEDLock o_scrollLock(KEY_SCROLL_LOCK, LED_LB5_2yellow);
-//Code_LEDLock o_numLock(KEY_NUM_LOCK, LED_LB4_3yellow);
+//Code_LEDLock o_numLock(KEY_NUM_LOCK, LED_LB4_3yellow); todo
 
 // -------------- MOUSE CODES ------------------
 Code_Mouse_Quick mq_right(1<<1);
