@@ -99,23 +99,28 @@ Class names tagged with '*' are in keybrd library.
 
 State, Layers, and Layered dependencies
 ```
-	                        StateLayers_DH
-	            ___________ stateLayers_DH ____________
-	           /                |                     \
-	Code_LayerLock*             |              Code_LayerLockMF_Protector
-	l_NormalLock                |              l_MFLock
-	                        StateLayers_NAS
-	            ___________ stateLayers_NAS _____________________
-	           /              /                \                \
-	Code_NASHold   Code_NASLock_Protector   Code_LayerLock*  Code_LayerLock*
-	l_NASHold      l_NASLock                l_tenKeyOff      l_tenKeyOn
+	StateLayers_DH
+	stateLayers_DH ___________________________
+	 |                 \                      \
+	 |              Code_LayerLock*        Code_LayerLockMF_Protector
+	 |              l_NormalLock           l_MFLock
+	 |
+	 |________
+	 |        \
+	 |      StateLayers_NAS
+	 |      stateLayers_NAS ____________________________________________
+	 |         |              \                        \                \
+	 |      Code_NASHold   Code_NASLock_Protector   Code_LayerLock*  Code_LayerLock*
+	 |      l_NASHold      l_NASLock                l_tenKeyOff      l_tenKeyOn
+	 |
+	 |________
+	          \
+	        StateLayers*
+	        stateLayers_MF _______________________
+	                           \                  \
+	                        Code_LayerLock*    Code_LayerLock*
+	                        l_mouseOn          l_arrowOn
 
-
-	                        StateLayers*
-	                        stateLayers_MF
-	                        /         \
-	              Code_LayerLock*   Code_LayerLock*
-	              l_mouseOn         l_arrowOn
 
 
 	               Code_NumLock    Code_LayerState_Toggle

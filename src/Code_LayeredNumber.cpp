@@ -23,7 +23,8 @@ void Code_LayeredNumber::setScancodeNum()
 
     if (layer)
     {
-        scancodeNum = scancode + 59;            //KEYPAD
+        //scancodeNum = scancode + 59;            //KEYPAD
+        scancodeNum = scancode - 26;            //send letters 'a' to 'j' for debugging
     }
     else
     {

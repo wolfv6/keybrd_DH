@@ -6,11 +6,11 @@ void StateLayers_MF::setActiveLayer(const uint8_t layer)
 
     if (activeLayer == 1)
     {
-        refMouseOnLED.on();
+        refMouseOnLED.off();
     }
     else
     {
-        refMouseOnLED.off();
+        refMouseOnLED.on();
     }
 }
 

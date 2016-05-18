@@ -5,17 +5,6 @@ void StateLayers_DH::setActiveLayer(const uint8_t layer)
     ptrsLayerLEDs[activeLayer]->off();
     activeLayer = layer;
     ptrsLayerLEDs[activeLayer]->on();
-
-    // NumLock only works in TEN_KEY_ON layer
-    if ( (activeLayer == TEN_KEY_ON) && (lazyNumLock == 1) )
-    {
-        ptrsLayerLEDs[4]->on();
-        //todo move NUM_LOCK LED to const variable? see if free SRAM changes
-    }
-    else
-    {
-        ptrsLayerLEDs[4]->off();
-    }
 }
 
 //update numLock and return layer for Code_LayeredNav
@@ -75,7 +64,17 @@ bool StateLayers_DH::getNumberLayer()
 void StateLayers_DH::numLock()
 {
     lazyNumLock = !lazyNumLock;                 //toggle
-    //todo add numLock indicator LED
+
+    //if ( (activeLayer != NORMAL) && (lazyNumLock == 1) ) //NumLock has no function on NORMAL layer
+    if (lazyNumLock == 1)
+    {
+        ptrsLayerLEDs[4]->on();
+        //todo move NUM_LOCK LED to const variable? see if free SRAM changes
+    }
+    else
+    {
+        ptrsLayerLEDs[4]->off();
+    }
 }
 
 //sending KEY_NUM_LOCK is lazy to minimize USB traffic
