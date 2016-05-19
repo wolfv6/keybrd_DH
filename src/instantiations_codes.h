@@ -115,7 +115,6 @@ Code_Sc s_F11(KEY_F11);
 Code_Sc s_F12(KEY_F12);
 
 Code_Sc s_printscreen(KEY_PRINTSCREEN);
-//Code_Sc s_scrollLock(KEY_SCROLL_LOCK); todo
 Code_Sc s_pause(KEY_PAUSE);
 //Code_Sc s_insert(KEY_INSERT); todo
 Code_Sc s_home(KEY_HOME);
@@ -233,8 +232,14 @@ StateLayersInterface& Code_LayeredScSc::refStateLayers = t_LRModf;
 LED_AVR LED_L1Green(PORTB, 1<<6);               //LED_0     CapsLock
 Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_L1Green);
 
+/* Scroll lock LED removed because it does not turn off.
+LED does not turn off because keyboard output report USB_LED_bit not working for 4=scroll lock.
+Using scroll lock w/o LED untill keyboard output report is fixed.
+
 LED_AVR LED_L4Yellow(PORTB, 1<<7);              //LED_2     ScrollLock
 Code_LEDLock o_scrollLock(KEY_SCROLL_LOCK, LED_L4Yellow);
+*/
+Code_S o_scrollLock(KEY_SCROLL_LOCK);
 
 // -------------- MOUSE CODES ------------------
 Code_Mouse_Quick mq_right(1<<1);
