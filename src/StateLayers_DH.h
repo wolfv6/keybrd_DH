@@ -5,6 +5,7 @@
 #include <inttypes.h>
 #include <StateLayers.h>
 #include <LED.h>
+#include "StateLayers_MF.h"
 #include "Code_LayerState_Toggle.h"
 
 extern volatile uint8_t keyboard_leds;
@@ -16,18 +17,25 @@ class StateLayers_DH : public StateLayers
 {
     private:
         enum numLock { NUMLOCK_OFF, NUMLOCK_ON };
+        StateLayers_MF& refStateLayers_MF;
+        const uint8_t MF;
         Code_LayerState_Toggle& refStateLRModf;
-        bool lazyNumLock;                       //toggled by numLock key
         const uint8_t TEN_KEY_ON;
-        virtual void setActiveLayer(const uint8_t layer);
-
+        const uint8_t TEN_KEY_OFF;
         LED* *const ptrsLayerLEDs;              //array of pointers to layer indicator lights
-        const uint8_t layerLEDCount;
+        //const uint8_t layerLEDCount;//todo not used
+        bool lazyNumLock;                       //toggled by numLock key
+        virtual void setActiveLayer(const uint8_t layer);
     public:
-        StateLayers_DH(Code_LayerState_Toggle& refStateLRModf, const uint8_t TEN_KEY_ON,
-                LED* ptrsLayerLEDs[], const uint8_t layerLEDCount)
-            : refStateLRModf(refStateLRModf), lazyNumLock(NUMLOCK_OFF), TEN_KEY_ON(TEN_KEY_ON),
-                ptrsLayerLEDs(ptrsLayerLEDs), layerLEDCount(layerLEDCount) {}
+        StateLayers_DH(StateLayers_MF& refStateLayers_MF, const uint8_t MF,
+                Code_LayerState_Toggle& refStateLRModf,
+                const uint8_t TEN_KEY_ON, const uint8_t TEN_KEY_OFF,
+                LED* ptrsLayerLEDs[])
+            : refStateLayers_MF(refStateLayers_MF), MF(MF),
+                refStateLRModf(refStateLRModf),
+                TEN_KEY_ON(TEN_KEY_ON), TEN_KEY_OFF(TEN_KEY_OFF),
+                ptrsLayerLEDs(ptrsLayerLEDs),
+                lazyNumLock(NUMLOCK_OFF) {}
         bool getNavLayer();
         bool getOperatorLayer();
         bool getNumberLayer();

@@ -18,5 +18,7 @@ class StateLayers_MF : public StateLayers
         LED& refMouseOnLED;
     public:
         StateLayers_MF(LED& refMouseOnLED) : refMouseOnLED(refMouseOnLED) {}
+        void MouseLEDActivate();
+        void MouseLEDOff();
 };
 #endif

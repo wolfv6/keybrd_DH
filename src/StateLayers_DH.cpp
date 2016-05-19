@@ -2,9 +2,34 @@
 
 void StateLayers_DH::setActiveLayer(const uint8_t layer)
 {
+    //turn off LEDs
     ptrsLayerLEDs[activeLayer]->off();
+
+    if (activeLayer == TEN_KEY_ON)
+    {
+        ptrsLayerLEDs[TEN_KEY_OFF]->off();
+    }
+
+    //udate activeLayer
     activeLayer = layer;
+
+    //turn on LEDs
     ptrsLayerLEDs[activeLayer]->on();
+
+    if (activeLayer == TEN_KEY_ON)
+    {
+        ptrsLayerLEDs[TEN_KEY_OFF]->on();
+    }
+
+    //update MF mouse LED
+    if (layer == MF)
+    {
+        refStateLayers_MF.MouseLEDActivate();
+    }
+    else
+    {
+        refStateLayers_MF.MouseLEDOff();
+    }
 }
 
 //update numLock and return layer for Code_LayeredNav

@@ -30,6 +30,16 @@ CODE PREFIXES
     s_   scancode
     t_   toggle
 
+LED names are
+    LED_L1Green     LED_R1Blue
+    LED_L2Yellow    LED_R2Green
+    LED_L3Yellow    LED_R3Yellow
+    LED_L4Yellow    LED_R4Red
+where
+    L=left unit     R=right unit
+    numbers are LED position on DataHand unit 1,2,3,4
+    followed by LED color
+
 ## Class inheritance diagrams
 These diagrams depict all StateLayers, Layered, and Layered classes used in DH.
 The classes are found in two libraries:

@@ -46,15 +46,15 @@ void setup()
     Keyboard.begin();
     Mouse.begin();
 
-    LED_LB6_1green.off();
-    LED_LB5_2yellow.off();
-    LED_LB4_3yellow.off();
-    LED_LB7_4yellow.off();
+    LED_L1Green.off();
+    LED_L2Yellow.off();
+    LED_L3Yellow.off();
+    LED_L4Yellow.off();
 
-    LED_R16_1green.on();                        //NORMAL mode on
-    LED_R15_2blue.off();
-    LED_R06_3red.off();
-    LED_R07_4yellow.off();
+    LED_R1Blue.off();
+    LED_R2Green.on();                           //NORMAL mode on
+    LED_R3Yellow.off();
+    LED_R4Red.off();
 
 #ifdef PRINT_FREE_RAM
     delay(1000);        //time for OS to detect USB before printing
