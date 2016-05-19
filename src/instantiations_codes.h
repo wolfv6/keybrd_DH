@@ -171,19 +171,17 @@ LED_AVR LED_L3Yellow(PORTB, 1<<4);              //          NumLock
 
 LED_PCA9655E LED_R4Red(port0_R, 1<<6);          //LED_0     TEN_KEY_ON
 //mode indicator LEDs      NORMAL        TEN_KEY_OFF  TEN_KEY_ON  MF
-LED * ptrsLayerLEDs[] = { &LED_R2Green, &LED_R1Blue, &LED_R4Red, &LED_R3Yellow,
-//                       NUM_LOCK
-                        &LED_L3Yellow };
+LED * ptrsLayerLEDs[] = { &LED_R2Green, &LED_R1Blue, &LED_R4Red, &LED_R3Yellow };
 
 Code_LayerState_Toggle t_LRModf;
 Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refStateLayers = t_LRModf;
 
-LED_AVR LED_L2Yellow(PORTB, 1<<7);              //LED_2     MOUSE_ON
+LED_AVR LED_L2Yellow(PORTB, 1<<5);              //LED_1     MOUSE_ON
 StateLayers_MF stateLayers_MF(LED_L2Yellow);
 Code_LayerLock l_mouseOn(0, stateLayers_MF);
 Code_LayerLock l_arrowOn(1, stateLayers_MF);
 
-StateLayers_DH stateLayers_DH(stateLayers_MF, MF, t_LRModf, TEN_KEY_ON, TEN_KEY_OFF, ptrsLayerLEDs);
+StateLayers_DH stateLayers_DH(stateLayers_MF, MF, t_LRModf, TEN_KEY_ON, TEN_KEY_OFF, ptrsLayerLEDs, LED_L3Yellow);
 Code_LayerLock l_normalLock(NORMAL, stateLayers_DH);
 Code_LayerLockMF_Protector l_MFLock(MF, stateLayers_DH);
 
@@ -235,7 +233,7 @@ StateLayersInterface& Code_LayeredScSc::refStateLayers = t_LRModf;
 LED_AVR LED_L1Green(PORTB, 1<<6);               //LED_0     CapsLock
 Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_L1Green);
 
-LED_AVR LED_L4Yellow(PORTB, 1<<5);              //LED_1     ScrollLock
+LED_AVR LED_L4Yellow(PORTB, 1<<7);              //LED_2     ScrollLock
 Code_LEDLock o_scrollLock(KEY_SCROLL_LOCK, LED_L4Yellow);
 
 // -------------- MOUSE CODES ------------------

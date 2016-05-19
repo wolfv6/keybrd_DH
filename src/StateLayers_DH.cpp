@@ -88,17 +88,15 @@ bool StateLayers_DH::getNumberLayer()
 //toggle lazyNumLock
 void StateLayers_DH::numLock()
 {
-    lazyNumLock = !lazyNumLock;                 //toggle
-
-    //if ( (activeLayer != NORMAL) && (lazyNumLock == 1) ) //NumLock has no function on NORMAL layer
-    if (lazyNumLock == 1)
+    if (lazyNumLock == NUMLOCK_ON)
     {
-        ptrsLayerLEDs[4]->on();
-        //todo move NUM_LOCK LED to const variable? see if free SRAM changes
+        lazyNumLock = NUMLOCK_OFF;
+        refLED_numLock.off();
     }
     else
     {
-        ptrsLayerLEDs[4]->off();
+        lazyNumLock = NUMLOCK_ON;
+        refLED_numLock.on();
     }
 }
 
