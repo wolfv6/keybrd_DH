@@ -35,7 +35,7 @@ void StateLayers_DH::setActiveLayer(const uint8_t layer)
 //update numLock and return layer for Code_LayeredNav
 bool StateLayers_DH::getNavLayer()
 {
-    bool layer = refStateLRModf.getActiveLayer(); //LRModf determines layer
+    bool layer = 0;//refStateLRModf.getActiveLayer(); //LRModf determines layer
 
     if (layer == 1) //only layer 1 is numLock sensitive, don't bother updating numLock for layer 0
     {
@@ -56,7 +56,7 @@ bool StateLayers_DH::getOperatorLayer()
     }
     else                                        //in TEN_KEY_OFF, LRModf determines layer
     {
-        layer = refStateLRModf.getActiveLayer();
+        layer = 0;//refStateLRModf.getActiveLayer();
     }
 
     if (layer == 1) //only layer 1 is numLock sensitive, don't bother updating numLock for layer 0
