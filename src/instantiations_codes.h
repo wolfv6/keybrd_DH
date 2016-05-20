@@ -223,6 +223,7 @@ Code_LayeredOperator lr_asterix(s_asterix, KEYPAD_ASTERIX);
 Code_LayeredOperator lr_minus(s_minus, KEYPAD_MINUS);
 Code_LayeredOperator lr_slash(s_slash, KEYPAD_SLASH);  //also Normal layer
 StateLayers_DH& Code_LayeredOperator::refStateLayers = stateLayers_DH;
+Code_LayerState_Toggle& Code_LayeredOperator::refStateLRModf = t_LRModf;
 
 // --------------- LOCK CODES ------------------
 LED_AVR LED_L4Green(PORTB, 1<<6);               //LED_0     CapsLock

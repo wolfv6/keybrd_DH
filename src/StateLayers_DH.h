@@ -17,7 +17,6 @@ StateLayers is part of a layer scheme explained in keybrd_DH/doc/keybrd_DH_libra
 class StateLayers_DH : public StateLayers
 {
     private:
-        enum numLock { NUMLOCK_OFF, NUMLOCK_ON };
         StateLayers_MF& refStateLayers_MF;
         const uint8_t MF;
         //Code_LayerState_Toggle& refStateLRModf;
@@ -27,6 +26,8 @@ class StateLayers_DH : public StateLayers
         LED_AVR& refLED_numLock;
         bool lazyNumLock;                       //toggled by numLock key
         virtual void setActiveLayer(const uint8_t layer);
+        void updateLayerLEDs();
+        void updateNumLockLED();
     public:
         StateLayers_DH(StateLayers_MF& refStateLayers_MF, const uint8_t MF,
                 //Code_LayerState_Toggle& refStateLRModf,
@@ -37,10 +38,13 @@ class StateLayers_DH : public StateLayers
                 TEN_KEY_ON(TEN_KEY_ON), TEN_KEY_OFF(TEN_KEY_OFF),
                 ptrsLayerLEDs(ptrsLayerLEDs), refLED_numLock(refLED_numLock),
                 lazyNumLock(NUMLOCK_OFF) {}
+        enum numLock { NUMLOCK_OFF, NUMLOCK_ON };
         bool getNavLayer();
         bool getOperatorLayer();
+        bool getLazyNumLock();
         bool getNumberLayer();
         void numLock();
         void updateNumLock(bool numLock);
+        void restoreLEDs();
 };
 #endif

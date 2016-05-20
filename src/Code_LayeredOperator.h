@@ -12,6 +12,7 @@ class Code_LayeredOperator : public Code_LayeredCodeScBase
 {
     private:
         static StateLayers_DH& refStateLayers;
+        static Code_LayerState_Toggle& refStateLRModf;
     public:
         Code_LayeredOperator(Code& refCode0, const uint16_t scancode1)
             : Code_LayeredCodeScBase(refCode0, scancode1, 0) { }
