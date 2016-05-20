@@ -81,6 +81,9 @@ column number:                          0       1       2       3       4       
 finger:                                 pinky   ring    middle  index   thumb   thumb
 */
 
+Code_LayeredDoublePressToggle& Row_DH::refCtrl = t_ctrl; 
+Code_LayeredDoublePressToggle& Row_DH::refAlt = t_alt; 
+
 // ============== LEFT LAYOUT ==================
 // --------------- LEFT KEYS -------------------
 //Layers:                    {normal,      10KeyOff,       10KeyOn,        mouseOn  };

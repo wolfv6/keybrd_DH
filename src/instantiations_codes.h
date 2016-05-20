@@ -172,9 +172,6 @@ LED_PCA9655E LED_R4Red(port0_R, 1<<6);          //LED_0     TEN_KEY_ON
 //mode indicator LEDs      NORMAL        TEN_KEY_OFF  TEN_KEY_ON  MF
 LED * ptrsLayerLEDs[] = { &LED_R2Green, &LED_R1Blue, &LED_R4Red, &LED_R3Yellow };
 
-Code_LayerState_Toggle t_LRModf;
-Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refStateLayers = t_LRModf;
-
 LED_AVR LED_L2Yellow(PORTB, 1<<5);              //LED_1     MOUSE_ON
 StateLayers_MF stateLayers_MF(LED_L2Yellow);
 Code_LayerLock l_mouseOn(0, stateLayers_MF);
@@ -199,6 +196,9 @@ Code_Shift* const* const Code_AutoShift::ptrsShifts = ptrsS;
 const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsShifts)/sizeof(*ptrsShifts);
 
 // ----------------- L-R CODES -----------------
+Code_LayerState_Toggle t_LRModf;
+Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refStateLayers = t_LRModf;
+
 Code_LayeredDoublePressToggle t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
 Code_LayeredDoublePressToggle t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
     /* If Code_LayeredDoublePressToggle feature is undesirable,
@@ -209,24 +209,20 @@ Code_LayeredDoublePressToggle t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT)
 
 Code_LayeredScSc lr_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //thumb shift
 Code_LayeredScSc rl_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //finger shift acts opposite
+StateLayersInterface& Code_LayeredScSc::refStateLayers = t_LRModf;
 
 Code_LayeredNav lr_insert(KEY_INSERT, KEYPAD_0);
 Code_LayeredNav lr_delete(KEY_DELETE, KEYPAD_PERIOD);
 Code_LayeredNav lr_pageUp(KEY_PAGE_UP, KEYPAD_9);
 Code_LayeredNav lr_pageDown(KEY_PAGE_DOWN, KEYPAD_3);
 Code_LayeredNav lr_end(KEY_END, KEYPAD_1);
+StateLayers_DH& Code_LayeredNav::refStateLayers = stateLayers_DH;
 
 Code_LayeredOperator lr_plus(s_plus, KEYPAD_PLUS);
 Code_LayeredOperator lr_asterix(s_asterix, KEYPAD_ASTERIX);
 Code_LayeredOperator lr_minus(s_minus, KEYPAD_MINUS);
 Code_LayeredOperator lr_slash(s_slash, KEYPAD_SLASH);  //also Normal layer
-
-//define static variables
-StateLayers_DH& Code_LayeredNav::refStateLayers = stateLayers_DH;
 StateLayers_DH& Code_LayeredOperator::refStateLayers = stateLayers_DH;
-Code_LayeredDoublePressToggle& Row_DH::refCtrl = t_ctrl; 
-Code_LayeredDoublePressToggle& Row_DH::refAlt = t_alt; 
-StateLayersInterface& Code_LayeredScSc::refStateLayers = t_LRModf;
 
 // --------------- LOCK CODES ------------------
 LED_AVR LED_L1Green(PORTB, 1<<6);               //LED_0     CapsLock
