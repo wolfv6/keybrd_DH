@@ -225,15 +225,12 @@ Code_LayeredOperator lr_slash(s_slash, KEYPAD_SLASH);  //also Normal layer
 StateLayers_DH& Code_LayeredOperator::refStateLayers = stateLayers_DH;
 
 // --------------- LOCK CODES ------------------
-LED_AVR LED_L1Green(PORTB, 1<<6);               //LED_0     CapsLock
-Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_L1Green);
+LED_AVR LED_L4Green(PORTB, 1<<6);               //LED_0     CapsLock
+Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_L4Green);
 
-/* Scroll lock LED removed because it does not turn off.
-LED does not turn off because keyboard output report USB_LED_bit not working for 4=scroll lock.
-Using scroll lock w/o LED untill keyboard output report is fixed.
-
-LED_AVR LED_L4Yellow(PORTB, 1<<7);              //LED_2     ScrollLock
-Code_LEDLock o_scrollLock(KEY_SCROLL_LOCK, LED_L4Yellow);
+/* Scroll lock LED removed, explanation in Code_LEDLock.cpp
+LED_AVR LED_L1Yellow(PORTB, 1<<7);              //LED_2     ScrollLock
+Code_LEDLock o_scrollLock(KEY_SCROLL_LOCK, LED_L1Yellow);
 */
 Code_Sc o_scrollLock(KEY_SCROLL_LOCK);
 

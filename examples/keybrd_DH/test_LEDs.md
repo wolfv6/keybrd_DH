@@ -19,19 +19,20 @@ TEST LOCKS
 lock LED:       L1Green        off      L4Yellow   off
 input:          capsLock shift capsLock scrollLock scrollLock 
 
+Scroll lock LED removed, explanation in Code_LEDLock.cpp
 
     MODE        LEFT INDICATOR LIGHT    LAYERS
     ----        --------------------    ------
+    ScrollLock  yellow     *
+    NumLock     yellow     *
+    MouseOn     yellow     *            mouse on (arrow off)
     CapsLock    green
-    MouseOn     yellow                  mouse on (arrow off)
-    NumLock     yellow
-    ScrollLock  yellow
 
     MODE        RIGHT INDICATOR LIGHT   LAYERS
     ----        ---------------------   ------
-    NAS         blue                    TEN_KEY_OFF or TEN_KEY_ON
-    Normal      green                   NORMAL
-    MF          yellow                  MF
+    NAS         blue       *            TEN_KEY_OFF or TEN_KEY_ON
+    Normal      green      *            NORMAL
+    MF          yellow     *            MF
     10-Key      red                     TEN_KEY_ON
 
- https://geekhack.org/index.php?topic=41422.500  Reply #523 by arisian
+    * For Modf, LEDs on L or R side blink 4 times in 2 seconds
