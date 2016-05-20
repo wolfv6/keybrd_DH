@@ -217,6 +217,7 @@ Code_LayeredNav lr_pageUp(KEY_PAGE_UP, KEYPAD_9);
 Code_LayeredNav lr_pageDown(KEY_PAGE_DOWN, KEYPAD_3);
 Code_LayeredNav lr_end(KEY_END, KEYPAD_1);
 StateLayers_DH& Code_LayeredNav::refStateLayers = stateLayers_DH;
+Code_LayerState_Toggle& Code_LayeredNav::refStateLRModf = t_LRModf;
 
 Code_LayeredOperator lr_plus(s_plus, KEYPAD_PLUS);
 Code_LayeredOperator lr_asterix(s_asterix, KEYPAD_ASTERIX);
@@ -224,6 +225,7 @@ Code_LayeredOperator lr_minus(s_minus, KEYPAD_MINUS);
 Code_LayeredOperator lr_slash(s_slash, KEYPAD_SLASH);  //also Normal layer
 StateLayers_DH& Code_LayeredOperator::refStateLayers = stateLayers_DH;
 Code_LayerState_Toggle& Code_LayeredOperator::refStateLRModf = t_LRModf;
+const uint8_t Code_LayeredOperator::TEN_KEY_ON = TEN_KEY_ON;
 
 // --------------- LOCK CODES ------------------
 LED_AVR LED_L4Green(PORTB, 1<<6);               //LED_0     CapsLock

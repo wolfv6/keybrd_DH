@@ -11,6 +11,7 @@ class Code_LayeredNav : public Code_LayeredScScBase
 {
     private:
         static StateLayers_DH& refStateLayers;
+        static Code_LayerState_Toggle& refStateLRModf;
     public:
         Code_LayeredNav(const uint16_t scancode0, const uint16_t scancode1):
             Code_LayeredScScBase(scancode0, scancode1) { }

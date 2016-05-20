@@ -19,7 +19,6 @@ class StateLayers_DH : public StateLayers
     private:
         StateLayers_MF& refStateLayers_MF;
         const uint8_t MF;
-        //Code_LayerState_Toggle& refStateLRModf;
         const uint8_t TEN_KEY_ON;
         const uint8_t TEN_KEY_OFF;
         LED* *const ptrsLayerLEDs;              //array of pointers to layer indicator lights
@@ -30,17 +29,13 @@ class StateLayers_DH : public StateLayers
         void updateNumLockLED();
     public:
         StateLayers_DH(StateLayers_MF& refStateLayers_MF, const uint8_t MF,
-                //Code_LayerState_Toggle& refStateLRModf,
                 const uint8_t TEN_KEY_ON, const uint8_t TEN_KEY_OFF,
                 LED* ptrsLayerLEDs[], LED_AVR& refLED_numLock)
             : refStateLayers_MF(refStateLayers_MF), MF(MF),
-                //refStateLRModf(refStateLRModf),
                 TEN_KEY_ON(TEN_KEY_ON), TEN_KEY_OFF(TEN_KEY_OFF),
                 ptrsLayerLEDs(ptrsLayerLEDs), refLED_numLock(refLED_numLock),
                 lazyNumLock(NUMLOCK_OFF) {}
         enum numLock { NUMLOCK_OFF, NUMLOCK_ON };
-        bool getNavLayer();
-        bool getOperatorLayer();
         bool getLazyNumLock();
         bool getNumberLayer();
         void numLock();

@@ -20,39 +20,9 @@ void StateLayers_DH::setActiveLayer(const uint8_t layer)
     updateLayerLEDs();    
 }
 
-//update numLock and return layer for Code_LayeredNav
-bool StateLayers_DH::getNavLayer() //todo remove
+bool StateLayers_DH::getLazyNumLock()
 {
-    bool layer = 0;//refStateLRModf.getActiveLayer(); //LRModf determines layer
-
-    if (layer == 1) //only layer 1 is numLock sensitive, don't bother updating numLock for layer 0
-    {
-        updateNumLock(NUMLOCK_OFF);
-    }
-
-    return layer;
-}
-
-//update numLock and return layer for Code_LayeredOperator
-bool StateLayers_DH::getOperatorLayer() //todo remove
-{
-    bool layer;
-
-    if (activeLayer == TEN_KEY_ON)              //in TEN_KEY_ON, lazyNumLock determines layer
-    {
-        layer = lazyNumLock;
-    }
-    else                                        //in TEN_KEY_OFF, LRModf determines layer
-    {
-        layer = 0;//refStateLRModf.getActiveLayer();
-    }
-
-    if (layer == 1) //only layer 1 is numLock sensitive, don't bother updating numLock for layer 0
-    {
-        updateNumLock(NUMLOCK_OFF);
-    }
-
-    return layer;
+    return lazyNumLock;
 }
 
 //update numLock and return layer for Code_LayeredNumber
