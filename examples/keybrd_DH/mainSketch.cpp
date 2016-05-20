@@ -49,7 +49,7 @@ void setup()
     LED_L1Green.off();
     LED_L2Yellow.off();
     LED_L3Yellow.off();
-    LED_L4Yellow.off();
+    //LED_L4Yellow.off();
 
     LED_R1Blue.off();
     LED_R2Green.on();                           //NORMAL mode on

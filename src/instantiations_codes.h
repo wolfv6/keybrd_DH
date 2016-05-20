@@ -239,7 +239,7 @@ Using scroll lock w/o LED untill keyboard output report is fixed.
 LED_AVR LED_L4Yellow(PORTB, 1<<7);              //LED_2     ScrollLock
 Code_LEDLock o_scrollLock(KEY_SCROLL_LOCK, LED_L4Yellow);
 */
-Code_S o_scrollLock(KEY_SCROLL_LOCK);
+Code_Sc o_scrollLock(KEY_SCROLL_LOCK);
 
 // -------------- MOUSE CODES ------------------
 Code_Mouse_Quick mq_right(1<<1);
