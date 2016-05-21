@@ -21,6 +21,8 @@ input:          capsLock shift capsLock scrollLock scrollLock
 
 Scroll lock LED removed, explanation in Code_LEDLock.cpp
 
+* For Modf, 3 LEDs on L or R side blink 4 times in 2 seconds
+
     MODE        LEFT INDICATOR LIGHT    LAYERS
     ----        --------------------    ------
     ScrollLock  yellow     *
@@ -35,4 +37,3 @@ Scroll lock LED removed, explanation in Code_LEDLock.cpp
     MF          yellow     *            MF
     10-Key      red                     TEN_KEY_ON
 
-    * For Modf, LEDs on L or R side blink 4 times in 2 seconds

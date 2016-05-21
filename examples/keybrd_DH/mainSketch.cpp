@@ -68,6 +68,9 @@ void loop()
     matrix_L.scan();
     matrix_R.scan();
 
+    LEDsBlinkerL.blink();
+    LEDsBlinkerR.blink();
+
     mouseMove.send();
 
 #ifdef PRINT_SCAN_RATE

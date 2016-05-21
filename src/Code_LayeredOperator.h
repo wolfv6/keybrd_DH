@@ -4,6 +4,7 @@
 #include <inttypes.h>
 #include <Code_LayeredCodeScBase.h>
 #include "StateLayers_DH.h"
+#include "Code_LayerState_Toggle.h"
 
 /* Class Code_LayeredOperator sends one of two scancodes,
    determined by refStateLayers.getOperatorLayer().

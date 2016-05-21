@@ -6,7 +6,17 @@ Code_LayerState_Toggle contains its own state
 */
 void Code_LayerState_Toggle::press()
 {
-    activeLayer = !activeLayer;
+    //activeLayer = !activeLayer; todo
+    if (activeLayer == 1)
+    {
+        activeLayer = 0;
+        blinker0.startBlinking();
+}
+    else
+    {
+        activeLayer = 1;
+        blinker1.startBlinking();
+    }
 }
 
 void Code_LayerState_Toggle::release()

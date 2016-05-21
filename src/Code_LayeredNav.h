@@ -4,6 +4,7 @@
 #include <inttypes.h>
 #include <Code_LayeredScScBase.h>
 #include "StateLayers_DH.h"
+#include "Code_LayerState_Toggle.h"
 
 /* Class Code_LayeredNav sends one of two scancodes, determined by refStateLayers.getNavLayer().
 */

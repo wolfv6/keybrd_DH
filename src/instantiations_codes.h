@@ -18,6 +18,7 @@
 #include "LED.h"
 #include <LED_AVR.h>
 #include <LED_PCA9655E.h>
+#include <LEDsBlinker.h>
 
 //StateLayers
 class StateLayersInterface;
@@ -160,19 +161,19 @@ Code_ScS s_question(KEY_SLASH);
 enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
 
 //layer LEDs
-LED_PCA9655E LED_R2Green(port1_R, 1<<6);        //LED_D6_3  NORMAL
 LED_PCA9655E LED_R1Blue(port1_R, 1<<5);         //LED_2     NAS TEN_KEY_OFF (or TEN_KEY_ON)
+LED_PCA9655E LED_R2Green(port1_R, 1<<6);        //LED_D6_3  NORMAL
 LED_PCA9655E LED_R3Yellow(port0_R, 1<<7);       //LED_1     MF
+LED_PCA9655E LED_R4Red(port0_R, 1<<6);          //LED_0     TEN_KEY_ON
 
+LED_AVR LED_L2Yellow(PORTB, 1<<5);              //LED_1     MOUSE_ON
 LED_AVR LED_L3Yellow(PORTB, 1<<4);              //          NumLock
 //LED_AVR LED_L3Yellow(PORTD, 1<<6);            //LED_D6_3  NumLock, only Teensy's on-board LED
 //LED_AVR LED_L3Yellow(PORTD, 1<<7);            //          NumLock, dim
 
-LED_PCA9655E LED_R4Red(port0_R, 1<<6);          //LED_0     TEN_KEY_ON
 //mode indicator LEDs      NORMAL        TEN_KEY_OFF  TEN_KEY_ON  MF
 LED * ptrsLayerLEDs[] = { &LED_R2Green, &LED_R1Blue, &LED_R4Red, &LED_R3Yellow };
 
-LED_AVR LED_L2Yellow(PORTB, 1<<5);              //LED_1     MOUSE_ON
 StateLayers_MF stateLayers_MF(LED_L2Yellow);
 Code_LayerLock l_mouseOn(0, stateLayers_MF);
 Code_LayerLock l_arrowOn(1, stateLayers_MF);
@@ -196,7 +197,12 @@ Code_Shift* const* const Code_AutoShift::ptrsShifts = ptrsS;
 const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsShifts)/sizeof(*ptrsShifts);
 
 // ----------------- L-R CODES -----------------
-Code_LayerState_Toggle t_LRModf;
+LEDsBlinker LEDsBlinkerL(LED_L2Yellow, LED_L2Yellow, LED_L3Yellow); //first LED_L2Yellow is a place holder for LED_L1Yellow
+LEDsBlinker LEDsBlinkerR(LED_R1Blue, LED_R2Green, LED_R3Yellow);
+StateLayers_DH& LEDsBlinker::refStateLayers = stateLayers_DH;
+
+//Code_LayerState_Toggle t_LRModf;
+Code_LayerState_Toggle t_LRModf(LEDsBlinkerL, LEDsBlinkerR);
 Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refStateLayers = t_LRModf;
 
 Code_LayeredDoublePressToggle t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
