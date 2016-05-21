@@ -19,6 +19,7 @@
 #include <LED_AVR.h>
 #include <LED_PCA9655E.h>
 #include <LEDsBlinker.h>
+#include <IndicatorLEDs.h>
 
 //StateLayers
 class StateLayersInterface;
@@ -155,19 +156,29 @@ Code_ScS s_question(KEY_SLASH);
 //            NORMAL  NAS          NAS         MF
 enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
 
+//left LEDs
+/* Scroll lock LED removed, explanation in Code_LEDLock.cpp
+LED_AVR LED_L1Yellow(PORTB, 1<<7);              //LED_2     ScrollLock
+*/
+LED_AVR LED_L2Yellow(PORTB, 1<<5);              //LED_1     MOUSE_ON
+LED_AVR LED_L3Yellow(PORTB, 1<<4);              //          NumLock
+//LED_AVR LED_L3Yellow(PORTD, 1<<6);            //LED_D6_3  NumLock, only Teensy's on-board LED
+//LED_AVR LED_L3Yellow(PORTD, 1<<7);            //          NumLock, dim
+LED_AVR LED_L4Green(PORTB, 1<<6);               //LED_0     CapsLock
+
+LED * ptrsLEDs_L[] = { &LED_L2Yellow , &LED_L2Yellow , &LED_L3Yellow, &LED_L4Green };
+
+//right LEDs
 //layer LEDs
 LED_PCA9655E LED_R1Blue(port1_R, 1<<5);         //LED_2     NAS TEN_KEY_OFF (or TEN_KEY_ON)
 LED_PCA9655E LED_R2Green(port1_R, 1<<6);        //LED_D6_3  NORMAL
 LED_PCA9655E LED_R3Yellow(port0_R, 1<<7);       //LED_1     MF
 LED_PCA9655E LED_R4Red(port0_R, 1<<6);          //LED_0     TEN_KEY_ON
 
-LED_AVR LED_L2Yellow(PORTB, 1<<5);              //LED_1     MOUSE_ON
-LED_AVR LED_L3Yellow(PORTB, 1<<4);              //          NumLock
-//LED_AVR LED_L3Yellow(PORTD, 1<<6);            //LED_D6_3  NumLock, only Teensy's on-board LED
-//LED_AVR LED_L3Yellow(PORTD, 1<<7);            //          NumLock, dim
-
 //mode indicator LEDs      NORMAL        TEN_KEY_OFF  TEN_KEY_ON  MF
 LED * ptrsLayerLEDs[] = { &LED_R2Green, &LED_R1Blue, &LED_R4Red, &LED_R3Yellow };
+
+IndicatorLEDs LEDs(ptrsLEDs_L, ptrsLayerLEDs);
 
 StateLayers_MF stateLayers_MF(LED_L2Yellow);
 Code_LayerLock l_mouseOn(0, stateLayers_MF);
@@ -196,9 +207,10 @@ const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsShifts)/sizeof(*ptrsShifts
 LEDsBlinker LEDsBlinkerL(LED_L2Yellow, LED_L2Yellow, LED_L3Yellow);
 LEDsBlinker LEDsBlinkerR(LED_R1Blue, LED_R2Green, LED_R3Yellow);
 StateLayers_DH& LEDsBlinker::refStateLayers = stateLayers_DH;
+const uint8_t LEDsBlinker::SCANS_PER_BLINK = 62; //NUM_BLINKS * SCANS_PER_BLINK < 256
 
 //Code_LayerState_Toggle t_LRModf;
-Code_LayerState_Toggle t_LRModf(LEDsBlinkerL, LEDsBlinkerR);
+Code_LayerState_Toggle t_LRModf(LEDs);
 Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refStateLayers = t_LRModf;
 
 Code_LayeredDoublePressToggle t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
@@ -230,13 +242,9 @@ Code_LayerState_Toggle& Code_LayeredOperator::refStateLRModf = t_LRModf;
 const uint8_t Code_LayeredOperator::TEN_KEY_ON = TEN_KEY_ON;
 
 // --------------- LOCK CODES ------------------
-LED_AVR LED_L4Green(PORTB, 1<<6);               //LED_0     CapsLock
 Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_L4Green);
 
-/* Scroll lock LED removed, explanation in Code_LEDLock.cpp
-LED_AVR LED_L1Yellow(PORTB, 1<<7);              //LED_2     ScrollLock
-Code_LEDLock o_scrollLock(KEY_SCROLL_LOCK, LED_L1Yellow);
-*/
+//Scroll lock LED removed, explanation in Code_LEDLock.cpp
 Code_Sc o_scrollLock(KEY_SCROLL_LOCK);
 
 // -------------- MOUSE CODES ------------------

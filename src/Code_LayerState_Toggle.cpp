@@ -9,12 +9,12 @@ void Code_LayerState_Toggle::press()
     if (activeLayer == 1)
     {
         activeLayer = 0;
-        blinker0.startBlinking();
-}
+        LEDs.startBlinking_L();
+    }
     else
     {
         activeLayer = 1;
-        blinker1.startBlinking();
+        LEDs.startBlinking_R();
     }
 }
 
