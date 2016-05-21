@@ -100,7 +100,6 @@ Code_Sc s_graves(KEY_TILDE);                      //`
 Code_Sc s_comma(KEY_COMMA);
 Code_Sc s_period(KEY_PERIOD);
 Code_Sc s_slash(KEY_SLASH);
-//Code_Sc s_capsLock(KEY_CAPS_LOCK); todo
 
 Code_Sc s_F1(KEY_F1);
 Code_Sc s_F2(KEY_F2);
@@ -117,12 +116,8 @@ Code_Sc s_F12(KEY_F12);
 
 Code_Sc s_printscreen(KEY_PRINTSCREEN);
 Code_Sc s_pause(KEY_PAUSE);
-//Code_Sc s_insert(KEY_INSERT); todo
 Code_Sc s_home(KEY_HOME);
-//Code_Sc s_pageUp(KEY_PAGE_UP); todo
-//Code_Sc s_delete(KEY_DELETE);
 Code_Sc s_end(KEY_END);
-//Code_Sc s_pageDown(KEY_PAGE_DOWN); todo
 Code_Sc s_right(KEY_RIGHT);                      //arrow
 Code_Sc s_left(KEY_LEFT);
 Code_Sc s_down(KEY_DOWN);
@@ -197,7 +192,8 @@ Code_Shift* const* const Code_AutoShift::ptrsShifts = ptrsS;
 const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsShifts)/sizeof(*ptrsShifts);
 
 // ----------------- L-R CODES -----------------
-LEDsBlinker LEDsBlinkerL(LED_L2Yellow, LED_L2Yellow, LED_L3Yellow); //first LED_L2Yellow is a place holder for LED_L1Yellow
+//first LEDsBlinkerL argument is a place holder for LED_L1Yellow
+LEDsBlinker LEDsBlinkerL(LED_L2Yellow, LED_L2Yellow, LED_L3Yellow);
 LEDsBlinker LEDsBlinkerR(LED_R1Blue, LED_R2Green, LED_R3Yellow);
 StateLayers_DH& LEDsBlinker::refStateLayers = stateLayers_DH;
 

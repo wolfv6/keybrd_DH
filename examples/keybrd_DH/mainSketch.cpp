@@ -33,6 +33,9 @@ const uint8_t Code_MouseSpeed::HIGH_SPEED = 54;
 //smaller SCANS_PER_MOUSE_MOVE parameter results in faster mouse
 MouseMove mouseMove(4);
 
+//3 LEDs blink 4 times when LRModf is pressed.  Smaller number makes blinking faster.
+const uint8_t LEDsBlinker::SCANS_PER_BLINK = 62; //NUM_BLINKS * SCANS_PER_BLINK < 256
+
 // ========= OBJECT INSTANTIATIONS =============
 #include <instantiations_ports.h>
 #include <instantiations_codes.h>

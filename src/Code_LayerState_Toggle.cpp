@@ -6,7 +6,6 @@ Code_LayerState_Toggle contains its own state
 */
 void Code_LayerState_Toggle::press()
 {
-    //activeLayer = !activeLayer; todo
     if (activeLayer == 1)
     {
         activeLayer = 0;
