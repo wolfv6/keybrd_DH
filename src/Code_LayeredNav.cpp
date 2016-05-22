@@ -1,6 +1,8 @@
 #include "Code_LayeredNav.h"
 
-//update layer and numLock
+//Update layer and numLock
+//Logic is here rather than in StateLayers_DH because
+//calling refStateLRModf from StateLayers_DH caused circular dependency.
 void Code_LayeredNav::press()
 {
     layer = refStateLRModf.getActiveLayer(); //LRModf determines layer

@@ -18,7 +18,6 @@
 #include "LED.h"
 #include <LED_AVR.h>
 #include <LED_PCA9655E.h>
-#include <LEDsBlinker.h>
 #include <IndicatorLEDs.h>
 
 //StateLayers
@@ -166,6 +165,7 @@ LED_AVR LED_L3Yellow(PORTB, 1<<4);              //          NumLock
 //LED_AVR LED_L3Yellow(PORTD, 1<<7);            //          NumLock, dim
 LED_AVR LED_L4Green(PORTB, 1<<6);               //LED_0     CapsLock
 
+//LED_L2Yellow in first element is a place holder for Scroll lock LED
 LED * ptrsLEDs_L[] = { &LED_L2Yellow , &LED_L2Yellow , &LED_L3Yellow, &LED_L4Green };
 
 //right LEDs
@@ -177,8 +177,6 @@ LED_PCA9655E LED_R4Red(port0_R, 1<<6);          //LED_0     TEN_KEY_ON
 
 //mode indicator LEDs      NORMAL        TEN_KEY_OFF  TEN_KEY_ON  MF
 LED * ptrsLayerLEDs[] = { &LED_R2Green, &LED_R1Blue, &LED_R4Red, &LED_R3Yellow };
-
-IndicatorLEDs LEDs(ptrsLEDs_L, ptrsLayerLEDs);
 
 StateLayers_MF stateLayers_MF(LED_L2Yellow);
 Code_LayerLock l_mouseOn(0, stateLayers_MF);
@@ -196,6 +194,9 @@ Code_LayerLock l_tenKeyOn(TEN_KEY_ON, stateLayers_NAS);
 
 StateLayersInterface& Key_LayeredKeysArray::refStateLayers = stateLayers_DH;
 
+IndicatorLEDs LEDs(stateLayers_DH, ptrsLEDs_L, ptrsLayerLEDs);
+StateLayers_DH& LEDsBlinker::refStateLayers = stateLayers_DH;
+
 // --------------- SHIFT CODE ------------------
 Code_Shift s_shift(MODIFIERKEY_LEFT_SHIFT);
 Code_Shift* const ptrsS[] = { &s_shift };
@@ -203,12 +204,6 @@ Code_Shift* const* const Code_AutoShift::ptrsShifts = ptrsS;
 const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsShifts)/sizeof(*ptrsShifts);
 
 // ----------------- L-R CODES -----------------
-//first LEDsBlinkerL argument is a place holder for LED_L1Yellow
-LEDsBlinker LEDsBlinkerL(LED_L2Yellow, LED_L2Yellow, LED_L3Yellow);
-LEDsBlinker LEDsBlinkerR(LED_R1Blue, LED_R2Green, LED_R3Yellow);
-StateLayers_DH& LEDsBlinker::refStateLayers = stateLayers_DH;
-const uint8_t LEDsBlinker::SCANS_PER_BLINK = 62; //NUM_BLINKS * SCANS_PER_BLINK < 256
-
 //Code_LayerState_Toggle t_LRModf;
 Code_LayerState_Toggle t_LRModf(LEDs);
 Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refStateLayers = t_LRModf;

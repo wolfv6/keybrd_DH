@@ -1,17 +1,32 @@
 #include "IndicatorLEDs.h"
 
-IndicatorLEDs::IndicatorLEDs( LED* ptrsLEDs_L[], LED* ptrsLayerLEDs[] )
-            : ptrsLEDs_L(ptrsLEDs_L), ptrsLayerLEDs(ptrsLayerLEDs)
+IndicatorLEDs::IndicatorLEDs( StateLayers_DH& stateLayers_DH,
+        LED* ptrsLEDs_L[], LED* ptrsLayerLEDs[] )
+            : stateLayers_DH(stateLayers_DH),
+            ptrsLEDs_L(ptrsLEDs_L), ptrsLayerLEDs(ptrsLayerLEDs),
+            blinker_L(ptrsLEDs_L), blinker_R(ptrsLayerLEDs)
 {
-    //const uint8_t LEDsBlinker::SCANS_PER_BLINK = 62; //NUM_BLINKS * SCANS_PER_BLINK < 256
 }
 
 void IndicatorLEDs::startBlinking_L()
 {
-    //blinker_L.startBlinking();
+    blinker_L.startBlinking();
 }
 
 void IndicatorLEDs::startBlinking_R()
 {
-    //blinker_R.startBlinking();
+    blinker_R.startBlinking();
 }
+void IndicatorLEDs::blink()
+{
+    blinker_L.blink();
+    blinker_R.blink();
+}
+
+void IndicatorLEDs::restoreLEDs()
+{
+    //updateLayerLEDs();
+    //updateNumLockLED();
+    //scrollLock.updateLED(); Scroll lock LED removed, explanation in Code_LEDLock.cpp
+}
+
