@@ -71,7 +71,8 @@ void loop()
     matrix_L.scan();
     matrix_R.scan();
 
-    LEDs.blink();
+    //LEDsBlinker_L.blink();
+    //LEDsBlinker_R.blink();
 
     mouseMove.send();
 

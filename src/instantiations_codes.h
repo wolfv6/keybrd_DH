@@ -195,6 +195,8 @@ Code_LayerLock l_tenKeyOn(TEN_KEY_ON, stateLayers_NAS);
 StateLayersInterface& Key_LayeredKeysArray::refStateLayers = stateLayers_DH;
 
 IndicatorLEDs LEDs(stateLayers_DH, ptrsLEDs_L, ptrsLayerLEDs);
+LEDsBlinker LEDsBlinker_L(ptrsLEDs_L);
+LEDsBlinker LEDsBlinker_R(ptrsLayerLEDs);
 StateLayers_DH& LEDsBlinker::refStateLayers = stateLayers_DH;
 
 // --------------- SHIFT CODE ------------------
@@ -205,7 +207,7 @@ const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsShifts)/sizeof(*ptrsShifts
 
 // ----------------- L-R CODES -----------------
 //Code_LayerState_Toggle t_LRModf;
-Code_LayerState_Toggle t_LRModf(LEDs);
+Code_LayerState_Toggle t_LRModf(LEDsBlinker_L, LEDsBlinker_R);
 Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refStateLayers = t_LRModf;
 
 Code_LayeredDoublePressToggle t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
