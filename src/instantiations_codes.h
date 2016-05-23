@@ -178,11 +178,15 @@ LED_PCA9655E LED_R4Red(port0_R, 1<<6);          //LED_0     TEN_KEY_ON
 //mode indicator LEDs      NORMAL        TEN_KEY_OFF  TEN_KEY_ON  MF
 LED * ptrsLayerLEDs[] = { &LED_R2Green, &LED_R1Blue, &LED_R4Red, &LED_R3Yellow };
 
+IndicatorLEDs LEDs(ptrsLEDs_L, ptrsLayerLEDs, TEN_KEY_ON, TEN_KEY_OFF, MF);
+LEDsBlinker LEDsBlinker_L(ptrsLEDs_L);
+LEDsBlinker LEDsBlinker_R(ptrsLayerLEDs);
+
 StateLayers_MF stateLayers_MF(LED_L2Yellow);
 Code_LayerLock l_mouseOn(0, stateLayers_MF);
 Code_LayerLock l_arrowOn(1, stateLayers_MF);
 
-StateLayers_DH stateLayers_DH(stateLayers_MF, MF, TEN_KEY_ON, TEN_KEY_OFF, ptrsLayerLEDs, LED_L3Yellow);
+StateLayers_DH stateLayers_DH(stateLayers_MF, MF, TEN_KEY_ON, TEN_KEY_OFF, LEDs, ptrsLayerLEDs, LED_L3Yellow);
 Code_LayerLock l_normalLock(NORMAL, stateLayers_DH);
 Code_LayerLockMF_Protector l_MFLock(MF, stateLayers_DH);
 
@@ -192,12 +196,8 @@ Code_NASLock_Protector l_NASLock(stateLayers_NAS);
 Code_LayerLock l_tenKeyOff(TEN_KEY_OFF, stateLayers_NAS);
 Code_LayerLock l_tenKeyOn(TEN_KEY_ON, stateLayers_NAS);
 
-StateLayersInterface& Key_LayeredKeysArray::refStateLayers = stateLayers_DH;
-
-IndicatorLEDs LEDs(stateLayers_DH, ptrsLEDs_L, ptrsLayerLEDs);
-LEDsBlinker LEDsBlinker_L(ptrsLEDs_L);
-LEDsBlinker LEDsBlinker_R(ptrsLayerLEDs);
 StateLayers_DH& LEDsBlinker::refStateLayers = stateLayers_DH;
+StateLayersInterface& Key_LayeredKeysArray::refStateLayers = stateLayers_DH;
 
 // --------------- SHIFT CODE ------------------
 Code_Shift s_shift(MODIFIERKEY_LEFT_SHIFT);

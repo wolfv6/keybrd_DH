@@ -7,6 +7,7 @@
 #include <LED.h>
 #include <LED_AVR.h>
 #include "StateLayers_MF.h"
+#include "IndicatorLEDs.h"
 
 extern volatile uint8_t keyboard_leds;
 
@@ -20,18 +21,19 @@ class StateLayers_DH : public StateLayers
         const uint8_t MF;
         const uint8_t TEN_KEY_ON;
         const uint8_t TEN_KEY_OFF;
+        IndicatorLEDs& refIndicatorLEDs;
         LED* *const ptrsLayerLEDs;              //array of pointers to layer indicator lights
         LED_AVR& refLED_numLock;
         bool lazyNumLock;                       //toggled by numLock key
         virtual void setActiveLayer(const uint8_t layer);
-        void updateLayerLEDs();
-        void updateNumLockLED();
     public:
         StateLayers_DH(StateLayers_MF& refStateLayers_MF, const uint8_t MF,
                 const uint8_t TEN_KEY_ON, const uint8_t TEN_KEY_OFF,
+                IndicatorLEDs& refIndicatorLEDs,
                 LED* ptrsLayerLEDs[], LED_AVR& refLED_numLock)
             : refStateLayers_MF(refStateLayers_MF), MF(MF),
                 TEN_KEY_ON(TEN_KEY_ON), TEN_KEY_OFF(TEN_KEY_OFF),
+                refIndicatorLEDs(refIndicatorLEDs),
                 ptrsLayerLEDs(ptrsLayerLEDs), refLED_numLock(refLED_numLock),
                 lazyNumLock(NUMLOCK_OFF) {}
         enum numLock { NUMLOCK_OFF, NUMLOCK_ON };

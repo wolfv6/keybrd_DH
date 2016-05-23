@@ -140,8 +140,8 @@ State, Layers, and Layered dependencies
 	                      \         /        lr_shift           t_ctrl
 	                       \       /         rl_shift           t_alt
 	                     StateLayers_DH     
-	     _______________ stateLayers_DH _____________
-	    /////               ||||                  \ \ 
+	     _______________ stateLayers_DH ____________________
+	    /////               ||||                 \\\\\\\\\\\\
 	Code_LayeredNav      Code_LayeredOperator   Code_LayeredNumber
 	lr_insert            lr_plus                n_0 through n_9
 	lr_delete            lr_asterix             n_00

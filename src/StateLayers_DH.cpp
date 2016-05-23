@@ -2,22 +2,9 @@
 
 void StateLayers_DH::setActiveLayer(const uint8_t layer)
 {
-    //turn off LEDs
-    ptrsLayerLEDs[activeLayer]->off();
-
-    if (activeLayer == TEN_KEY_ON)
-    {
-        ptrsLayerLEDs[TEN_KEY_OFF]->off();
-    }
-
-    //udate activeLayer
+    refIndicatorLEDs.LEDsOff(activeLayer);
     activeLayer = layer;
-
-    //turn on LEDs
-    ptrsLayerLEDs[activeLayer]->on();
-
-    //update layer LEDs
-    updateLayerLEDs();    
+    refIndicatorLEDs.LEDsOn(activeLayer);
 }
 
 bool StateLayers_DH::getLazyNumLock()
@@ -47,7 +34,7 @@ bool StateLayers_DH::getNumberLayer()
 void StateLayers_DH::numLock()
 {
     lazyNumLock = !lazyNumLock;                 //toggle
-    updateNumLockLED();
+    refIndicatorLEDs.updateNumLockLED(lazyNumLock);
 }
 
 //sending KEY_NUM_LOCK is lazy to minimize USB traffic
@@ -60,41 +47,10 @@ void StateLayers_DH::updateNumLock(bool numLock)
         Keyboard.release(KEY_NUM_LOCK);
     }
 }
-// ================= update LEDs ===============
-void StateLayers_DH::updateLayerLEDs()
-{
-    ptrsLayerLEDs[activeLayer]->on();
-
-    if (activeLayer == TEN_KEY_ON)
-    {
-        ptrsLayerLEDs[TEN_KEY_OFF]->on();
-    }
-
-    if (activeLayer == MF)
-    {
-        refStateLayers_MF.MouseLEDActivate();
-    }
-    else
-    {
-        refStateLayers_MF.MouseLEDOff();
-    }
-}
-
-void StateLayers_DH::updateNumLockLED()
-{
-    if (lazyNumLock == NUMLOCK_ON)
-    {
-        refLED_numLock.on();
-    }
-    else
-    {
-        refLED_numLock.off();
-    }
-}
 
 void StateLayers_DH::restoreLEDs()
 {
-    updateLayerLEDs();
-    updateNumLockLED();
+    refIndicatorLEDs.updateLayerLEDs(activeLayer);
+    refIndicatorLEDs.updateNumLockLED(lazyNumLock);
     //scrollLock.updateLED(); Scroll lock LED removed, explanation in Code_LEDLock.cpp
 }

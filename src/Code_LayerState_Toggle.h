@@ -5,7 +5,7 @@
 #include <Code.h>
 #include <StateLayersInterface.h>
 #include <IndicatorLEDs.h>
-//#include <LEDsBlinker.h>
+#include <LEDsBlinker.h>
 
 /* Code_LayerState_Toggle is class of LRModf.
 press() toggles activeLayer between 0 and 1.
