@@ -4,9 +4,9 @@ void IndicatorLEDs::LEDsOff(uint8_t activeLayer)
 {
     ptrsLayerLEDs[activeLayer]->off();
 
-    if (activeLayer == 2)//TEN_KEY_ON
+    if (activeLayer == 2)//TEN_KEY_ON todo
     {
-        ptrsLayerLEDs[1]->off();//TEN_KEY_OFF
+        ptrsLayerLEDs[1]->off();//TEN_KEY_OFF todo
     }
 }
 
@@ -24,16 +24,15 @@ void IndicatorLEDs::updateLayerLEDs(uint8_t activeLayer)
     {
         ptrsLayerLEDs[TEN_KEY_OFF]->on();
     }
-/* todo
+
     if (activeLayer == MF)
     {
-        refStateLayers_MF.MouseLEDOn();
+        MouseLEDOn(activeLayer );
     }
     else
     {
-        refStateLayers_MF.MouseLEDOff();
+        MouseLEDOff();
     }
-*/
 }
 
 void IndicatorLEDs::updateNumLockLED(uint8_t lazyNumLock)

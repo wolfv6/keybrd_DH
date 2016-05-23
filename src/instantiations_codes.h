@@ -186,7 +186,7 @@ StateLayers_MF stateLayers_MF(indicatorLEDs);
 Code_LayerLock l_mouseOn(0, stateLayers_MF);
 Code_LayerLock l_arrowOn(1, stateLayers_MF);
 
-StateLayers_DH stateLayers_DH(stateLayers_MF, MF, TEN_KEY_ON, TEN_KEY_OFF, indicatorLEDs, ptrsLayerLEDs, LED_L3Yellow);
+StateLayers_DH stateLayers_DH(TEN_KEY_ON, indicatorLEDs, ptrsLayerLEDs, LED_L3Yellow);
 Code_LayerLock l_normalLock(NORMAL, stateLayers_DH);
 Code_LayerLockMF_Protector l_MFLock(MF, stateLayers_DH);
 
