@@ -4,9 +4,9 @@ void IndicatorLEDs::LEDsOff(uint8_t activeLayer)
 {
     ptrsLayerLEDs[activeLayer]->off();
 
-    if (activeLayer == 2)//TEN_KEY_ON todo
+    if (activeLayer == TEN_KEY_ON )
     {
-        ptrsLayerLEDs[1]->off();//TEN_KEY_OFF todo
+        ptrsLayerLEDs[TEN_KEY_OFF]->off();
     }
 }
 

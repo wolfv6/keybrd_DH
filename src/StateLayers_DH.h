@@ -18,18 +18,14 @@ class StateLayers_DH : public StateLayers
     private:
         const uint8_t TEN_KEY_ON;
         IndicatorLEDs& refIndicatorLEDs;
-        LED* *const ptrsLayerLEDs;              //array of pointers to layer indicator lights
-        LED_AVR& refLED_numLock;
         bool lazyNumLock;                       //toggled by numLock key
         virtual void setActiveLayer(const uint8_t layer);
     public:
         StateLayers_DH(
                 const uint8_t TEN_KEY_ON,
-                IndicatorLEDs& refIndicatorLEDs,
-                LED* ptrsLayerLEDs[], LED_AVR& refLED_numLock)
+                IndicatorLEDs& refIndicatorLEDs)
             : TEN_KEY_ON(TEN_KEY_ON),
                 refIndicatorLEDs(refIndicatorLEDs),
-                ptrsLayerLEDs(ptrsLayerLEDs), refLED_numLock(refLED_numLock),
                 lazyNumLock(NUMLOCK_OFF) {}
         enum numLock { NUMLOCK_OFF, NUMLOCK_ON };
         bool getLazyNumLock();

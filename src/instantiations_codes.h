@@ -151,42 +151,38 @@ Code_ScS s_lessThan(KEY_COMMA);
 Code_ScS s_greaterThan(KEY_PERIOD);
 Code_ScS s_question(KEY_SLASH);
 
-// -------------- LAYER CODES ------------------
+// --------------- LAYER CODES -----------------
 //            NORMAL  NAS          NAS         MF
 enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
 
+// ------------------- LEDs --------------------
 //left LEDs
-/* Scroll lock LED removed, explanation in Code_LEDLock.cpp
-LED_AVR LED_L1Yellow(PORTB, 1<<7);              //LED_2     ScrollLock
-*/
-LED_AVR LED_L2Yellow(PORTB, 1<<5);              //LED_1     MOUSE_ON
-LED_AVR LED_L3Yellow(PORTB, 1<<4);              //          NumLock
-//LED_AVR LED_L3Yellow(PORTD, 1<<6);            //LED_D6_3  NumLock, only Teensy's on-board LED
-//LED_AVR LED_L3Yellow(PORTD, 1<<7);            //          NumLock, dim
-LED_AVR LED_L4Green(PORTB, 1<<6);               //LED_0     CapsLock
+LED_AVR LED_L1Yellow(PORTD, 1<<4);          //LED_2     ScrollLock (PCB uses pin B7, explanation in Code_LEDLock.cpp)
+LED_AVR LED_L2Yellow(PORTB, 1<<4);          //LED_D6_3  NumLock (PCB uses pin D6, but that is Teensy's on-board LED)
+LED_AVR LED_L3Yellow(PORTB, 1<<5);          //LED_1     MOUSE_ON
+LED_AVR LED_L4Green(PORTB, 1<<6);           //LED_0     CapsLock
 
-//LED_L2Yellow in first element is a place holder for Scroll lock LED
-LED * ptrsLEDs_L[] = { &LED_L2Yellow , &LED_L2Yellow , &LED_L3Yellow, &LED_L4Green };
+//IndicatorLEDs.h defines enum LEDs_L { LED_SCROLL_LOCK, LED_NUM_LOCK, LED_MOUSE_ON, LED_CAPS_LOCK }
+LED * ptrsLEDs_L[] = { &LED_L1Yellow, &LED_L2Yellow, &LED_L3Yellow, &LED_L4Green };
 
 //right LEDs
-//layer LEDs
-LED_PCA9655E LED_R1Blue(port1_R, 1<<5);         //LED_2     NAS TEN_KEY_OFF (or TEN_KEY_ON)
-LED_PCA9655E LED_R2Green(port1_R, 1<<6);        //LED_D6_3  NORMAL
-LED_PCA9655E LED_R3Yellow(port0_R, 1<<7);       //LED_1     MF
-LED_PCA9655E LED_R4Red(port0_R, 1<<6);          //LED_0     TEN_KEY_ON
+LED_PCA9655E LED_R1Blue(port1_R, 1<<5);     //LED_2     NAS (TEN_KEY_OFF or TEN_KEY_ON)
+LED_PCA9655E LED_R2Green(port1_R, 1<<6);    //LED_D6_3  NORMAL
+LED_PCA9655E LED_R3Yellow(port0_R, 1<<7);   //LED_1     MF
+LED_PCA9655E LED_R4Red(port0_R, 1<<6);      //LED_0     TEN_KEY_ON
 
-//mode indicator LEDs      NORMAL        TEN_KEY_OFF  TEN_KEY_ON  MF
-LED * ptrsLayerLEDs[] = { &LED_R2Green, &LED_R1Blue, &LED_R4Red, &LED_R3Yellow };
+//IndicatorLEDs.h defines enum LEDs_R { LED_NAS, LED_NORMAL, LED_MF, LED_TEN_KEY_ON }
+LED * ptrsLEDs_R[] = { &LED_R1Blue, &LED_R2Green, &LED_R3Yellow, &LED_R4Red };
 
-IndicatorLEDs indicatorLEDs(ptrsLEDs_L, ptrsLayerLEDs, TEN_KEY_ON, TEN_KEY_OFF, MF);
+IndicatorLEDs indicatorLEDs(ptrsLEDs_L, ptrsLEDs_R, TEN_KEY_ON, TEN_KEY_OFF, MF);
 LEDsBlinker LEDsBlinker_L(ptrsLEDs_L);
-LEDsBlinker LEDsBlinker_R(ptrsLayerLEDs);
+LEDsBlinker LEDsBlinker_R(ptrsLEDs_R);
 
 StateLayers_MF stateLayers_MF(indicatorLEDs);
 Code_LayerLock l_mouseOn(0, stateLayers_MF);
 Code_LayerLock l_arrowOn(1, stateLayers_MF);
 
-StateLayers_DH stateLayers_DH(TEN_KEY_ON, indicatorLEDs, ptrsLayerLEDs, LED_L3Yellow);
+StateLayers_DH stateLayers_DH(TEN_KEY_ON, indicatorLEDs);
 Code_LayerLock l_normalLock(NORMAL, stateLayers_DH);
 Code_LayerLockMF_Protector l_MFLock(MF, stateLayers_DH);
 
