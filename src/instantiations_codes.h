@@ -178,15 +178,15 @@ LED_PCA9655E LED_R4Red(port0_R, 1<<6);          //LED_0     TEN_KEY_ON
 //mode indicator LEDs      NORMAL        TEN_KEY_OFF  TEN_KEY_ON  MF
 LED * ptrsLayerLEDs[] = { &LED_R2Green, &LED_R1Blue, &LED_R4Red, &LED_R3Yellow };
 
-IndicatorLEDs LEDs(ptrsLEDs_L, ptrsLayerLEDs, TEN_KEY_ON, TEN_KEY_OFF, MF);
+IndicatorLEDs indicatorLEDs(ptrsLEDs_L, ptrsLayerLEDs, TEN_KEY_ON, TEN_KEY_OFF, MF);
 LEDsBlinker LEDsBlinker_L(ptrsLEDs_L);
 LEDsBlinker LEDsBlinker_R(ptrsLayerLEDs);
 
-StateLayers_MF stateLayers_MF(LED_L2Yellow);
+StateLayers_MF stateLayers_MF(indicatorLEDs);
 Code_LayerLock l_mouseOn(0, stateLayers_MF);
 Code_LayerLock l_arrowOn(1, stateLayers_MF);
 
-StateLayers_DH stateLayers_DH(stateLayers_MF, MF, TEN_KEY_ON, TEN_KEY_OFF, LEDs, ptrsLayerLEDs, LED_L3Yellow);
+StateLayers_DH stateLayers_DH(stateLayers_MF, MF, TEN_KEY_ON, TEN_KEY_OFF, indicatorLEDs, ptrsLayerLEDs, LED_L3Yellow);
 Code_LayerLock l_normalLock(NORMAL, stateLayers_DH);
 Code_LayerLockMF_Protector l_MFLock(MF, stateLayers_DH);
 

@@ -5,6 +5,7 @@
 #include <inttypes.h>
 #include <StateLayers.h>
 #include <LED.h>
+#include <IndicatorLEDs.h>
 
 /* StateLayers for DH sub-layers: mouseOn and arrowOn
 StateLayers is part of a layer scheme explained in keybrd_DH/doc/keybrd_DH_library_developer_guide.md
@@ -14,11 +15,9 @@ When pressed, Layered objects call StateLayers_MF function getActiveLayer().
 class StateLayers_MF : public StateLayers
 {
     private:
+        IndicatorLEDs& refIndicatorLEDs;
         virtual void setActiveLayer(const uint8_t layer);
-        LED& refMouseOnLED;
     public:
-        StateLayers_MF(LED& refMouseOnLED) : refMouseOnLED(refMouseOnLED) {}
-        void MouseLEDActivate();
-        void MouseLEDOff();
+        StateLayers_MF(IndicatorLEDs& refIndicatorLEDs) : refIndicatorLEDs(refIndicatorLEDs) {}
 };
 #endif

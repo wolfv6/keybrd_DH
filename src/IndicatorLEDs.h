@@ -7,7 +7,7 @@
 #include <LED.h>
 #include <LED_AVR.h>
 //#include <StateLayers_DH.h> circular dependency
-#include <StateLayers_MF.h>
+//#include <StateLayers_MF.h>
 
 /* IndicatorLEDs
 
@@ -15,6 +15,7 @@
 class IndicatorLEDs
 {
     private:
+        //todo enum LED names
         LED* *const ptrsLEDs_L;                 //array of pointers to indicator LEDs on left unit
         LED* *const ptrsLayerLEDs;              //array of pointers to indicator LEDs on right unit
         const uint8_t TEN_KEY_ON;
@@ -29,5 +30,7 @@ class IndicatorLEDs
         void LEDsOn(uint8_t activeLayer);
         void updateLayerLEDs(uint8_t activeLayer);
         void updateNumLockLED(uint8_t lazyNumLock);
+        void MouseLEDOn(uint8_t activeLayer);
+        void MouseLEDOff();
 };
 #endif

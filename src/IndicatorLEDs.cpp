@@ -27,7 +27,7 @@ void IndicatorLEDs::updateLayerLEDs(uint8_t activeLayer)
 /* todo
     if (activeLayer == MF)
     {
-        refStateLayers_MF.MouseLEDActivate();
+        refStateLayers_MF.MouseLEDOn();
     }
     else
     {
@@ -46,5 +46,22 @@ void IndicatorLEDs::updateNumLockLED(uint8_t lazyNumLock)
     {
         ptrsLEDs_L[2]->off();
     }
+}
+
+void IndicatorLEDs::MouseLEDOn(uint8_t activeLayer)
+{
+    if (activeLayer)                            //if arrow on
+    {
+        ptrsLEDs_L[3]->off();
+    }
+    else                                        //if mouse on
+    {
+        ptrsLEDs_L[3]->on();
+    }
+}
+
+void IndicatorLEDs::MouseLEDOff()
+{
+        ptrsLEDs_L[3]->off();
 }
 

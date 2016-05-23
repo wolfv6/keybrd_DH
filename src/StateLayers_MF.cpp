@@ -3,22 +3,6 @@
 void StateLayers_MF::setActiveLayer(const uint8_t layer)
 {
     activeLayer = layer;
-    MouseLEDActivate();
+    refIndicatorLEDs.MouseLEDOn(activeLayer);
 }
 
-void StateLayers_MF::MouseLEDActivate()
-{
-    if (activeLayer)                            //if arrow on
-    {
-        refMouseOnLED.off();
-    }
-    else                                        //if mouse on
-    {
-        refMouseOnLED.on();
-    }
-}
-
-void StateLayers_MF::MouseLEDOff()
-{
-        refMouseOnLED.off();
-}
