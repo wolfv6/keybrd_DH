@@ -11,22 +11,22 @@ ptrsLEDs_L[] and ptrsLEDs_R[] arrays contain indicator LEDs in the order of appe
 class IndicatorLEDs
 {
     private:
-        //Enumerators are LED role assignments, used as ptrsLEDs_L and ptrsLEDs_R array indexes.
+        //Enumerators are LED-role assignments, used as ptrsLEDs_L and ptrsLEDs_R array indexes.
         //Enumerator roles are in the order of corresponding LEDs as they appear on the keyboard.
         enum LED_ROLES_L { LED_SCROLL_LOCK, LED_NUM_LOCK, LED_MOUSE_ON, LED_CAPS_LOCK };
         enum LED_ROLES_R { LED_NAS, LED_NORMAL, LED_MF, LED_TEN_KEY_ON };
         LED*const *const ptrsLEDs_L;            //array of pointers to indicator LEDs on left unit
-        const uint8_t TEN_KEY_ON;               //layer id
         const uint8_t TEN_KEY_OFF;              //layer id
+        const uint8_t TEN_KEY_ON;               //layer id
         const uint8_t MF;                       //layer id
         LED* *ptrsLayerLEDs;                    //array of pointers to indicator LEDs on right unit,
                                                 //ordered by layer number
     public:
-        IndicatorLEDs( LED*const ptrsLEDs_L[], LED* ptrsLEDs_R[],
+        IndicatorLEDs( LED*const ptrsLEDs_L[], LED*const ptrsLEDs_R[],
                 const uint8_t TEN_KEY_ON, const uint8_t TEN_KEY_OFF, const uint8_t MF)
-              : ptrsLEDs_L(ptrsLEDs_L), TEN_KEY_ON(TEN_KEY_ON), TEN_KEY_OFF(TEN_KEY_OFF), MF(MF)
+              : ptrsLEDs_L(ptrsLEDs_L), TEN_KEY_OFF(TEN_KEY_OFF), TEN_KEY_ON(TEN_KEY_ON), MF(MF)
         {
-            //map layer ids to LED roles
+            //map layer ids to LED roles.  ptrsLayerLEDs is used to turn LED on or off by layer id.
             ptrsLayerLEDs[0] = ptrsLEDs_R[LED_NORMAL];
             ptrsLayerLEDs[1] = ptrsLEDs_R[LED_NAS]; //TEN_KEY_OFF
             ptrsLayerLEDs[2] = ptrsLEDs_R[LED_TEN_KEY_ON];
@@ -35,7 +35,7 @@ class IndicatorLEDs
         }
         void layerLEDsOff(uint8_t activeLayer);
         void updateLayerLEDs(uint8_t activeLayer);
-        void updateNumLockLED(uint8_t lazyNumLock);
+        void updateNumLockLED(bool lazyNumLock);
         void MouseOnLEDUpdate(uint8_t activeLayer);
 };
 #endif

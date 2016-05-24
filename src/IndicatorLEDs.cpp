@@ -35,7 +35,7 @@ void IndicatorLEDs::updateLayerLEDs(uint8_t activeLayer)
 
 /* called from StateLayers_DH
 */
-void IndicatorLEDs::updateNumLockLED(uint8_t lazyNumLock)
+void IndicatorLEDs::updateNumLockLED(bool lazyNumLock)
 {
     if (lazyNumLock == 1)
     {
