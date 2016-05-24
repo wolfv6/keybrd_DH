@@ -19,11 +19,10 @@ class IndicatorLEDs
         const uint8_t TEN_KEY_OFF;              //layer id
         const uint8_t TEN_KEY_ON;               //layer id
         const uint8_t MF;                       //layer id
-        LED* *ptrsLayerLEDs;                    //array of pointers to indicator LEDs on right unit,
-                                                //ordered by layer number
+        LED* ptrsLayerLEDs[4]; //array of ptrs to indicator LEDs on right unit, ordered by layer id
     public:
         IndicatorLEDs( LED*const ptrsLEDs_L[], LED*const ptrsLEDs_R[],
-                const uint8_t TEN_KEY_ON, const uint8_t TEN_KEY_OFF, const uint8_t MF)
+                const uint8_t TEN_KEY_OFF, const uint8_t TEN_KEY_ON, const uint8_t MF)
               : ptrsLEDs_L(ptrsLEDs_L), TEN_KEY_OFF(TEN_KEY_OFF), TEN_KEY_ON(TEN_KEY_ON), MF(MF)
         {
             //map layer ids to LED roles.  ptrsLayerLEDs is used to turn LED on or off by layer id.

@@ -50,7 +50,7 @@ void IndicatorLEDs::updateNumLockLED(bool lazyNumLock)
 /*
 also called from StateLayers_MF
 */
-void IndicatorLEDs::MouseOnLEDUpdate(uint8_t activeLayer)
+void IndicatorLEDs::MouseOnLEDUpdate(uint8_t activeLayer)//todo this needs active mouse sublayer
 {
     if (activeLayer)                            //if arrow on
     {
