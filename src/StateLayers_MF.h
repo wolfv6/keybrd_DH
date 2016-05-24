@@ -4,7 +4,6 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <StateLayers.h>
-#include <LED.h>
 #include <IndicatorLEDs.h>
 
 /* StateLayers for DH sub-layers: mouseOn and arrowOn

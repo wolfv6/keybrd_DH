@@ -1,10 +1,11 @@
 #include "StateLayers_DH.h"
 
+//set active layer and update LEDs
 void StateLayers_DH::setActiveLayer(const uint8_t layer)
 {
-    refIndicatorLEDs.LEDsOff(activeLayer);
+    refIndicatorLEDs.layerLEDsOff(activeLayer);
     activeLayer = layer;
-    refIndicatorLEDs.LEDsOn(activeLayer);
+    refIndicatorLEDs.updateLayerLEDs(activeLayer);
 }
 
 bool StateLayers_DH::getLazyNumLock()
@@ -12,7 +13,7 @@ bool StateLayers_DH::getLazyNumLock()
     return lazyNumLock;
 }
 
-//update numLock and return layer for Code_LayeredNumber
+//update numLock and return layer
 bool StateLayers_DH::getNumberLayer()
 {
     bool layer;
@@ -30,7 +31,7 @@ bool StateLayers_DH::getNumberLayer()
     return layer;
 }
 
-//toggle lazyNumLock
+//toggle lazyNumLock and update numLock LED
 void StateLayers_DH::numLock()
 {
     lazyNumLock = !lazyNumLock;                 //toggle
@@ -38,7 +39,6 @@ void StateLayers_DH::numLock()
 }
 
 //sending KEY_NUM_LOCK is lazy to minimize USB traffic
-//updateNumLock() is called in the above getter functions when NUMLOCK_OFF or NUMLOCK_ON is needed
 void StateLayers_DH::updateNumLock(bool numLock)
 {
     if ( (keyboard_leds & 1) != numLock)
@@ -48,8 +48,14 @@ void StateLayers_DH::updateNumLock(bool numLock)
     }
 }
 
+/* Restore first 3 LEDs.  restoreLEDs() is called when LEDsBlinker is done blinking.
+restoreLEDs() function is in StateLayers_DH because activeLayer and lazyNumLock values are needed by IndicatorLEDs.
+And if IndicatorLEDs called StateLayers_DH.getActiveLayer(), it would create a circular dependency.
+*/
 void StateLayers_DH::restoreLEDs()
 {
+    //todo, move this function's logic to refIndicatorLEDs.restoreLEDs(activeLayer, lazyNumLock);
+
     refIndicatorLEDs.updateLayerLEDs(activeLayer);
     refIndicatorLEDs.updateNumLockLED(lazyNumLock);
     //scrollLock.updateLED(); Scroll lock LED removed, explanation in Code_LEDLock.cpp

@@ -1,5 +1,15 @@
 #include "LEDsBlinker.h"
 
+/* How LEDsBlinker works:
+blink() is called from sketch loop().
+blink() does nothing as long as scansSinceFirstBlink is 0.
+startBlinking() sets scansSinceFirstBlink to 1.
+Then blink() increments scansSinceFirstBlink on every loop(), and blinks.
+At end of the blink cycle, scansSinceFirstBlink is set to 0, and the LEDs' states are restored.
+
+LEDsBlinker functions are not in IndicatorLEDs class because
+calling refStateLayers_DH.restoreLEDs() from IndicatorLEDs would create a circular dependency.
+*/
 void LEDsBlinker::startBlinking()
 {
     scansSinceFirstBlink = 1;
@@ -24,7 +34,7 @@ void LEDsBlinker::blink()
             if (scansSinceFirstBlink == NUM_BLINKS * SCANS_PER_BLINK)
             {
                 scansSinceFirstBlink = 0;       //stop blinking
-                refStateLayers.restoreLEDs();
+                refStateLayers_DH.restoreLEDs();
                 return;
             }
         }

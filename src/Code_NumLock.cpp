@@ -2,7 +2,7 @@
 
 void Code_NumLock::press()
 {
-    refStateLayers.numLock();
+    refStateLayers_DH.numLock();
 }
 
 void Code_NumLock::release()

@@ -4,8 +4,6 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <StateLayers.h>
-#include <LED.h>
-#include <LED_AVR.h>
 #include "IndicatorLEDs.h"
 
 extern volatile uint8_t keyboard_leds;

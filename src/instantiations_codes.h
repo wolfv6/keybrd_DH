@@ -151,28 +151,24 @@ Code_ScS s_lessThan(KEY_COMMA);
 Code_ScS s_greaterThan(KEY_PERIOD);
 Code_ScS s_question(KEY_SLASH);
 
-// --------------- LAYER CODES -----------------
-//            NORMAL  NAS          NAS         MF
-enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
-
 // ------------------- LEDs --------------------
-//left LEDs
-LED_AVR LED_L1Yellow(PORTD, 1<<4);          //LED_2     ScrollLock (PCB uses pin B7, explanation in Code_LEDLock.cpp)
+//left LEDs as they are conected to controller
+LED_AVR LED_L1Yellow(PORTD, 1<<4);          //LED_2     ScrollLock (PCB uses pin B7, D4 is disconnected, explanation in Code_LEDLock.cpp)
 LED_AVR LED_L2Yellow(PORTB, 1<<4);          //LED_D6_3  NumLock (PCB uses pin D6, but that is Teensy's on-board LED)
 LED_AVR LED_L3Yellow(PORTB, 1<<5);          //LED_1     MOUSE_ON
 LED_AVR LED_L4Green(PORTB, 1<<6);           //LED_0     CapsLock
+LED * ptrsLEDs_L[] = { &LED_L1Yellow, &LED_L2Yellow, &LED_L3Yellow, &LED_L4Green }; //in order of appearance
 
-//IndicatorLEDs.h defines enum LEDs_L { LED_SCROLL_LOCK, LED_NUM_LOCK, LED_MOUSE_ON, LED_CAPS_LOCK }
-LED * ptrsLEDs_L[] = { &LED_L1Yellow, &LED_L2Yellow, &LED_L3Yellow, &LED_L4Green };
-
-//right LEDs
+//right LEDs as they are conected to I/O expander
 LED_PCA9655E LED_R1Blue(port1_R, 1<<5);     //LED_2     NAS (TEN_KEY_OFF or TEN_KEY_ON)
 LED_PCA9655E LED_R2Green(port1_R, 1<<6);    //LED_D6_3  NORMAL
 LED_PCA9655E LED_R3Yellow(port0_R, 1<<7);   //LED_1     MF
 LED_PCA9655E LED_R4Red(port0_R, 1<<6);      //LED_0     TEN_KEY_ON
+LED * ptrsLEDs_R[] = { &LED_R1Blue, &LED_R2Green, &LED_R3Yellow, &LED_R4Red }; //in order of appearance
 
-//IndicatorLEDs.h defines enum LEDs_R { LED_NAS, LED_NORMAL, LED_MF, LED_TEN_KEY_ON }
-LED * ptrsLEDs_R[] = { &LED_R1Blue, &LED_R2Green, &LED_R3Yellow, &LED_R4Red };
+// --------------- LAYER CODES -----------------
+//            NORMAL  NAS          NAS         MF
+enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
 
 IndicatorLEDs indicatorLEDs(ptrsLEDs_L, ptrsLEDs_R, TEN_KEY_ON, TEN_KEY_OFF, MF);
 LEDsBlinker LEDsBlinker_L(ptrsLEDs_L);
@@ -192,7 +188,7 @@ Code_NASLock_Protector l_NASLock(stateLayers_NAS);
 Code_LayerLock l_tenKeyOff(TEN_KEY_OFF, stateLayers_NAS);
 Code_LayerLock l_tenKeyOn(TEN_KEY_ON, stateLayers_NAS);
 
-StateLayers_DH& LEDsBlinker::refStateLayers = stateLayers_DH;
+StateLayers_DH& LEDsBlinker::refStateLayers_DH = stateLayers_DH;
 StateLayersInterface& Key_LayeredKeysArray::refStateLayers = stateLayers_DH;
 
 // --------------- SHIFT CODE ------------------
@@ -208,11 +204,10 @@ Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refStateLayers = t_LRModf
 
 Code_LayeredDoublePressToggle t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
 Code_LayeredDoublePressToggle t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
-    /* If Code_LayeredDoublePressToggle feature is undesirable,
-     * remove refCtrl and refAlt from Row_DH and use Code_LayeredScSc instead:
-    Code_LayeredScSc t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
-    Code_LayeredScSc t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
-     */
+    //If Code_LayeredDoublePressToggle feature is undesirable,
+    //remove refCtrl and refAlt from Row_DH and use Code_LayeredScSc instead:
+    //Code_LayeredScSc t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
+    //Code_LayeredScSc t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
 
 Code_LayeredScSc lr_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //thumb shift
 Code_LayeredScSc rl_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //finger shift acts opposite
@@ -320,5 +315,4 @@ Code_Protected_ByNASLock pNAS_numLock(t_numLock);
 Code_NASLock_Protector& Code_Protected_ByNASLock::refProtector = l_NASLock;
 
 Code_DoublePressProtected d_printscreen(p_printscreen);
-
 #endif

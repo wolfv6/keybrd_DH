@@ -1,6 +1,8 @@
 #include "IndicatorLEDs.h"
 
-void IndicatorLEDs::LEDsOff(uint8_t activeLayer)
+/* called from StateLayers_DH
+*/
+void IndicatorLEDs::layerLEDsOff(uint8_t activeLayer)
 {
     ptrsLayerLEDs[activeLayer]->off();
 
@@ -10,12 +12,8 @@ void IndicatorLEDs::LEDsOff(uint8_t activeLayer)
     }
 }
 
-void IndicatorLEDs::LEDsOn(uint8_t activeLayer)
-{
-    ptrsLayerLEDs[activeLayer]->on();
-    updateLayerLEDs(activeLayer);
-}
-
+/* called from StateLayers_DH
+*/
 void IndicatorLEDs::updateLayerLEDs(uint8_t activeLayer)
 {
     ptrsLayerLEDs[activeLayer]->on();
@@ -27,40 +25,39 @@ void IndicatorLEDs::updateLayerLEDs(uint8_t activeLayer)
 
     if (activeLayer == MF)
     {
-        MouseLEDOn(activeLayer );
+        MouseOnLEDUpdate(activeLayer);
     }
     else
     {
-        MouseLEDOff();
+        ptrsLEDs_L[LED_MOUSE_ON]->off();
     }
 }
 
+/* called from StateLayers_DH
+*/
 void IndicatorLEDs::updateNumLockLED(uint8_t lazyNumLock)
 {
-    if (lazyNumLock == 1)//NUMLOCK_ON todo consider global layer and sublayer numbers
+    if (lazyNumLock == 1)
     {
-        ptrsLEDs_L[2]->on();
+        ptrsLEDs_L[LED_NUM_LOCK]->on();
     }
     else
     {
-        ptrsLEDs_L[2]->off();
+        ptrsLEDs_L[LED_NUM_LOCK]->off();
     }
 }
 
-void IndicatorLEDs::MouseLEDOn(uint8_t activeLayer)
+/*
+also called from StateLayers_MF
+*/
+void IndicatorLEDs::MouseOnLEDUpdate(uint8_t activeLayer)
 {
     if (activeLayer)                            //if arrow on
     {
-        ptrsLEDs_L[3]->off();
+        ptrsLEDs_L[LED_MOUSE_ON]->off();
     }
     else                                        //if mouse on
     {
-        ptrsLEDs_L[3]->on();
+        ptrsLEDs_L[LED_MOUSE_ON]->on();
     }
 }
-
-void IndicatorLEDs::MouseLEDOff()
-{
-        ptrsLEDs_L[3]->off();
-}
-
