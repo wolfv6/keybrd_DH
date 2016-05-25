@@ -42,5 +42,6 @@ class IndicatorLEDs
         void updateLayerLEDs(uint8_t activeLayer, bool activeSubMFLayer);
         void updateNumLockLED(bool lazyNumLock);
         void MouseOnLEDUpdate(uint8_t activeSubMFLayer);
+        void restoreLEDs(uint8_t activeLayer, bool activeMFSubLayer, bool lazyNumLock);
 };
 #endif

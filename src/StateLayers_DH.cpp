@@ -65,9 +65,5 @@ And if IndicatorLEDs called StateLayers_DH.getActiveLayer(), it would create a c
 */
 void StateLayers_DH::restoreLEDs()
 {
-    //todo, move this function's logic to refIndicatorLEDs.restoreLEDs(activeLayer, lazyNumLock);
-
-    refIndicatorLEDs.updateLayerLEDs(activeLayer, activeMFSubLayer);
-    refIndicatorLEDs.updateNumLockLED(lazyNumLock);
-    //scrollLock.updateLED(); Scroll lock LED removed, explanation in Code_LEDLock.cpp
+    refIndicatorLEDs.restoreLEDs(activeLayer, activeMFSubLayer, lazyNumLock);
 }

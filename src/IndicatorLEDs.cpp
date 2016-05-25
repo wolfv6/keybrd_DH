@@ -64,3 +64,12 @@ void IndicatorLEDs::MouseOnLEDUpdate(uint8_t activeSubMFLayer)
         ptrsLEDs_L[LED_MOUSE_ON]->on();
     }
 }
+
+/* Restore first 3 LEDs.  restoreLEDs() is called when LEDsBlinker is done blinking.
+*/
+void IndicatorLEDs::restoreLEDs(uint8_t activeLayer, bool activeMFSubLayer, bool lazyNumLock)
+{
+    updateLayerLEDs(activeLayer, activeMFSubLayer);
+    updateNumLockLED(lazyNumLock);
+    //scrollLock.updateLED(); Scroll lock LED removed, explanation in Code_LEDLock.cpp
+}
