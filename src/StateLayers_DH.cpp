@@ -5,7 +5,7 @@ void StateLayers_DH::setActiveLayer(const uint8_t layer)
 {
     refIndicatorLEDs.layerLEDsOff(activeLayer);
     activeLayer = layer;
-    refIndicatorLEDs.updateLayerLEDs(activeLayer);
+    refIndicatorLEDs.updateLayerLEDs(activeLayer, activeMFSubLayer);
 }
 
 bool StateLayers_DH::getLazyNumLock()
@@ -48,15 +48,15 @@ void StateLayers_DH::updateNumLock(bool numLock)
     }
 }
 
-void StateLayers_DH::lockSubMFLayer(bool sublayer)
+void StateLayers_DH::lockMFSubLayer(bool sublayer)
 {
-    activeSubMFLayer = sublayer;
-    refIndicatorLEDs.MouseOnLEDUpdate(activeLayer);
+    activeMFSubLayer = sublayer;
+    refIndicatorLEDs.MouseOnLEDUpdate(activeMFSubLayer);
 }
 
-bool StateLayers_DH::getActiveSubMFLayer()
+bool StateLayers_DH::getActiveMFSubLayer()
 {
-    return activeSubMFLayer;
+    return activeMFSubLayer;
 }
 
 /* Restore first 3 LEDs.  restoreLEDs() is called when LEDsBlinker is done blinking.
@@ -67,7 +67,7 @@ void StateLayers_DH::restoreLEDs()
 {
     //todo, move this function's logic to refIndicatorLEDs.restoreLEDs(activeLayer, lazyNumLock);
 
-    refIndicatorLEDs.updateLayerLEDs(activeLayer);
+    refIndicatorLEDs.updateLayerLEDs(activeLayer, activeMFSubLayer);
     refIndicatorLEDs.updateNumLockLED(lazyNumLock);
     //scrollLock.updateLED(); Scroll lock LED removed, explanation in Code_LEDLock.cpp
 }

@@ -14,7 +14,7 @@ void IndicatorLEDs::layerLEDsOff(uint8_t activeLayer)
 
 /* called from StateLayers_DH
 */
-void IndicatorLEDs::updateLayerLEDs(uint8_t activeLayer)
+void IndicatorLEDs::updateLayerLEDs(uint8_t activeLayer, bool activeSubMFLayer)
 {
     ptrsLayerLEDs[activeLayer]->on();
 
@@ -25,7 +25,7 @@ void IndicatorLEDs::updateLayerLEDs(uint8_t activeLayer)
 
     if (activeLayer == MF)
     {
-        MouseOnLEDUpdate(activeLayer);
+        MouseOnLEDUpdate(activeSubMFLayer);
     }
     else
     {
@@ -50,9 +50,9 @@ void IndicatorLEDs::updateNumLockLED(bool lazyNumLock)
 /*
 also called from StateLayers_MF
 */
-void IndicatorLEDs::MouseOnLEDUpdate(uint8_t activeLayer)//todo this needs active mouse sublayer
+void IndicatorLEDs::MouseOnLEDUpdate(uint8_t activeSubMFLayer)
 {
-    if (activeLayer)                            //if arrow on
+    if (activeSubMFLayer)                       //if arrow on
     {
         ptrsLEDs_L[LED_MOUSE_ON]->off();
     }

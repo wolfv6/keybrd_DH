@@ -24,12 +24,12 @@
 class StateLayersInterface;
 #include <StateLayers_DH.h>
 #include <StateLayers_NAS.h>
-#include <StateLayers_MF.h>
 
 //StateLayer controllers
 #include <Code_NASHold.h>
 #include <Code_NASLock_Protector.h>
 #include <Code_NumLock.h>
+#include <Code_LayerLock_MFSub.h>
 
 //Layer
 #include <Code_LayerLock.h>
@@ -37,7 +37,7 @@ class StateLayersInterface;
 #include <Code_LayerState_Toggle.h>
 
 //Layered
-#include <Code_LayeredCodeSc.h>
+#include <Code_LayeredCodeSc_MF.h>
 #include <Code_LayeredNumber.h>
 #include <Code_LayeredNumber_00.h>
 #include <Code_LayeredNav.h>
@@ -174,10 +174,6 @@ IndicatorLEDs indicatorLEDs(ptrsLEDs_L, ptrsLEDs_R, TEN_KEY_OFF, TEN_KEY_ON, MF)
 LEDsBlinker LEDsBlinker_L(ptrsLEDs_L);
 LEDsBlinker LEDsBlinker_R(ptrsLEDs_R);
 
-StateLayers_MF stateLayers_MF(indicatorLEDs); //todo merge into StateLayers_DH
-Code_LayerLock l_mouseOn(0, stateLayers_MF);
-Code_LayerLock l_arrowOn(1, stateLayers_MF);
-
 StateLayers_DH stateLayers_DH(TEN_KEY_ON, indicatorLEDs);
 Code_LayerLock l_normalLock(NORMAL, stateLayers_DH);
 Code_LayerLockMF_Protector l_MFLock(MF, stateLayers_DH);
@@ -187,6 +183,9 @@ Code_NASHold l_NASHold(stateLayers_NAS);
 Code_NASLock_Protector l_NASLock(stateLayers_NAS);
 Code_LayerLock l_tenKeyOff(TEN_KEY_OFF, stateLayers_NAS);
 Code_LayerLock l_tenKeyOn(TEN_KEY_ON, stateLayers_NAS);
+
+Code_LayerLock_MFSub l_mouseOn(0, stateLayers_DH);
+Code_LayerLock_MFSub l_arrowOn(1, stateLayers_DH);
 
 StateLayers_DH& LEDsBlinker::refStateLayers_DH = stateLayers_DH;
 StateLayersInterface& Key_LayeredKeysArray::refStateLayers = stateLayers_DH;
@@ -255,20 +254,20 @@ StateStickyMouseButtons& Code_MouseSpeed::refMouseButtons = mouseButtons;
 StateStickyMouseButtons& Row_DH::refMouseButtons = mouseButtons;
 
 // ----------- MOUSE-ARROW CODES ---------------
-Code_LayeredCodeSc mqA_right(mq_right, KEYPAD_6); //mouse quick, Arrow
-Code_LayeredCodeSc mqA_left(mq_left, KEYPAD_4);
-Code_LayeredCodeSc mqA_down(mq_down, KEYPAD_2);
-Code_LayeredCodeSc mqA_up(mq_up, KEYPAD_8);
-Code_LayeredCodeSc mb1Home(mb_1, KEY_HOME); //mouse-button 1, Home
+Code_LayeredCodeSc_MF mqA_right(mq_right, KEYPAD_6); //mouse quick, Arrow
+Code_LayeredCodeSc_MF mqA_left(mq_left, KEYPAD_4);
+Code_LayeredCodeSc_MF mqA_down(mq_down, KEYPAD_2);
+Code_LayeredCodeSc_MF mqA_up(mq_up, KEYPAD_8);
+Code_LayeredCodeSc_MF mb1Home(mb_1, KEY_HOME); //mouse-button 1, Home
 
-Code_LayeredCodeSc msA_right(ms_right, KEY_RIGHT); //mouse slow, Arrow
-Code_LayeredCodeSc msA_left(ms_left, KEY_LEFT);
-Code_LayeredCodeSc msA_down(ms_down, KEY_DOWN);
-Code_LayeredCodeSc msA_up(ms_up, KEY_UP);
-Code_LayeredCodeSc mb2Home(mb_2, KEY_HOME); //mouse-button 2, Home
+Code_LayeredCodeSc_MF msA_right(ms_right, KEY_RIGHT); //mouse slow, Arrow
+Code_LayeredCodeSc_MF msA_left(ms_left, KEY_LEFT);
+Code_LayeredCodeSc_MF msA_down(ms_down, KEY_DOWN);
+Code_LayeredCodeSc_MF msA_up(ms_up, KEY_UP);
+Code_LayeredCodeSc_MF mb2Home(mb_2, KEY_HOME); //mouse-button 2, Home
 
 //define static variable
-StateLayersInterface& Code_LayeredCodeSc::refStateLayers = stateLayers_MF;
+StateLayers_DH& Code_LayeredCodeSc_MF::refStateLayers_DH = stateLayers_DH;
 
 // ------------- NUMBER CODES ------------------
 Code_NumLock t_numLock(stateLayers_DH);

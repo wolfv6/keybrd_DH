@@ -33,8 +33,8 @@ class IndicatorLEDs
             //should be const array, but C++ can not initialize a const array in a class initializer
         }
         void layerLEDsOff(uint8_t activeLayer);
-        void updateLayerLEDs(uint8_t activeLayer);
+        void updateLayerLEDs(uint8_t activeLayer, bool activeSubMFLayer);
         void updateNumLockLED(bool lazyNumLock);
-        void MouseOnLEDUpdate(uint8_t activeLayer);
+        void MouseOnLEDUpdate(uint8_t activeSubMFLayer);
 };
 #endif
