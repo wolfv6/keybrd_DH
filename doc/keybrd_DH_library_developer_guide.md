@@ -31,10 +31,10 @@ CODE PREFIXES
     t_   toggle
 
 LED names are
-    LED_L1Green     LED_R1Blue
+    LED_L1Yellow    LED_R1Blue
     LED_L2Yellow    LED_R2Green
     LED_L3Yellow    LED_R3Yellow
-    LED_L4Yellow    LED_R4Red
+    LED_L4Green     LED_R4Red
 where
     L=left unit     R=right unit
     numbers are LED position on DataHand unit 1,2,3,4
@@ -75,9 +75,9 @@ Class inheritance diagrams
 	 |_____________________________________________________
 	 |           \                                         \
 	 |   Code_LayeredCodeScBase*                      Code_LayeredNumber
-	 |             \________________                        |
-	 |             /                \                 Code_LayeredNumber_00
-	 |   Code_LayeredCodeSc*   Code_LayeredOperator
+	 |             \__________________                      |
+	 |             /                  \               Code_LayeredNumber_00
+	 |   Code_LayeredCodeSc_MF*  Code_LayeredOperator
 	 |
 	 |________________________________________
 	 |                          \             \
@@ -123,13 +123,10 @@ State, Layers, and Layered dependencies
 	 |      Code_NASHold   Code_NASLock_Protector   Code_LayerLock*  Code_LayerLock*
 	 |      l_NASHold      l_NASLock                l_tenKeyOff      l_tenKeyOn
 	 |
-	 |________
-	          \
-	        StateLayers* todo
-	        stateLayers_MF _______________________
-	                           \                  \
-	                        Code_LayerLock*    Code_LayerLock*
-	                        l_mouseOn          l_arrowOn
+	 |________________________________
+	           \                      \
+	        Code_LayerLock_MFSub   Code_LayerLock_MFSub
+            l_mouseOn              l_arrowOn
 
 
 
@@ -172,7 +169,7 @@ Protected dependencies
      |   Code_Protected_ByMFLock  Code_Protected_ByMFLock  Code_Protected_ByMFLock
 	 |   p_mouseOn                p_arrowOn                pMF_numLock
 	 |     |                        |                        |
-	 |   Code_LayerLock*          Code_LayerLock*          Code_NumLock
+	 |   Code_LayerLock_MFSub     Code_LayerLock_MFSub     Code_NumLock
 	 |   l_mouseOn                l_arrowOn                t_numLock
 	 |
 	 |______________________________________________________________________
@@ -250,7 +247,7 @@ KEY_PAGE_UP             KEYPAD_9 numLockOff
 KEY_PAGE_DOWN           KEYPAD_6 numLockOff
 KEY_PAGE_END            KEYPAD_1 numLockOff
 
-                                                Code_LayeredCodeSc::press() calls stateLayers_MF.getActiveLayer()
+                                                Code_LayeredCodeSc_MF::press() calls stateLayers_DH.getActiveMFSubLayer()
                                                 MF, arrowOn, left hand, arrows are keypad
                                                             KEYPAD_2 numLockOff
                                                             KEYPAD_4 numLockOff

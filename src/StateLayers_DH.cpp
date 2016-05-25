@@ -13,22 +13,22 @@ bool StateLayers_DH::getLazyNumLock()
     return lazyNumLock;
 }
 
-//update numLock and return layer
+//update numLock and return active numberLayer
 bool StateLayers_DH::getNumberLayer()
 {
-    bool layer;
+    bool numberLayer;
 
-    if (activeLayer == TEN_KEY_ON)              //in TEN_KEY_ON, lazyNumLock determines layer
+    if (activeLayer == TEN_KEY_ON)              //in TEN_KEY_ON, lazyNumLock determines numberLayer
     {
-        layer = lazyNumLock;
+        numberLayer = lazyNumLock;
         updateNumLock(NUMLOCK_ON);
     }
-    else                                        //in TEN_KEY_OFF, only use layer 0
+    else                                        //in TEN_KEY_OFF, only use numberLayer 0
     {
-        layer = 0;
+        numberLayer = 0;
     }
 
-    return layer;
+    return numberLayer;
 }
 
 //toggle lazyNumLock and update numLock LED

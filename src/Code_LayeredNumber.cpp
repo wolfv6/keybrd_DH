@@ -19,9 +19,9 @@ void Code_LayeredNumber::release()
 
 void Code_LayeredNumber::setScancodeNum()
 {
-    layer = refStateLayers.getNumberLayer();
+    numberLayer = refStateLayers.getNumberLayer();
 
-    if (layer)
+    if (numberLayer)
     {
         scancodeNum = scancode + 59;            //KEYPAD
         //scancodeNum = scancode - 26;          //send letters 'a' to 'j' for debugging

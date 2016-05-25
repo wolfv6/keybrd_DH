@@ -18,11 +18,11 @@ class Code_LayeredNumber : public Code
     private:
         static StateLayers_DH& refStateLayers;
         const uint16_t scancode;                //KEY
-        bool layer;                             //0 for KEY, 1 for KEYPAD
+        bool numberLayer;                       //0 for KEY, 1 for KEYPAD
     protected:
         uint16_t scancodeNum;
     public:
-        Code_LayeredNumber(const uint16_t scancode): scancode(scancode), layer(0) { }
+        Code_LayeredNumber(const uint16_t scancode): scancode(scancode), numberLayer(0) { }
         virtual void press();
         virtual void release();
         void setScancodeNum();
