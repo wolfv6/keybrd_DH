@@ -48,6 +48,17 @@ void StateLayers_DH::updateNumLock(bool numLock)
     }
 }
 
+void StateLayers_DH::lockSubMFLayer(bool sublayer)
+{
+    activeSubMFLayer = sublayer;
+    refIndicatorLEDs.MouseOnLEDUpdate(activeLayer);
+}
+
+bool StateLayers_DH::getActiveSubMFLayer()
+{
+    return activeSubMFLayer;
+}
+
 /* Restore first 3 LEDs.  restoreLEDs() is called when LEDsBlinker is done blinking.
 restoreLEDs() function is in StateLayers_DH because activeLayer and lazyNumLock values are needed by IndicatorLEDs.
 And if IndicatorLEDs called StateLayers_DH.getActiveLayer(), it would create a circular dependency.

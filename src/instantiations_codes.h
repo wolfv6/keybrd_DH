@@ -152,19 +152,19 @@ Code_ScS s_greaterThan(KEY_PERIOD);
 Code_ScS s_question(KEY_SLASH);
 
 // ------------------- LEDs --------------------
-//left LEDs as they are conected to controller
+//left LEDs in order of appearance
 LED_AVR LED_L1Yellow(PORTD, 1<<4);          //LED_2     ScrollLock (PCB uses pin B7, D4 is disconnected, explanation in Code_LEDLock.cpp)
 LED_AVR LED_L2Yellow(PORTB, 1<<4);          //LED_D6_3  NumLock (PCB uses pin D6, but that is Teensy's on-board LED)
 LED_AVR LED_L3Yellow(PORTB, 1<<5);          //LED_1     MOUSE_ON
 LED_AVR LED_L4Green(PORTB, 1<<6);           //LED_0     CapsLock
-LED * ptrsLEDs_L[] = { &LED_L1Yellow, &LED_L2Yellow, &LED_L3Yellow, &LED_L4Green }; //in order of appearance
+LED * ptrsLEDs_L[] = { &LED_L1Yellow, &LED_L2Yellow, &LED_L3Yellow, &LED_L4Green };
 
-//right LEDs as they are conected to I/O expander
+//right LEDs in order of appearance
 LED_PCA9655E LED_R1Blue(port1_R, 1<<5);     //LED_2     NAS (TEN_KEY_OFF or TEN_KEY_ON)
 LED_PCA9655E LED_R2Green(port1_R, 1<<6);    //LED_D6_3  NORMAL
 LED_PCA9655E LED_R3Yellow(port0_R, 1<<7);   //LED_1     MF
 LED_PCA9655E LED_R4Red(port0_R, 1<<6);      //LED_0     TEN_KEY_ON
-LED * ptrsLEDs_R[] = { &LED_R1Blue, &LED_R2Green, &LED_R3Yellow, &LED_R4Red }; //in order of appearance
+LED * ptrsLEDs_R[] = { &LED_R1Blue, &LED_R2Green, &LED_R3Yellow, &LED_R4Red };
 
 // --------------- LAYER CODES -----------------
 //            NORMAL  NAS          NAS         MF
@@ -174,7 +174,7 @@ IndicatorLEDs indicatorLEDs(ptrsLEDs_L, ptrsLEDs_R, TEN_KEY_OFF, TEN_KEY_ON, MF)
 LEDsBlinker LEDsBlinker_L(ptrsLEDs_L);
 LEDsBlinker LEDsBlinker_R(ptrsLEDs_R);
 
-StateLayers_MF stateLayers_MF(indicatorLEDs);
+StateLayers_MF stateLayers_MF(indicatorLEDs); //todo merge into StateLayers_DH
 Code_LayerLock l_mouseOn(0, stateLayers_MF);
 Code_LayerLock l_arrowOn(1, stateLayers_MF);
 
