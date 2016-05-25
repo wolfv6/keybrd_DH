@@ -170,7 +170,7 @@ LED * ptrsLEDs_R[] = { &LED_R1Blue, &LED_R2Green, &LED_R3Yellow, &LED_R4Red };
 //            NORMAL  NAS          NAS         MF
 enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
 
-IndicatorLEDs indicatorLEDs(ptrsLEDs_L, ptrsLEDs_R, NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF);
+IndicatorLEDs indicatorLEDs(ptrsLEDs_L, ptrsLEDs_R, TEN_KEY_OFF, TEN_KEY_ON, MF);
 LEDsBlinker LEDsBlinker_L(ptrsLEDs_L);
 LEDsBlinker LEDsBlinker_R(ptrsLEDs_R);
 
@@ -216,14 +216,14 @@ Code_LayeredNav lr_delete(KEY_DELETE, KEYPAD_PERIOD);
 Code_LayeredNav lr_pageUp(KEY_PAGE_UP, KEYPAD_9);
 Code_LayeredNav lr_pageDown(KEY_PAGE_DOWN, KEYPAD_3);
 Code_LayeredNav lr_end(KEY_END, KEYPAD_1);
-StateLayers_DH& Code_LayeredNav::refStateLayers = stateLayers_DH;
+StateLayers_DH& Code_LayeredNav::refStateLayers_DH = stateLayers_DH;
 Code_LayerState_Toggle& Code_LayeredNav::refStateLRModf = t_LRModf;
 
 Code_LayeredOperator lr_plus(s_plus, KEYPAD_PLUS);
 Code_LayeredOperator lr_asterix(s_asterix, KEYPAD_ASTERIX);
 Code_LayeredOperator lr_minus(s_minus, KEYPAD_MINUS);
 Code_LayeredOperator lr_slash(s_slash, KEYPAD_SLASH);  //also Normal layer
-StateLayers_DH& Code_LayeredOperator::refStateLayers = stateLayers_DH;
+StateLayers_DH& Code_LayeredOperator::refStateLayers_DH = stateLayers_DH;
 Code_LayerState_Toggle& Code_LayeredOperator::refStateLRModf = t_LRModf;
 const uint8_t Code_LayeredOperator::TEN_KEY_ON = TEN_KEY_ON;
 

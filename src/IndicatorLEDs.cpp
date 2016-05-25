@@ -9,7 +9,7 @@ void IndicatorLEDs::begin()
         ptrsLEDs_L[i]->off();
         ptrsLayerLEDs[i]->off();
     }
-    ptrsLayerLEDs[NORMAL]->on();                //default layer
+    ptrsLayerLEDs[0]->on();                     //default layer
 }
 
 void IndicatorLEDs::layerLEDsOff(uint8_t activeLayer)

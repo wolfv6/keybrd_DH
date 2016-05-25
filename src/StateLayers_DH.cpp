@@ -13,7 +13,8 @@ bool StateLayers_DH::getLazyNumLock()
     return lazyNumLock;
 }
 
-//update numLock and return active numberLayer
+//update numLock and return active numberLayer: 0 for KEY, 1 for KEYPAD.
+//Called from Code_LayeredNumber::setScancodeNum().
 bool StateLayers_DH::getNumberLayer()
 {
     bool numberLayer;

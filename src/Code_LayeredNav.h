@@ -6,12 +6,12 @@
 #include "StateLayers_DH.h"
 #include "Code_LayerState_Toggle.h"
 
-/* Class Code_LayeredNav sends one of two scancodes, determined by refStateLayers.getNavLayer().
+/* Class Code_LayeredNav sends one of two scancodes, determined by refStateLayers_DH.getNavLayer().
 */
 class Code_LayeredNav : public Code_LayeredScScBase
 {
     private:
-        static StateLayers_DH& refStateLayers;
+        static StateLayers_DH& refStateLayers_DH;
         static Code_LayerState_Toggle& refStateLRModf;
     public:
         Code_LayeredNav(const uint16_t scancode0, const uint16_t scancode1):
