@@ -46,18 +46,9 @@ void setup()
 {
     rowPort1_R.begin();
     colPort0_R.begin();
+    indicatorLEDs.begin();
     Keyboard.begin();
     Mouse.begin();
-
-    LED_L1Yellow.off();
-    LED_L2Yellow.off();
-    LED_L3Yellow.off();
-    LED_L4Green.off();
-
-    LED_R1Blue.off();
-    LED_R2Green.on();                           //NORMAL mode on
-    LED_R3Yellow.off();
-    LED_R4Red.off();
 
 #ifdef PRINT_FREE_RAM
     delay(1000);        //time for OS to detect USB before printing

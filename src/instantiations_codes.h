@@ -170,7 +170,7 @@ LED * ptrsLEDs_R[] = { &LED_R1Blue, &LED_R2Green, &LED_R3Yellow, &LED_R4Red };
 //            NORMAL  NAS          NAS         MF
 enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
 
-IndicatorLEDs indicatorLEDs(ptrsLEDs_L, ptrsLEDs_R, TEN_KEY_OFF, TEN_KEY_ON, MF);
+IndicatorLEDs indicatorLEDs(ptrsLEDs_L, ptrsLEDs_R, NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF);
 LEDsBlinker LEDsBlinker_L(ptrsLEDs_L);
 LEDsBlinker LEDsBlinker_R(ptrsLEDs_R);
 

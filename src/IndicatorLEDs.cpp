@@ -1,7 +1,17 @@
 #include "IndicatorLEDs.h"
 
-/* called from StateLayers_DH
+/* Initialize LEDs.  This should be called once from setup().
 */
+void IndicatorLEDs::begin()
+{
+    for (uint8_t i=0; i<LED_COUNT_PER_ARRAY; i++)
+    {
+        ptrsLEDs_L[i]->off();
+        ptrsLayerLEDs[i]->off();
+    }
+    ptrsLayerLEDs[NORMAL]->on();                //default layer
+}
+
 void IndicatorLEDs::layerLEDsOff(uint8_t activeLayer)
 {
     ptrsLayerLEDs[activeLayer]->off();
@@ -12,8 +22,6 @@ void IndicatorLEDs::layerLEDsOff(uint8_t activeLayer)
     }
 }
 
-/* called from StateLayers_DH
-*/
 void IndicatorLEDs::updateLayerLEDs(uint8_t activeLayer, bool activeSubMFLayer)
 {
     ptrsLayerLEDs[activeLayer]->on();
@@ -33,8 +41,6 @@ void IndicatorLEDs::updateLayerLEDs(uint8_t activeLayer, bool activeSubMFLayer)
     }
 }
 
-/* called from StateLayers_DH
-*/
 void IndicatorLEDs::updateNumLockLED(bool lazyNumLock)
 {
     if (lazyNumLock == 1)
@@ -47,9 +53,6 @@ void IndicatorLEDs::updateNumLockLED(bool lazyNumLock)
     }
 }
 
-/*
-also called from StateLayers_MF
-*/
 void IndicatorLEDs::MouseOnLEDUpdate(uint8_t activeSubMFLayer)
 {
     if (activeSubMFLayer)                       //if arrow on
