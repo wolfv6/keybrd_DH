@@ -66,6 +66,46 @@ void IndicatorLEDs::MouseOnLEDUpdate(uint8_t activeSubMFLayer)
     }
 }
 
+void IndicatorLEDs::startBlinking(LED*const ptrsLEDs[])
+{
+    if (scansSinceFirstBlink > 0)               //if previous blinking not done yet
+    {
+        //todo restore
+    }
+
+    ptrsBlinkingLEDs = ptrsLEDs;
+    scansSinceFirstBlink = SCANS_BLINK_ON;
+}
+
+void IndicatorLEDs::blink()
+{
+    if (scansSinceFirstBlink > 0)               //continue blinking
+    {
+        if ( (scansSinceFirstBlink + SCANS_BLINK_ON) % (SCANS_PER_BLINK) == 0 )
+        {
+            ptrsBlinkingLEDs[0]->on();
+            ptrsBlinkingLEDs[1]->on();
+            ptrsBlinkingLEDs[2]->on();
+        }
+        else if ( scansSinceFirstBlink % (SCANS_PER_BLINK) == 0 )
+        {
+            ptrsBlinkingLEDs[0]->off();
+            ptrsBlinkingLEDs[1]->off();
+            ptrsBlinkingLEDs[2]->off();
+            //todo restore dim L or R?
+
+            if (scansSinceFirstBlink == NUM_BLINKS * SCANS_PER_BLINK)
+            {
+                scansSinceFirstBlink = 0;       //stop blinking
+                //todo restore bright L or R?
+                //refStateLayers_DH.restoreLEDs();
+                return;
+            }
+        }
+        scansSinceFirstBlink++;
+    }
+}
+
 /* Restore first 3 LEDs.  restoreLEDs() is called when LEDsBlinker is done blinking.
 */
 void IndicatorLEDs::restoreLEDs(uint8_t activeLayer, bool activeMFSubLayer, bool lazyNumLock)

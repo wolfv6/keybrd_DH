@@ -34,6 +34,7 @@ class StateLayers_DH : public StateLayers
         void updateNumLock(bool numLock);
         void lockMFSubLayer(bool subLayer);
         bool getActiveMFSubLayer();
+        void getLayerStates(uint8_t& refActiveLayer, bool& refLazyNumLock, bool& refActiveMFSubLayer);
         void restoreLEDs();
 };
 #endif

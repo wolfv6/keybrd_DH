@@ -28,6 +28,13 @@ class IndicatorLEDs
         const uint8_t MF;                       //layer id
         LED* ptrsLayerLEDs[LED_COUNT_PER_ARRAY];//array of ptrs to indicator LEDs on right unit,
                                                 //ordered by layer id
+        // ============ blinker ================
+        LED*const * ptrsBlinkingLEDs;           //array of pointers to blinking indicator LEDs
+        static StateLayers_DH& refStateLayers_DH;
+        static const uint8_t NUM_BLINKS;        //number of blinks to stop
+        static const uint8_t SCANS_PER_BLINK;   //smaller number makes blinking faster
+        static const uint8_t SCANS_BLINK_ON;    //number of scans per blink that LED is on
+        uint8_t scansSinceFirstBlink;           //magic number 0 means not blinking
     public:
         IndicatorLEDs(LED*const ptrsLEDs_L[], LED*const ptrsLEDs_R[],
                 const uint8_t TEN_KEY_OFF, const uint8_t TEN_KEY_ON, const uint8_t MF)
@@ -46,6 +53,10 @@ class IndicatorLEDs
         void updateLayerLEDs(uint8_t activeLayer, bool activeSubMFLayer);
         void updateNumLockLED(bool lazyNumLock);
         void MouseOnLEDUpdate(uint8_t activeSubMFLayer);
+
+        // ============ blinker ================
+        void startBlinking(LED*const pLEDs[]);
+        void blink();
         void restoreLEDs(uint8_t activeLayer, bool activeMFSubLayer, bool lazyNumLock);
 };
 #endif
