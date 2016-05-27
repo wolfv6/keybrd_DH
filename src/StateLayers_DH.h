@@ -4,9 +4,10 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <StateLayers.h>
-#include "IndicatorLEDs.h"
 
 extern volatile uint8_t keyboard_leds;
+
+class IndicatorLEDs;
 
 /* StateLayers for DH layers: NORMAL, TEN_KEY_ON, TEN_KEY_OFF, MF
 StateLayers is part of a layer scheme explained in keybrd_DH/doc/keybrd_DH_library_developer_guide.md

@@ -1,4 +1,5 @@
 #include "StateLayers_DH.h"
+#include "IndicatorLEDs.h"  //included here for circular dependency
 
 //set active layer and update LEDs
 void StateLayers_DH::setActiveLayer(const uint8_t layer)

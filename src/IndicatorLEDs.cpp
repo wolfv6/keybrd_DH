@@ -1,8 +1,9 @@
 #include "IndicatorLEDs.h"
+#include "StateLayers_DH.h"  //included here for circular dependency
 
 /* Initialize LEDs.  This should be called once from setup().
 */
-void IndicatorLEDs::begin()
+void IndicatorLEDs::begin(StateLayers_DH* ptrStateLayers_DH)
 {
     for (uint8_t i=0; i<LED_COUNT_PER_ARRAY; i++)
     {

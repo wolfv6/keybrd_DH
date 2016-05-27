@@ -1,9 +1,9 @@
 // ================ INCLUDES ===================
 #include <Arduino.h>
 
-#include <Key_LayeredKeysArray.h>
+#include <Key_LayeredKeysArray.h> //todo delete?
 #include <Code_DoublePressProtected.h>
-#include <Row_DH.h>
+#include <Row_DH.h> //todo delete?
 
 #include <MouseMove.h>
 #include <Debug.h>
@@ -46,7 +46,7 @@ void setup()
 {
     rowPort1_R.begin();
     colPort0_R.begin();
-    indicatorLEDs.begin();
+    indicatorLEDs.begin(&stateLayers_DH);
     Keyboard.begin();
     Mouse.begin();
 

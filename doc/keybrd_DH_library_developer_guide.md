@@ -2,6 +2,8 @@ keybrd_DH Library Developer's Guide
 ===================================
 The keybrd_DH library is an extension of the [keybrd library](https://github.com/wolfv6/keybrd) for emulating the DataHand keyboard.
 
+The keybrd_DH firmware is reversed engineered from the DataHand Professional II Users Guide version 1.7.8, October 2003.
+
 ## Layer scheme
 The layer scheme is based on the DataHand keyboard described in DataHandProIIUserGuide.pdf.
 todo explain
