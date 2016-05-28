@@ -3,20 +3,20 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include <Code.h>
-#include "StateLayers_DH.h"
+#include "LayerState_DH.h"
 
 /* Class Code_LayeredNumber sends KEY or KEYPAD number
-   determined by refStateLayers.getNumberLayer().
+   determined by refLayerState.getNumberLayer().
 
 example instantiation:
     Code_S s_numLock(KEY_NUM_LOCK);
     Code_LayeredNumber n_1(KEY_1);
-    StateLayers_DH& Code_LayeredNumber::refStateLayers = stateLayers_DH;
+    LayerState_DH& Code_LayeredNumber::refLayerState = layerState_DH;
 */
 class Code_LayeredNumber : public Code
 {
     private:
-        static StateLayers_DH& refStateLayers;
+        static LayerState_DH& refLayerState;
         const uint16_t scancode;                //KEY
         bool numberLayer;                       //0 for KEY, 1 for KEYPAD
     protected:

@@ -19,7 +19,7 @@ void Code_LayeredNumber::release()
 
 void Code_LayeredNumber::setScancodeNum()
 {
-    numberLayer = refStateLayers.getNumberLayer();
+    numberLayer = refLayerState.getNumberLayer();
 
     if (numberLayer)
     {

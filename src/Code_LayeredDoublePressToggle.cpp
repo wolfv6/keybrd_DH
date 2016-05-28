@@ -2,12 +2,12 @@
 
 void Code_LayeredDoublePressToggle::press()
 {
-    bool stateLayer = refStateLayers.getActiveLayer();
+    bool layerState = refLayerState.getActiveLayer();
 
-    if (activeLayer != stateLayer)      //if Modf activeLayer changed
+    if (activeLayer != layerState)      //if Modf activeLayer changed
     {
-        activeLayer = stateLayer;
-        layer = stateLayer;             //update layer
+        activeLayer = layerState;
+        layer = layerState;             //update layer
     }
     else                                //if Modf activeLayer has not changed
     {

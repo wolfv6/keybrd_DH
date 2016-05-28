@@ -2,7 +2,7 @@
 
 void Code_LayerLock_MFSub::press()
 {
-    refStateLayers_DH.lockMFSubLayer(layer);
+    refLayerState_DH.lockMFSubLayer(layer);
 }
 
 void Code_LayerLock_MFSub::release()

@@ -10,7 +10,7 @@ Version 1.0.0 will be released when the public API is stable.
 ## [0.3.0] - 2016-04-30
 ### Changed
 * Replaced SMB classes with StateStickyMouseButtons and Row_DH::keyWasPressed() 
-* Replaced LayerManager with StateLayers
+* Replaced LayerManager with LayerState
 * Moved keybrd_DH library from core keybrd repository to this repository
 * Moved sections of code from mainSketch.cpp to:
 

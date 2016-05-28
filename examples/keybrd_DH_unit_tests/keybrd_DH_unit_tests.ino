@@ -4,31 +4,31 @@
 0          |------------------------------|------------------------|-------------------------|---------------------------|--------------------------|
  class     | Code_LayeredDoublePressToggle| Code_ScS               | Code_Protected_ByNASLock| Code_Protected_ByMFLock   | Code_DoublePressProtected|
  object    | t_ctrl (s_l s_r)             | s_at                   | p_n                     | p_m                       | d_d                      |
- stateLayer| t_LRModf                     |                        | l_NASLock               | l_MFLock                  |                          |
+ layerState| t_LRModf                     |                        | l_NASLock               | l_MFLock                  |                          |
  test case | ctrl ctrl                    | @                      | n NASLock+n             | m MFLock+m                | dd                       |
  output    | l    r                       | @                      |           n             |          m                |  d                       |
 1          |------------------------------|------------------------|-------------------------|---------------------------|--------------------------|
  class     | Code_LayeredDoublePressToggle| Code_Sc                | Code_LayeredNumber      | Code_Mouse_Quick          | Code_Mouse_Slow          |
  object    | t_alt (s_0 s_1)              | s_a                    | n_8 (KEY_8)             | mq_up                     | ms_up                    |
- stateLayer| t_LRModf                     |                        | stateLayers_DH          |                           |                          |
+ layerState| t_LRModf                     |                        | layerState_DH           |                           |                          |
  test case | alt alt                      | a                      | 8 numLock 8 numLock 8   | up                        | up                       |
  output    | 0   1                        | a                      | 8         8         8   | <mouse ponter moves up>   | <mouse pointer move slow>|
 2          |------------------------------|------------------------|-------------------------|---------------------------|--------------------------|
  class     | Code_LayerState_Toggle       | Code_LEDLock           | Code_NumLock            | Code_StickyMouseButton    | Code_LayeredCodeSc       |
  object    | t_LRModf                     | o_capsLock             | t_numLock               | mb_1                      | mA_ma (s_m KEY_A)        |
- stateLayer|                              |                        |                         |                           | stateLayers_MF           |
+ layerState|                              |                        |                         |                           | layerState_MF            |
  test case | test case below this table   | a capsLck a capLck a   | numLock numLock         | MFLock+mb_1 move   @      |                          |
  output    |                              | a         A        a   | LED-on  LED-off (later) |             select replace|                          |
 3          |------------------------------|------------------------|-------------------------|---------------------------|--------------------------|
  class     | Key_LayeredKeysArray         | Code_Layer             | Code_LayerLock          | Code_LayerLock            | Code_LayerLock           |
  l_object  | s_0 s_1 s_2 s_3              | l_tenKeyOff            | l_tenKeyOn              | l_mouseOn                 | l_arrowOn                |
- stateLayer| stateLayers_DH               | l_NASLock              | l_NASLock               | stateLayers_MF            | stateLayers_MF           |
+ layerState| layerState_DH                | l_NASLock              | l_NASLock               | layerState_MF             | layerState_MF            |
  test case | test case below this table   | tenKeyOff 1            | tenKeyOn 2              | mouseOn ma                |  arrowOn ma              |
  output    |                              |           1            |          2              |         m                 |          a               |
 4          |------------------------------|------------------------|-------------------------|---------------------------|--------------------------|
  class     | Code_LayerLock               | Code_NASHold           | Code_NASLock_Protector  | Code_LayerLockMF_Protector| Code_Shift               |
  object    | l_normalLock                 | l_NASHold              | l_NASLock               | l_MFLock                  | s_shift                  |
- stateLayer| stateLayers_DH               | stateLayers_DH         | stateLayers_DH          | stateLayers_DH            | shiftState               |
+ layerState| layerState_DH                | layerState_DH          | layerState_DH           | layerState_DH             | shiftState               |
  test case | NormalLock 0                 | NASHold+1 NASHold+2    | NASLock 1 NASLock 2     | MFLock 3                  | a shift a release a      |
  output    |            0                 |         1         2    |         1         2     |        3                  | a       A         a      |
            |------------------------------|------------------------|-------------------------|---------------------------|--------------------------|
@@ -63,10 +63,10 @@
 #include <Code_Mouse_Slow.h>
 #include <Code_Mouse_Quick.h>
 
-//StateLayers
-#include <StateLayers.h>
-#include <StateLayers_DH.h>
-#include <StateLayers_NAS.h>
+//LayerState
+#include <LayerState.h>
+#include <LayerState_DH.h>
+#include <LayerState_NAS.h>
 #include <Code_NASHold.h>
 #include <Code_NASLock_Protector.h>
 
@@ -138,21 +138,21 @@ LED_AVR LED_LB4_3yellow(PORTB, 1<<4);           //NumLock
 enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
 
 Code_LayerState_Toggle t_LRModf;
-Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refStateLayers = t_LRModf;
+Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refLayerState = t_LRModf;
 
-StateLayers_DH stateLayers_DH(t_LRModf, TEN_KEY_ON);
-Code_LayerLock l_normalLock(NORMAL, stateLayers_DH);
-Code_LayerLockMF_Protector l_MFLock(MF, stateLayers_DH);
+LayerState_DH layerState_DH(t_LRModf, TEN_KEY_ON);
+Code_LayerLock l_normalLock(NORMAL, layerState_DH);
+Code_LayerLockMF_Protector l_MFLock(MF, layerState_DH);
 
-StateLayers_NAS stateLayers_NAS(TEN_KEY_OFF, stateLayers_DH);
-Code_NASHold l_NASHold(stateLayers_NAS);
-Code_NASLock_Protector l_NASLock(stateLayers_NAS);
-Code_LayerLock l_tenKeyOff(TEN_KEY_OFF, stateLayers_NAS);
-Code_LayerLock l_tenKeyOn(TEN_KEY_ON, stateLayers_NAS);
+LayerState_NAS layerState_NAS(TEN_KEY_OFF, layerState_DH);
+Code_NASHold l_NASHold(layerState_NAS);
+Code_NASLock_Protector l_NASLock(layerState_NAS);
+Code_LayerLock l_tenKeyOff(TEN_KEY_OFF, layerState_NAS);
+Code_LayerLock l_tenKeyOn(TEN_KEY_ON, layerState_NAS);
 
-StateLayers stateLayers_MF;
-Code_LayerLock l_mouseOn(0, stateLayers_MF);
-Code_LayerLock l_arrowOn(1, stateLayers_MF);
+LayerState layerState_MF;
+Code_LayerLock l_mouseOn(0, layerState_MF);
+Code_LayerLock l_arrowOn(1, layerState_MF);
 
 // --------------- shift code ------------------
 Code_Shift s_shift(MODIFIERKEY_LEFT_SHIFT);
@@ -176,10 +176,10 @@ Code_ScS s_at(KEY_2);
 //Code_Null code_null;
 
 // ------------- number codes ------------------
-Code_NumLock t_numLock(stateLayers_DH);
+Code_NumLock t_numLock(layerState_DH);
 
 Code_LayeredNumber n_8(KEY_8);
-StateLayers_DH& Code_LayeredNumber::refStateLayers = stateLayers_DH;
+LayerState_DH& Code_LayeredNumber::refLayerState = layerState_DH;
 
 // ------------- ctrl alt codes ----------------
 Code_LayeredDoublePressToggle t_ctrl(KEY_L, KEY_R);
@@ -213,7 +213,7 @@ StateStickyMouseButtons& Row_DH::refMouseButtons = mouseButtons;
 
 // ----------- mouse-arrow keys ----------------
 Code_LayeredCodeSc mA_ma(s_m, KEY_A);
-StateLayersInterface& Code_LayeredCodeSc::refStateLayers = stateLayers_MF;
+LayerStateInterface& Code_LayeredCodeSc::refLayerState = layerState_MF;
 
 // --------------- lock codes ------------------
 Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_LB6_1green);
@@ -222,7 +222,7 @@ Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_LB6_1green);
 // -------------- layered keys -----------------
 Key* const ptrsCodes_0123[] = {&s_0, &s_1, &s_2, &s_3};
 Key_LayeredKeysArray k_0123(ptrsCodes_0123);
-StateLayersInterface& Key_LayeredKeysArray::refStateLayers = stateLayers_DH;
+LayerStateInterface& Key_LayeredKeysArray::refLayerState = layerState_DH;
 
 // ================= LAYOUT ====================
 // ------------------ rows ---------------------

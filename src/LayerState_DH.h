@@ -3,16 +3,16 @@
 
 #include <Arduino.h>
 #include <inttypes.h>
-#include <StateLayers.h>
+#include <LayerState.h>
 
 extern volatile uint8_t keyboard_leds;
 
 class IndicatorLEDs;
 
-/* StateLayers for DH layers: NORMAL, TEN_KEY_ON, TEN_KEY_OFF, MF
-StateLayers is part of a layer scheme explained in keybrd_DH/doc/keybrd_DH_library_developer_guide.md
+/* LayerState for DH layers: NORMAL, TEN_KEY_ON, TEN_KEY_OFF, MF
+LayerState is part of a layer scheme explained in keybrd_DH/doc/keybrd_DH_library_developer_guide.md
 */
-class StateLayers_DH : public StateLayers
+class LayerState_DH : public LayerState
 {
     private:
         const uint8_t TEN_KEY_ON;
@@ -21,7 +21,7 @@ class StateLayers_DH : public StateLayers
         bool activeMFSubLayer;
         virtual void setActiveLayer(const uint8_t layer);
     public:
-        StateLayers_DH(
+        LayerState_DH(
                 const uint8_t TEN_KEY_ON,
                 IndicatorLEDs& refIndicatorLEDs)
             : TEN_KEY_ON(TEN_KEY_ON),

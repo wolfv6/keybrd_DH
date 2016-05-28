@@ -1,39 +1,39 @@
-#include <StateLayers_NAS.h>
+#include <LayerState_NAS.h>
 
 // ===== functions called from Code_NASHold and Code_NASLock_Protector =======
-void StateLayers_NAS::NASLock()
+void LayerState_NAS::NASLock()
 {
     persistence = locked;
     setActiveDHLayer();
 }
 
-void StateLayers_NAS::NASHold()
+void LayerState_NAS::NASHold()
 {
     persistence = held;
     setActiveDHLayer();
 }
 
-void StateLayers_NAS::NASUnhold()
+void LayerState_NAS::NASUnhold()
 {
-    refStateLayers_DH.unhold(activeNASLayer);
+    refLayerState_DH.unhold(activeNASLayer);
 }
 
 // =================== function called from Code_LayerLock ===================
-void StateLayers_NAS::lock(const uint8_t layer)
+void LayerState_NAS::lock(const uint8_t layer)
 {
     activeNASLayer = layer;
     setActiveDHLayer();
 }
 
 // ================================ private ==================================
-void StateLayers_NAS::setActiveDHLayer()
+void LayerState_NAS::setActiveDHLayer()
 {
     if (persistence == held)
     {
-        refStateLayers_DH.hold(activeNASLayer);
+        refLayerState_DH.hold(activeNASLayer);
     }
     else
     {
-        refStateLayers_DH.lock(activeNASLayer);
+        refLayerState_DH.lock(activeNASLayer);
     }
 }

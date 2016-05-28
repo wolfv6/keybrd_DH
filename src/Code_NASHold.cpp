@@ -2,10 +2,10 @@
 
 void Code_NASHold::press()
 {
-    refStateLayers_NAS.NASHold();
+    refLayerState_NAS.NASHold();
 }
 
 void Code_NASHold::release()
 {
-    refStateLayers_NAS.NASUnhold();
+    refLayerState_NAS.NASUnhold();
 }

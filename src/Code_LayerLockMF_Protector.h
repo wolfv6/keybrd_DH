@@ -3,7 +3,7 @@
 
 #include <inttypes.h>
 #include <Code.h>
-#include <StateLayers.h>
+#include <LayerState.h>
 
 /* Code_LayerLockMF_Protector is similar to Code_LayerLock with getIsPressed() function.
 */
@@ -11,11 +11,11 @@ class Code_LayerLockMF_Protector : public Code
 {
     private:
         const uint8_t layer;
-        StateLayers& refStateLayers;
+        LayerState& refLayerState;
         bool isPressed;
     public:
-        Code_LayerLockMF_Protector(const uint8_t layer, StateLayers& refStateLayers)
-            : layer(layer), refStateLayers(refStateLayers) {}
+        Code_LayerLockMF_Protector(const uint8_t layer, LayerState& refLayerState)
+            : layer(layer), refLayerState(refLayerState) {}
         virtual void press();
         virtual void release();
         bool getIsPressed();

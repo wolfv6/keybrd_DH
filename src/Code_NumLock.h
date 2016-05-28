@@ -2,16 +2,16 @@
 #define CODE_NUMLOCK_H
 
 #include <Code.h>
-#include "StateLayers_DH.h"
+#include "LayerState_DH.h"
 
-/* Code_NumLock calls StateLayers when pressed.
+/* Code_NumLock calls LayerState when pressed.
 */
 class Code_NumLock : public Code
 {
     private:
-        StateLayers_DH& refStateLayers_DH;
+        LayerState_DH& refLayerState_DH;
     public:
-        Code_NumLock(StateLayers_DH& refStateLayers_DH): refStateLayers_DH(refStateLayers_DH) {}
+        Code_NumLock(LayerState_DH& refLayerState_DH): refLayerState_DH(refLayerState_DH) {}
         virtual void press();
         virtual void release();
 };

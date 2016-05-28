@@ -3,7 +3,7 @@
 void Code_NASLock_Protector::press()
 {
     isPressed = true;
-    refStateLayers_NAS.NASLock();
+    refLayerState_NAS.NASLock();
 }
 
 void Code_NASLock_Protector::release()

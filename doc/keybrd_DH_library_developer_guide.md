@@ -36,7 +36,7 @@ where
 and numbers are LED position on DataHand unit followed by LED color.
 
 ## Class inheritance diagrams
-These diagrams depict all StateLayers, Layer, and Layered classes used in DH.
+These diagrams depict all LayerState, Layer, and Layered classes used in DH.
 The classes are found in two libraries:
 
     keybrd/src/
@@ -46,11 +46,11 @@ Class names tagged with '*' are located in keybrd/src/
 
 Class inheritance diagrams
 ```
-	Row*        StateStickyMouseButtons           StateLayersInterface*
+	Row*        StateStickyMouseButtons           LayerStateInterface*
 	  |                                            /           \
-	Row_DH                                 StateLayers*         |
+	Row_DH                                 LayerState*          |
 	                                        /      \            |
-	                           StateLayers_DH  StateLayers_NAS  |
+	                             LayerState_DH  LayerState_NAS  |
 	Code*                                                       |
 	 |____________________________________________________      |
 	 |     \                 \                            \     |
@@ -104,16 +104,16 @@ Class names tagged with '*' are in keybrd library.
 
 State, Layers, and Layered dependencies
 ```
-	StateLayers_DH
-	stateLayers_DH ___________________________
+	LayerState_DH
+	layerState_DH ____________________________
 	 |                 \                      \
 	 |              Code_LayerLock*        Code_LayerLockMF_Protector
 	 |              l_NormalLock           l_MFLock
 	 |
 	 |________
 	 |        \
-	 |      StateLayers_NAS
-	 |      stateLayers_NAS ____________________________________________
+	 |      LayerState_NAS
+	 |      layerState_NAS _____________________________________________
 	 |         |              \                        \                \
 	 |      Code_NASHold   Code_NASLock_Protector   Code_LayerLock*  Code_LayerLock*
 	 |      l_NASHold      l_NASLock                l_tenKeyOff      l_tenKeyOn
@@ -131,8 +131,8 @@ State, Layers, and Layered dependencies
 	                     \           /       Code_LayeredScSc   Code_LayeredDoublePressToggle
 	                      \         /        lr_shift           t_ctrl
 	                       \       /         rl_shift           t_alt
-	                     StateLayers_DH     
-	     _______________ stateLayers_DH ____________________
+	                     LayerState_DH     
+	     _______________ layerState_DH _____________________
 	    /////               ||||                 \\\\\\\\\\\\
 	Code_LayeredNav      Code_LayeredOperator   Code_LayeredNumber
 	lr_insert            lr_plus                n_0 through n_9
@@ -203,7 +203,7 @@ tests are in:
 LRModf keys effected by numLock are followed by either numLockOn or numLockOff
 
 ```
-Code_LayerState_Toggle                          StateLayers_DH
+Code_LayerState_Toggle                          LayerState_DH
 LRModf left             LRModf right            isNumLocked false       isNumLocked true
 ALL LAYERS --------------------------------------------------------------------------------------
 Code_LayeredDoublePressToggle::press()
@@ -211,38 +211,38 @@ MODIFIERKEY_LEFT_ALT    MODIFIERKEY_RIGHT_ALT
 MODIFIERKEY_LEFT_CTRL   MODIFIERKEY_RIGHT_CTRL
 MODIFIERKEY_LEFT_SHIFT  MODIFIERKEY_RIGHT_SHIFT
 
-Code_LayeredOperator::press() calls StateLayers_DH::getOperatorLayer()
+Code_LayeredOperator::press() calls LayerState_DH::getOperatorLayer()
 KEY_DELETE              KEYPAD_PERIOD numLockOff
 
 NORMAL ------------------------------------------------------------------------------------------
-Code_LayeredOperator::press() calls StateLayers_DH::getOperatorLayer()
+Code_LayeredOperator::press() calls LayerState_DH::getOperatorLayer()
 KEY_SLASH               KEYPAD_SLASH
 
 TEN_KEY_OFF -------------------------------------------------------------------------------------
-Code_LayeredOperator::press() calls StateLayers_DH::getOperatorLayer()
+Code_LayeredOperator::press() calls LayerState_DH::getOperatorLayer()
 KEY_SLASH               KEYPAD_SLASH numLockOff
 KEY_MINUS               KEYPAD_MINUS numLockOff
 KEY_8+shift             KEYPAD_ASTERIX numLockOff
 KEY_EQUAL+shift         KEYPAD_PLUS numLockOff
 
 TEN_KEY_ON --------------------------------------------------------------------------------------
-                                                Code_LayeredOperator::press() calls StateLayers_DH::getOperatorLayer()
+                                                Code_LayeredOperator::press() calls LayerState_DH::getOperatorLayer()
                                                 KEY_SLASH               KEYPAD_SLASH numLockOff
                                                 KEY_MINUS               KEYPAD_MINUS numLockOff
                                                 KEY_8+shift             KEYPAD_ASTERIX numLockOff
                                                 KEY_EQUAL+shift         KEYPAD_PLUS numLockOff
 
-                                                Code_LayeredNumber::press() calls StateLayers_DH::getNumberLayer()
+                                                Code_LayeredNumber::press() calls LayerState_DH::getNumberLayer()
                                                 KEY_0..9                KEYPAD_0..9 numLockOn
 
 MF ----------------------------------------------------------------------------------------------
-Code_LayeredNav::press() calls StateLayers_DH::getNavLayer()
+Code_LayeredNav::press() calls LayerState_DH::getNavLayer()
 KEY_INSERT              KEYPAD_0 numLockOff
 KEY_PAGE_UP             KEYPAD_9 numLockOff
 KEY_PAGE_DOWN           KEYPAD_6 numLockOff
 KEY_PAGE_END            KEYPAD_1 numLockOff
 
-                                                Code_LayeredCodeSc_MF::press() calls stateLayers_DH.getActiveMFSubLayer()
+                                                Code_LayeredCodeSc_MF::press() calls layerState_DH.getActiveMFSubLayer()
                                                 MF, arrowOn, left hand, arrows are keypad
                                                             KEYPAD_2 numLockOff
                                                             KEYPAD_4 numLockOff

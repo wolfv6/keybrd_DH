@@ -2,6 +2,6 @@
 
 void Code_LayeredCodeSc_MF::press()
 {
-    layer = refStateLayers_DH.getActiveMFSubLayer();
+    layer = refLayerState_DH.getActiveMFSubLayer();
     pressCode();
 }

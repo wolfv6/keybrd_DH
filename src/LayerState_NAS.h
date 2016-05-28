@@ -2,22 +2,22 @@
 #define CODE_LAYERSTATE_NAS_H
 
 #include <inttypes.h>
-#include <StateLayers.h>
-/* StateLayers for layers TEN_KEY_ON and TEN_KEY_OFF.
+#include <LayerState.h>
+/* LayerState for layers TEN_KEY_ON and TEN_KEY_OFF.
 Remembers activeNASLayer for next time NAS is active layer again.
-Passes activeNASLayer and persistence to StateLayers_DH.
+Passes activeNASLayer and persistence to LayerState_DH.
 */
-class StateLayers_NAS : public StateLayers
+class LayerState_NAS : public LayerState
 {
     private:
         enum persistence { locked, held };
         bool persistence;
         uint8_t activeNASLayer;                 //TEN_KEY_ON or TEN_KEY_OFF
-        StateLayers& refStateLayers_DH;
+        LayerState& refLayerState_DH;
         void setActiveDHLayer();
     public:
-        StateLayers_NAS(uint8_t activeNASLayer, StateLayers& refStateLayers_DH)
-            : activeNASLayer(activeNASLayer), refStateLayers_DH(refStateLayers_DH) {}
+        LayerState_NAS(uint8_t activeNASLayer, LayerState& refLayerState_DH)
+            : activeNASLayer(activeNASLayer), refLayerState_DH(refLayerState_DH) {}
         void NASLock();
         void NASHold();
         void NASUnhold();

@@ -25,16 +25,16 @@ code is in mainSketch.cpp so that Arduino IDE does not mangle directives
 #include <Code_Mouse_Slow.h>
 #include <Code_Mouse_Quick.h>
 
-//StateLayers
-#include <StateLayers_DH.h>
-#include <StateLayers_NAS.h>
-#include <Code_NASHold.h>
-#include <Code_NASLock_Protector.h>
+//LayerState
+#include <LayerState_DH.h>
+#include <LayerState_NAS.h>
 #include <IndicatorLEDs.h>
 
 //Layer
 #include <Code_LayerLock.h>
 #include <Code_LayerLockMF_Protector.h>
+#include <Code_NASHold.h>
+#include <Code_NASLock_Protector.h>
 #include <Code_LayerState_Toggle.h>
 
 //Layered

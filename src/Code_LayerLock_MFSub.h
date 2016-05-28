@@ -3,18 +3,18 @@
 
 #include <inttypes.h>
 #include <Code.h>
-#include "StateLayers_DH.h"
+#include "LayerState_DH.h"
 
-/* Code_LayerLock_MFSub calls StateLayers_DH when pressed to change activeMFSubLayer.
+/* Code_LayerLock_MFSub calls LayerState_DH when pressed to change activeMFSubLayer.
 */
 class Code_LayerLock_MFSub : public Code
 {
     private:
         const uint8_t layer;
-        StateLayers_DH& refStateLayers_DH;
+        LayerState_DH& refLayerState_DH;
     public:
-        Code_LayerLock_MFSub(const uint8_t layer, StateLayers_DH& refStateLayers_DH)
-            : layer(layer), refStateLayers_DH(refStateLayers_DH) {}
+        Code_LayerLock_MFSub(const uint8_t layer, LayerState_DH& refLayerState_DH)
+            : layer(layer), refLayerState_DH(refLayerState_DH) {}
         virtual void press();
         virtual void release();
 };

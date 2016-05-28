@@ -3,7 +3,7 @@
 void Code_LayerLockMF_Protector::press()
 {
     isPressed = true;
-    refStateLayers.lock(layer);
+    refLayerState.lock(layer);
 }
 
 void Code_LayerLockMF_Protector::release()

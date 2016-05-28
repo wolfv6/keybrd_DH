@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <inttypes.h>
 #include "Code_LayeredNumber.h"
-#include "StateLayers_DH.h"
+#include "LayerState_DH.h"
 
 /* Class Code_LayeredNumber_00 sends double zero ("00" as seen on old adding machines).
 */

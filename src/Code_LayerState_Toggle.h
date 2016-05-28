@@ -3,13 +3,13 @@
 
 #include <inttypes.h>
 #include <Code.h>
-#include <StateLayersInterface.h>
+#include <LayerStateInterface.h>
 #include <IndicatorLEDs.h>
 
 /* Code_LayerState_Toggle is class of LRModf.
 press() toggles activeLayer between 0 and 1.
 */
-class Code_LayerState_Toggle : public Code, public StateLayersInterface
+class Code_LayerState_Toggle : public Code, public LayerStateInterface
 {
     private:
         IndicatorLEDs& refIndicatorLEDs;

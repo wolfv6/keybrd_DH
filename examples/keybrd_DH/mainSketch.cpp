@@ -50,7 +50,7 @@ void setup()
 {
     rowPort1_R.begin();
     colPort0_R.begin();
-    indicatorLEDs.begin(&stateLayers_DH);
+    indicatorLEDs.begin(&layerState_DH);
     Keyboard.begin();
     Mouse.begin();
 

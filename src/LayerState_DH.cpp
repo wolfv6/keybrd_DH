@@ -1,8 +1,8 @@
-#include "StateLayers_DH.h"
+#include "LayerState_DH.h"
 #include "IndicatorLEDs.h"  //included here for circular dependency
 
 //set active layer and update LEDs
-void StateLayers_DH::setActiveLayer(const uint8_t layer)
+void LayerState_DH::setActiveLayer(const uint8_t layer)
 {
     refIndicatorLEDs.layerLEDsOff(activeLayer);
     activeLayer = layer;
@@ -10,7 +10,7 @@ void StateLayers_DH::setActiveLayer(const uint8_t layer)
     refIndicatorLEDs.updateLayerSubMFLayerLEDs(activeLayer, activeMFSubLayer);
 }
 
-void StateLayers_DH::getLayerStates(uint8_t& refActiveLayer, bool& refActiveMFSubLayer, bool& refLazyNumLock)
+void LayerState_DH::getLayerStates(uint8_t& refActiveLayer, bool& refActiveMFSubLayer, bool& refLazyNumLock)
 {
     refActiveLayer = activeLayer;
     refLazyNumLock = lazyNumLock;
@@ -18,14 +18,14 @@ void StateLayers_DH::getLayerStates(uint8_t& refActiveLayer, bool& refActiveMFSu
 }
 
 // =================== NumLock =================
-bool StateLayers_DH::getLazyNumLock()
+bool LayerState_DH::getLazyNumLock()
 {
     return lazyNumLock;
 }
 
 //update numLock and return active numberLayer: 0 for KEY, 1 for KEYPAD.
 //Called from Code_LayeredNumber::setScancodeNum().
-bool StateLayers_DH::getNumberLayer()
+bool LayerState_DH::getNumberLayer()
 {
     bool numberLayer;
 
@@ -43,14 +43,14 @@ bool StateLayers_DH::getNumberLayer()
 }
 
 //toggle lazyNumLock and update numLock LED
-void StateLayers_DH::numLock()
+void LayerState_DH::numLock()
 {
     lazyNumLock = !lazyNumLock;                 //toggle
     refIndicatorLEDs.updateNumLockLED(lazyNumLock);
 }
 
 //sending KEY_NUM_LOCK is lazy to minimize USB traffic
-void StateLayers_DH::updateNumLock(bool numLock)
+void LayerState_DH::updateNumLock(bool numLock)
 {
     if ( (keyboard_leds & 1) != numLock)
     {
@@ -60,13 +60,13 @@ void StateLayers_DH::updateNumLock(bool numLock)
 }
 
 // ================= MF SubLayer ===============
-void StateLayers_DH::lockMFSubLayer(bool sublayer)
+void LayerState_DH::lockMFSubLayer(bool sublayer)
 {
     activeMFSubLayer = sublayer;
     refIndicatorLEDs.mouseOnLEDUpdate(activeMFSubLayer);
 }
 
-bool StateLayers_DH::getActiveMFSubLayer()
+bool LayerState_DH::getActiveMFSubLayer()
 {
     return activeMFSubLayer;
 }

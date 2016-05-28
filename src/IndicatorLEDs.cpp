@@ -1,9 +1,9 @@
 #include "IndicatorLEDs.h"
-#include "StateLayers_DH.h"  //included here for circular dependency
+#include "LayerState_DH.h"  //included here for circular dependency
 
 /* Initialize LEDs.  This should be called once from setup().
 */
-void IndicatorLEDs::begin(StateLayers_DH* ptrStateLayers)
+void IndicatorLEDs::begin(LayerState_DH* ptrLayerState)
 {
     for (uint8_t i=0; i<LED_COUNT_PER_ARRAY; i++)
     {
@@ -12,8 +12,8 @@ void IndicatorLEDs::begin(StateLayers_DH* ptrStateLayers)
     }
     ptrsLayerLEDs[0]->on();                     //default layer
 
-    //close circular dependency (circular because restoreBlinkingLEDs() calls StateLayers_DH)
-    ptrStateLayers_DH = ptrStateLayers;
+    //close circular dependency (circular because restoreBlinkingLEDs() calls LayerState_DH)
+    ptrLayerState_DH = ptrLayerState;
 }
 
 void IndicatorLEDs::layerLEDsOff(uint8_t activeLayer)
@@ -130,7 +130,7 @@ void IndicatorLEDs::restoreBlinkingLEDs()
     {
         bool activeMFSubLayer;
         bool lazyNumLock;
-        ptrStateLayers_DH->getLayerStates(activeLayer, activeMFSubLayer, lazyNumLock);
+        ptrLayerState_DH->getLayerStates(activeLayer, activeMFSubLayer, lazyNumLock);
 
         //updateScrollLockLED();  LED_SCROLL_LOCK was removed, explanation in Code_LEDLock.cpp
         updateLayerSubMFLayerLEDs(activeLayer, activeMFSubLayer); //LED_MOUSE_ON
@@ -138,7 +138,7 @@ void IndicatorLEDs::restoreBlinkingLEDs()
     }
     else                                        //if right unit blinking
     {
-        activeLayer = ptrStateLayers_DH->getActiveLayer();
+        activeLayer = ptrLayerState_DH->getActiveLayer();
         updateLayerLEDs(activeLayer);
     }
 }

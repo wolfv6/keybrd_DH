@@ -20,20 +20,18 @@
 #include <LED_PCA9655E.h>
 #include <IndicatorLEDs.h>
 
-//StateLayers
-class StateLayersInterface;
-#include <StateLayers_DH.h>
-#include <StateLayers_NAS.h>
-
-//StateLayer controllers
-#include <Code_NASHold.h>
-#include <Code_NASLock_Protector.h>
-#include <Code_NumLock.h>
-#include <Code_LayerLock_MFSub.h>
+//LayerState
+class LayerStateInterface;
+#include <LayerState_DH.h>
+#include <LayerState_NAS.h>
 
 //Layer
 #include <Code_LayerLock.h>
 #include <Code_LayerLockMF_Protector.h>
+#include <Code_NASHold.h>
+#include <Code_NASLock_Protector.h>
+#include <Code_NumLock.h>
+#include <Code_LayerLock_MFSub.h>
 #include <Code_LayerState_Toggle.h>
 
 //Layered
@@ -172,20 +170,20 @@ enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
 
 IndicatorLEDs indicatorLEDs(ptrsLEDs_L, ptrsLEDs_R, TEN_KEY_OFF, TEN_KEY_ON, MF);
 
-StateLayers_DH stateLayers_DH(TEN_KEY_ON, indicatorLEDs);
-Code_LayerLock l_normalLock(NORMAL, stateLayers_DH);
-Code_LayerLockMF_Protector l_MFLock(MF, stateLayers_DH);
+LayerState_DH layerState_DH(TEN_KEY_ON, indicatorLEDs);
+Code_LayerLock l_normalLock(NORMAL, layerState_DH);
+Code_LayerLockMF_Protector l_MFLock(MF, layerState_DH);
 
-StateLayers_NAS stateLayers_NAS(TEN_KEY_OFF, stateLayers_DH);
-Code_NASHold l_NASHold(stateLayers_NAS);
-Code_NASLock_Protector l_NASLock(stateLayers_NAS);
-Code_LayerLock l_tenKeyOff(TEN_KEY_OFF, stateLayers_NAS);
-Code_LayerLock l_tenKeyOn(TEN_KEY_ON, stateLayers_NAS);
+LayerState_NAS layerState_NAS(TEN_KEY_OFF, layerState_DH);
+Code_NASHold l_NASHold(layerState_NAS);
+Code_NASLock_Protector l_NASLock(layerState_NAS);
+Code_LayerLock l_tenKeyOff(TEN_KEY_OFF, layerState_NAS);
+Code_LayerLock l_tenKeyOn(TEN_KEY_ON, layerState_NAS);
 
-Code_LayerLock_MFSub l_mouseOn(0, stateLayers_DH);
-Code_LayerLock_MFSub l_arrowOn(1, stateLayers_DH);
+Code_LayerLock_MFSub l_mouseOn(0, layerState_DH);
+Code_LayerLock_MFSub l_arrowOn(1, layerState_DH);
 
-StateLayersInterface& Key_LayeredKeysArray::refStateLayers = stateLayers_DH;
+LayerStateInterface& Key_LayeredKeysArray::refLayerState = layerState_DH;
 
 // --------------- SHIFT CODE ------------------
 Code_Shift s_shift(MODIFIERKEY_LEFT_SHIFT);
@@ -195,7 +193,7 @@ const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsShifts)/sizeof(*ptrsShifts
 
 // ----------------- L-R CODES -----------------
 Code_LayerState_Toggle t_LRModf(indicatorLEDs, ptrsLEDs_L, ptrsLEDs_R);
-Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refStateLayers = t_LRModf;
+Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refLayerState = t_LRModf;
 
 Code_LayeredDoublePressToggle t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
 Code_LayeredDoublePressToggle t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
@@ -206,21 +204,21 @@ Code_LayeredDoublePressToggle t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT)
 
 Code_LayeredScSc lr_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //thumb shift
 Code_LayeredScSc rl_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //finger shift acts opposite
-StateLayersInterface& Code_LayeredScSc::refStateLayers = t_LRModf;
+LayerStateInterface& Code_LayeredScSc::refLayerState = t_LRModf;
 
 Code_LayeredNav lr_insert(KEY_INSERT, KEYPAD_0);
 Code_LayeredNav lr_delete(KEY_DELETE, KEYPAD_PERIOD);
 Code_LayeredNav lr_pageUp(KEY_PAGE_UP, KEYPAD_9);
 Code_LayeredNav lr_pageDown(KEY_PAGE_DOWN, KEYPAD_3);
 Code_LayeredNav lr_end(KEY_END, KEYPAD_1);
-StateLayers_DH& Code_LayeredNav::refStateLayers_DH = stateLayers_DH;
+LayerState_DH& Code_LayeredNav::refLayerState_DH = layerState_DH;
 Code_LayerState_Toggle& Code_LayeredNav::refStateLRModf = t_LRModf;
 
 Code_LayeredOperator lr_plus(s_plus, KEYPAD_PLUS);
 Code_LayeredOperator lr_asterix(s_asterix, KEYPAD_ASTERIX);
 Code_LayeredOperator lr_minus(s_minus, KEYPAD_MINUS);
 Code_LayeredOperator lr_slash(s_slash, KEYPAD_SLASH);  //also Normal layer
-StateLayers_DH& Code_LayeredOperator::refStateLayers_DH = stateLayers_DH;
+LayerState_DH& Code_LayeredOperator::refLayerState_DH = layerState_DH;
 Code_LayerState_Toggle& Code_LayeredOperator::refStateLRModf = t_LRModf;
 const uint8_t Code_LayeredOperator::TEN_KEY_ON = TEN_KEY_ON;
 
@@ -264,10 +262,10 @@ Code_LayeredCodeSc_MF msA_up(ms_up, KEY_UP);
 Code_LayeredCodeSc_MF mb2Home(mb_2, KEY_HOME); //mouse-button 2, Home
 
 //define static variable
-StateLayers_DH& Code_LayeredCodeSc_MF::refStateLayers_DH = stateLayers_DH;
+LayerState_DH& Code_LayeredCodeSc_MF::refLayerState_DH = layerState_DH;
 
 // ------------- NUMBER CODES ------------------
-Code_NumLock t_numLock(stateLayers_DH);
+Code_NumLock t_numLock(layerState_DH);
 
 //n_0 through n_9 are used in TEN_KEY_OFF and TEN_KEY_ON
 Code_LayeredNumber n_0(KEY_0);
@@ -282,7 +280,7 @@ Code_LayeredNumber n_8(KEY_8);
 Code_LayeredNumber n_9(KEY_9);
 Code_LayeredNumber_00 n_00;
 
-StateLayers_DH& Code_LayeredNumber::refStateLayers = stateLayers_DH;
+LayerState_DH& Code_LayeredNumber::refLayerState = layerState_DH;
 
 // ------------ PROTECTED CODES ----------------
 Code_Protected_ByMFLock p_mouseOn(l_mouseOn);
