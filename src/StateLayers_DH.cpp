@@ -6,9 +6,18 @@ void StateLayers_DH::setActiveLayer(const uint8_t layer)
 {
     refIndicatorLEDs.layerLEDsOff(activeLayer);
     activeLayer = layer;
-    refIndicatorLEDs.updateLayerLEDs(activeLayer, activeMFSubLayer);
+    refIndicatorLEDs.updateLayerLEDs(activeLayer);
+    refIndicatorLEDs.updateLayerSubMFLayerLEDs(activeLayer, activeMFSubLayer);
 }
 
+void StateLayers_DH::getLayerStates(uint8_t& refActiveLayer, bool& refLazyNumLock, bool& refActiveMFSubLayer)
+{
+    refActiveLayer = activeLayer;
+    refLazyNumLock = lazyNumLock;
+    refActiveMFSubLayer = activeMFSubLayer;
+}
+
+// =================== NumLock =================
 bool StateLayers_DH::getLazyNumLock()
 {
     return lazyNumLock;
@@ -50,29 +59,14 @@ void StateLayers_DH::updateNumLock(bool numLock)
     }
 }
 
+// ================= MF SubLayer ===============
 void StateLayers_DH::lockMFSubLayer(bool sublayer)
 {
     activeMFSubLayer = sublayer;
-    refIndicatorLEDs.MouseOnLEDUpdate(activeMFSubLayer);
+    refIndicatorLEDs.mouseOnLEDUpdate(activeMFSubLayer);
 }
 
 bool StateLayers_DH::getActiveMFSubLayer()
 {
     return activeMFSubLayer;
-}
-
-void StateLayers_DH::getLayerStates(uint8_t& refActiveLayer, bool& refLazyNumLock, bool& refActiveMFSubLayer)
-{
-    refActiveLayer = activeLayer;
-    refLazyNumLock = lazyNumLock;
-    refActiveMFSubLayer = activeMFSubLayer;
-}
-
-/* Restore first 3 LEDs.  restoreLEDs() is called when LEDsBlinker is done blinking.
-restoreLEDs() function is in StateLayers_DH because activeLayer and lazyNumLock values are needed by IndicatorLEDs.
-And if IndicatorLEDs called StateLayers_DH.getActiveLayer(), it would create a circular dependency.
-*/
-void StateLayers_DH::restoreLEDs()
-{
-    refIndicatorLEDs.restoreLEDs(activeLayer, activeMFSubLayer, lazyNumLock);
 }

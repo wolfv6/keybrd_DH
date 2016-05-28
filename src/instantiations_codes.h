@@ -171,8 +171,6 @@ LED * ptrsLEDs_R[] = { &LED_R1Blue, &LED_R2Green, &LED_R3Yellow, &LED_R4Red };
 enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
 
 IndicatorLEDs indicatorLEDs(ptrsLEDs_L, ptrsLEDs_R, TEN_KEY_OFF, TEN_KEY_ON, MF);
-LEDsBlinker LEDsBlinker_L(ptrsLEDs_L);
-LEDsBlinker LEDsBlinker_R(ptrsLEDs_R);
 
 StateLayers_DH stateLayers_DH(TEN_KEY_ON, indicatorLEDs);
 Code_LayerLock l_normalLock(NORMAL, stateLayers_DH);
@@ -187,7 +185,6 @@ Code_LayerLock l_tenKeyOn(TEN_KEY_ON, stateLayers_NAS);
 Code_LayerLock_MFSub l_mouseOn(0, stateLayers_DH);
 Code_LayerLock_MFSub l_arrowOn(1, stateLayers_DH);
 
-StateLayers_DH& LEDsBlinker::refStateLayers_DH = stateLayers_DH;
 StateLayersInterface& Key_LayeredKeysArray::refStateLayers = stateLayers_DH;
 
 // --------------- SHIFT CODE ------------------
@@ -197,7 +194,7 @@ Code_Shift* const* const Code_AutoShift::ptrsShifts = ptrsS;
 const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsShifts)/sizeof(*ptrsShifts);
 
 // ----------------- L-R CODES -----------------
-Code_LayerState_Toggle t_LRModf(LEDsBlinker_L, LEDsBlinker_R);
+Code_LayerState_Toggle t_LRModf(indicatorLEDs, ptrsLEDs_L, ptrsLEDs_R);
 Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refStateLayers = t_LRModf;
 
 Code_LayeredDoublePressToggle t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);

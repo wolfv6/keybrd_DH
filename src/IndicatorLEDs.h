@@ -22,12 +22,13 @@ class IndicatorLEDs
         enum LED_ROLES_L { LED_SCROLL_LOCK, LED_NUM_LOCK, LED_MOUSE_ON, LED_CAPS_LOCK };
         enum LED_ROLES_R { LED_NAS, LED_NORMAL, LED_MF, LED_TEN_KEY_ON };
         StateLayers_DH* ptrStateLayers_DH;
-        LED*const *const ptrsLEDs_L;            //array of pointers to indicator LEDs on left unit
+        LED*const *const ptrsLEDs_L;            //pointer to left-indicator LEDs pointer array
+                                                // ordered by appearance on keyboard
         const uint8_t TEN_KEY_OFF;              //layer id
         const uint8_t TEN_KEY_ON;               //layer id
         const uint8_t MF;                       //layer id
-        LED* ptrsLayerLEDs[LED_COUNT_PER_ARRAY];//array of ptrs to indicator LEDs on right unit,
-                                                //ordered by layer id
+        LED* ptrsLayerLEDs[LED_COUNT_PER_ARRAY];//pointer to right-indicator LEDs pointer array
+                                                    //ordered by layer id
         // ============ blinker ================
         LED*const * ptrsBlinkingLEDs;           //array of pointers to blinking indicator LEDs
         static StateLayers_DH& refStateLayers_DH;
@@ -50,13 +51,14 @@ class IndicatorLEDs
         }
         void begin(StateLayers_DH* ptrStateLayers_DH);
         void layerLEDsOff(uint8_t activeLayer);
-        void updateLayerLEDs(uint8_t activeLayer, bool activeSubMFLayer);
+        void updateLayerLEDs(uint8_t activeLayer);
+        void updateLayerSubMFLayerLEDs(uint8_t activeLayer, bool activeMFSubLayer);
+        void mouseOnLEDUpdate(uint8_t activeMFSubLayer);
         void updateNumLockLED(bool lazyNumLock);
-        void MouseOnLEDUpdate(uint8_t activeSubMFLayer);
 
         // ============ blinker ================
         void startBlinking(LED*const pLEDs[]);
         void blink();
-        void restoreLEDs(uint8_t activeLayer, bool activeMFSubLayer, bool lazyNumLock);
+        void restoreBlinkingLEDs();
 };
 #endif

@@ -1,12 +1,14 @@
 // ================ INCLUDES ===================
 #include <Arduino.h>
 
-#include <Key_LayeredKeysArray.h> //todo delete?
-#include <Code_DoublePressProtected.h>
-#include <Row_DH.h> //todo delete?
-
-#include <MouseMove.h>
+//todo are forward declares enough for static vars?
 #include <Debug.h>
+#include <Row_DH.h> //todo or Row.h?
+#include <Code_DoublePressProtected.h>
+#include <MouseMove.h>
+#include <IndicatorLEDs.h>
+#include <Key_LayeredKeysArray.h> //todo delete?
+
 
 // ================= DEBUG =====================
 #define PRINT_FREE_RAM      //print free RAM and headers
@@ -35,9 +37,9 @@ MouseMove mouseMove(4);
 
 //3 LEDs blink when LRModf is pressed.
 //NUM_BLINKS * SCANS_PER_BLINK + SCANS_BLINK_ON < 256
-const uint8_t LEDsBlinker::NUM_BLINKS = 5;       //number of blinks to stop
-const uint8_t LEDsBlinker::SCANS_PER_BLINK = 50; //smaller number makes blinking faster
-const uint8_t LEDsBlinker::SCANS_BLINK_ON = 5;   //number of scans per blink that LED is on
+const uint8_t IndicatorLEDs::NUM_BLINKS = 5;       //number of blinks to stop
+const uint8_t IndicatorLEDs::SCANS_PER_BLINK = 50; //smaller number makes blinking faster
+const uint8_t IndicatorLEDs::SCANS_BLINK_ON = 5;   //number of scans per blink that LED is on
 
 // ========= OBJECT INSTANTIATIONS =============
 #include <instantiations_ports.h>
@@ -64,10 +66,7 @@ void loop()
 {
     matrix_L.scan();
     matrix_R.scan();
-
-    LEDsBlinker_L.blink();
-    LEDsBlinker_R.blink();
-
+    indicatorLEDs.blink();
     mouseMove.send();
 
 #ifdef PRINT_SCAN_RATE

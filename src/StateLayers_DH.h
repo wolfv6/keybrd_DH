@@ -27,14 +27,17 @@ class StateLayers_DH : public StateLayers
             : TEN_KEY_ON(TEN_KEY_ON),
                 refIndicatorLEDs(refIndicatorLEDs),
                 lazyNumLock(NUMLOCK_OFF) {}
+        void getLayerStates(uint8_t& refActiveLayer, bool& refLazyNumLock, bool& refActiveMFSubLayer);
+
+        // ============= NumLock ===============
         enum numLock { NUMLOCK_OFF, NUMLOCK_ON };
         bool getLazyNumLock();
         bool getNumberLayer();
         void numLock();
         void updateNumLock(bool numLock);
+
+        // =========== MF SubLayer =============
         void lockMFSubLayer(bool subLayer);
         bool getActiveMFSubLayer();
-        void getLayerStates(uint8_t& refActiveLayer, bool& refLazyNumLock, bool& refActiveMFSubLayer);
-        void restoreLEDs();
 };
 #endif

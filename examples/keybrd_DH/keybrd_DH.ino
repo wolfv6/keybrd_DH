@@ -30,7 +30,7 @@ code is in mainSketch.cpp so that Arduino IDE does not mangle directives
 #include <StateLayers_NAS.h>
 #include <Code_NASHold.h>
 #include <Code_NASLock_Protector.h>
-//#include <IndicatorLEDs.h>
+#include <IndicatorLEDs.h>
 
 //Layer
 #include <Code_LayerLock.h>
