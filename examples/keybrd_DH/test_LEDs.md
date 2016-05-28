@@ -37,3 +37,19 @@ Scroll lock LED removed, explanation in Code_LEDLock.cpp
     MF          yellow     *            MF
     10-Key      red                     TEN_KEY_ON
 
+test IndicatorLEDs::restoreBlinkingLEDs() =====================
+press L/RModf with one LED at a time, should blink first 3 LEDs
+
+LEFT UNIT LEDs                          RESULT
+    NumLock      2 yellow
+    MF+arrow MF+NumLock     L/RModf     pass
+
+    MouseOn      3 yellow
+    MF+mouse                L/RModf     pass
+
+    CapsLock     4 green
+    MF+arrow CapsLock       L/RModf     pass
+
+RIGHT UNIT LEDs                         RESULT
+    MF           3 yellow
+    MF                      L/RModf     pass

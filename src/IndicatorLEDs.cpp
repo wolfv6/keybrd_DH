@@ -103,10 +103,10 @@ void IndicatorLEDs::blink()
         }
         else if ( scansSinceFirstBlink % (SCANS_PER_BLINK) == 0 )
         {
+            //turn LEDs off (DataHand dims LEDs that where on)
             ptrsBlinkingLEDs[0]->off();
             ptrsBlinkingLEDs[1]->off();
             ptrsBlinkingLEDs[2]->off();
-            //restoreBlinkingLEDs(); todo dim 
 
             if (scansSinceFirstBlink == NUM_BLINKS * SCANS_PER_BLINK)
             {
@@ -119,25 +119,25 @@ void IndicatorLEDs::blink()
     }
 }
 
-/* Restore first 3 LEDs.
+/* Restore state of first 3 LEDs.
 */
 void IndicatorLEDs::restoreBlinkingLEDs()
 {
     uint8_t activeLayer;
-    bool activeMFSubLayer;
-    bool lazyNumLock;
-
-    ptrStateLayers_DH->getLayerStates(activeLayer, activeMFSubLayer, lazyNumLock);
 
     if (ptrsBlinkingLEDs == ptrsLEDs_L)         //if left unit blinking
     {
-        //updateScrollLockLED(); LED_SCROLL_LOCK was removed, explanation in Code_LEDLock.cpp
+        bool activeMFSubLayer;
+        bool lazyNumLock;
+        ptrStateLayers_DH->getLayerStates(activeLayer, activeMFSubLayer, lazyNumLock);
+
+        //updateScrollLockLED();  LED_SCROLL_LOCK was removed, explanation in Code_LEDLock.cpp
         updateLayerSubMFLayerLEDs(activeLayer, activeMFSubLayer); //LED_MOUSE_ON
-        updateNumLockLED(lazyNumLock);               //LED_NUM_LOCK
+        updateNumLockLED(lazyNumLock);                            //LED_NUM_LOCK
     }
     else                                        //if right unit blinking
     {
-        //todo RAM change? activeLayer = ptrStateLayers_DH->getActiveLayer();
+        activeLayer = ptrStateLayers_DH->getActiveLayer();
         updateLayerLEDs(activeLayer);
     }
 }
