@@ -36,7 +36,7 @@ const uint8_t Code_MouseSpeed::HIGH_SPEED = 54;
 MouseMove mouseMove(4);
 
 //3 LEDs blink when LRModf is pressed.
-const uint8_t IndicatorLEDs::NUM_BLINKS = 5;       //number of blinks to stop
+const uint8_t IndicatorLEDs::NUM_BLINKS = 5;       //number of blinks to stop blinking
 const uint8_t IndicatorLEDs::SCANS_PER_BLINK = 50; //smaller number makes blinking faster
 const uint8_t IndicatorLEDs::SCANS_BLINK_ON = 5;   //number of scans per blink that LED is on
 

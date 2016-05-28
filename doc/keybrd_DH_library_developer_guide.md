@@ -2,20 +2,14 @@ keybrd_DH Library Developer's Guide
 ===================================
 The keybrd_DH library is an extension of the [keybrd library](https://github.com/wolfv6/keybrd) for emulating the DataHand keyboard.
 
-The keybrd_DH firmware is reversed engineered from the DataHand Professional II Users Guide version 1.7.8, October 2003.
+The keybrd_DH firmware is reverse engineered from the DataHand Professional II Users Guide version 1.7.8, October 2003.
 
 ## Layer scheme
-The layer scheme is based on the DataHand keyboard described in DataHandProIIUserGuide.pdf.
 todo explain
 
-## Code_Layer class naming conventions
-Code_Layer class names are concatenations of "Code_", layer name, and persistence.
-Persistence is one of:
-* "Lock" - layer remains active after the layer key is released
-* "Hold" - layer is active for as long as layer key is held down
 
 ## Object naming conventions
-Object names are based on descriptions in DataHandProIIUserGuide.pdf, except for "modes" which are called "layers" in the keybrd library.
+Object names are based on descriptions in DataHand User's Guide, except for "modes" which are called "layers" in the keybrd library.
 
 CODE PREFIXES
 
@@ -39,17 +33,16 @@ LED names are
     LED_L4Green     LED_R4Red
 where
     L=left unit     R=right unit
-    numbers are LED position on DataHand unit 1,2,3,4
-    followed by LED color
+and numbers are LED position on DataHand unit followed by LED color.
 
 ## Class inheritance diagrams
-These diagrams depict all StateLayers, Layered, and Layered classes used in DH.
+These diagrams depict all StateLayers, Layer, and Layered classes used in DH.
 The classes are found in two libraries:
 
     keybrd/src/
     keybrd_DH/src/
 
-Class names tagged with '*' are located in core keybrd library.
+Class names tagged with '*' are located in keybrd/src/
 
 Class inheritance diagrams
 ```

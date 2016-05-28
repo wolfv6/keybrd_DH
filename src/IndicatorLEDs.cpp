@@ -12,6 +12,7 @@ void IndicatorLEDs::begin(StateLayers_DH* ptrStateLayers)
     }
     ptrsLayerLEDs[0]->on();                     //default layer
 
+    //close circular dependency (circular because restoreBlinkingLEDs() calls StateLayers_DH)
     ptrStateLayers_DH = ptrStateLayers;
 }
 
@@ -108,7 +109,7 @@ void IndicatorLEDs::blink()
             ptrsBlinkingLEDs[1]->off();
             ptrsBlinkingLEDs[2]->off();
 
-            if (scansSinceFirstBlink == NUM_BLINKS * SCANS_PER_BLINK)
+            if (scansSinceFirstBlink == (uint16_t)NUM_BLINKS * SCANS_PER_BLINK)
             {
                 scansSinceFirstBlink = 0;       //stop blinking
                 restoreBlinkingLEDs();
