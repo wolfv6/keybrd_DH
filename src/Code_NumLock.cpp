@@ -2,7 +2,7 @@
 
 void Code_NumLock::press()
 {
-    refLayerState_DH.numLock();
+    refLayerState_DH.toggleLazyNumLock();
 }
 
 void Code_NumLock::release()

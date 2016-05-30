@@ -6,8 +6,13 @@
 #include "LayerState_DH.h"
 #include "Code_LayerState_Toggle.h"
 
-/* Class Code_LayeredOperator sends one of two scancodes,
-   determined by refLayerState_DH.getOperatorLayer().
+/* Class Code_LayeredOperator is a 2-layer code, one item for each operator sub-layer e.g.
+    layer 0: s_plus
+    layer 1: KEYPAD_PLUS
+When the key is pressed, the active layer is determined,
+ and the object of the active layer is sent to USB.
+The active layer is determined by
+ refLayerState_DH::activeLayer, LayerState_DH::lazyNumLock, and StateLRModf::activeLayer
 */
 class Code_LayeredOperator : public Code_LayeredCodeScBase
 {

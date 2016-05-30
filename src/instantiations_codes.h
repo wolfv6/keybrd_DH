@@ -35,6 +35,7 @@ class LayerStateInterface;
 #include <Code_LayerState_Toggle.h>
 
 //Layered
+#include <Key_LayeredKeysArray.h>
 #include <Code_LayeredCodeSc_MF.h>
 #include <Code_LayeredNumber.h>
 #include <Code_LayeredNumber_00.h>
@@ -164,7 +165,7 @@ LED_PCA9655E LED_R3Yellow(port0_R, 1<<7);   //LED_1     MF
 LED_PCA9655E LED_R4Red(port0_R, 1<<6);      //LED_0     TEN_KEY_ON
 LED * ptrsLEDs_R[] = { &LED_R1Blue, &LED_R2Green, &LED_R3Yellow, &LED_R4Red };
 
-// --------------- LAYER CODES -----------------
+// -------------- PRIMARY LAYERS ---------------
 //            NORMAL  NAS          NAS         MF
 enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
 
@@ -185,26 +186,16 @@ Code_LayerLock_MFSub l_arrowOn(1, layerState_DH);
 
 LayerStateInterface& Key_LayeredKeysArray::refLayerState = layerState_DH;
 
-// --------------- SHIFT CODE ------------------
-Code_Shift s_shift(MODIFIERKEY_LEFT_SHIFT);
-Code_Shift* const ptrsS[] = { &s_shift };
-Code_Shift* const* const Code_AutoShift::ptrsShifts = ptrsS;
-const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsShifts)/sizeof(*ptrsShifts);
-
 // ----------------- L-R CODES -----------------
 Code_LayerState_Toggle t_LRModf(indicatorLEDs, ptrsLEDs_L, ptrsLEDs_R);
-Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refLayerState = t_LRModf;
 
 Code_LayeredDoublePressToggle t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
 Code_LayeredDoublePressToggle t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
+Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refLayerState = t_LRModf;
     //To remove Code_LayeredDoublePressToggle feature,
     //remove refCtrl and refAlt from Row_DH and use Code_LayeredScSc instead:
     //Code_LayeredScSc t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
     //Code_LayeredScSc t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
-
-Code_LayeredScSc lr_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //thumb shift
-Code_LayeredScSc rl_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //finger shift acts opposite
-LayerStateInterface& Code_LayeredScSc::refLayerState = t_LRModf;
 
 Code_LayeredNav lr_insert(KEY_INSERT, KEYPAD_0);
 Code_LayeredNav lr_delete(KEY_DELETE, KEYPAD_PERIOD);
@@ -221,6 +212,16 @@ Code_LayeredOperator lr_slash(s_slash, KEYPAD_SLASH);  //also Normal layer
 LayerState_DH& Code_LayeredOperator::refLayerState_DH = layerState_DH;
 Code_LayerState_Toggle& Code_LayeredOperator::refStateLRModf = t_LRModf;
 const uint8_t Code_LayeredOperator::TEN_KEY_ON = TEN_KEY_ON;
+
+Code_LayeredScSc lr_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //thumb shift
+Code_LayeredScSc rl_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //finger shift acts opposite
+LayerStateInterface& Code_LayeredScSc::refLayerState = t_LRModf;
+
+// --------------- SHIFT CODE ------------------
+Code_Shift s_shift(MODIFIERKEY_LEFT_SHIFT);
+Code_Shift* const ptrsS[] = { &s_shift };
+Code_Shift* const* const Code_AutoShift::ptrsShifts = ptrsS;
+const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsShifts)/sizeof(*ptrsShifts);
 
 // --------------- LOCK CODES ------------------
 Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_L4Green);
@@ -280,7 +281,7 @@ Code_LayeredNumber n_8(KEY_8);
 Code_LayeredNumber n_9(KEY_9);
 Code_LayeredNumber_00 n_00;
 
-LayerState_DH& Code_LayeredNumber::refLayerState = layerState_DH;
+LayerState_DH& Code_LayeredNumber::refLayerState_DH = layerState_DH;
 
 // ------------ PROTECTED CODES ----------------
 Code_Protected_ByMFLock p_mouseOn(l_mouseOn);

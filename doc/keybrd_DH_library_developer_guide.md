@@ -4,9 +4,51 @@ The keybrd_DH library is an extension of the [keybrd library](https://github.com
 
 The keybrd_DH firmware is reverse engineered from the DataHand Professional II Users Guide version 1.7.8, October 2003.
 
-## Layer scheme
-todo explain
+## The keybrd_DH layer scheme
+**Key_Layer** objects are used to select an active layer.
+When a Code_Layer object is pressed, it tells layerState_DH to update the active layer.
+Key_Layer objects are:
+* l_NormalLock
+* l_MFLock
+* l_NASHold
+* l_NASLock
+* l_tenKeyOff (DataHand User's Guide calls this layer "NAS")
+* l_tenKeyOn
+* l_mouseOn
+* l_arrowOn
+* t_numLock
 
+The **layerState_DH** object keeps track of the active layer.
+LayerState_DH's activeLayer is always up to date.
+
+**Code_Layered** objects contain multiple elements, one element for each layer.
+Layer ids are used like indexes to send the appropriate element.
+When a Code_Layered object is pressed, it gets the active layer from a LayerState object and then sends the appropriate element.
+Code_LayeredNav and Code_LayeredOperator objects consult two LayerState objects to determine which element to send.
+
+Key_LayeredKeysArray class has 4 primary layers:
+* NORMAL
+* TEN_KEY_OFF
+* TEN_KEY_ON (DataHand User's Guide describes this layer as a submode of NAS)
+* MF
+
+Other Layered classes have 2 sublayers each:
+* 0
+* 1
+
+The following Layered classes have 2 sublayers each:
+* Code_LayeredNumber
+* Code_LayeredCodeSc_MF
+* Code_LayeredScSc
+* Code_LayeredDoublePressToggle
+* Code_LayeredNav
+* Code_LayeredOperator
+
+Thumb keys are one-layer Code objects.
+
+Layer objects and LayerState objects are instantiated in instantiations_codes.h
+Layered objects with 2 sublayers are also instantiated in instantiations_codes.h
+Key_LayeredKeysArray objects are instantiated in instantiations_matrix.h
 
 ## Object naming conventions
 Object names are based on descriptions in DataHand User's Guide, except for "modes" which are called "layers" in the keybrd library.
@@ -27,12 +69,16 @@ CODE PREFIXES
     t_   toggle
 
 LED names are
+
     LED_L1Yellow    LED_R1Blue
     LED_L2Yellow    LED_R2Green
     LED_L3Yellow    LED_R3Yellow
     LED_L4Green     LED_R4Red
+
 where
+
     L=left unit     R=right unit
+
 and numbers are LED position on DataHand unit followed by LED color.
 
 ## Class inheritance diagrams
@@ -46,7 +92,7 @@ Class names tagged with '*' are located in keybrd/src/
 
 Class inheritance diagrams
 ```
-	Row*        StateStickyMouseButtons           LayerStateInterface*
+	Row*        StateStickyMouseButtons           LayerStateInterface*      IndicatorLEDs
 	  |                                            /           \
 	Row_DH                                 LayerState*          |
 	                                        /      \            |
@@ -102,13 +148,15 @@ Objects are expressed in two or more lines:
 
 Class names tagged with '*' are in keybrd library.
 
-State, Layers, and Layered dependencies
+LayerState_DH dependencies (LayerState_DH depends on these Layer objects to determine layer state)
 ```
 	LayerState_DH
-	layerState_DH ____________________________
-	 |                 \                      \
-	 |              Code_LayerLock*        Code_LayerLockMF_Protector
-	 |              l_NormalLock           l_MFLock
+	layerState_DH
+	 |
+	 |_________
+	 |         \
+	 |      Code_LayerLock*
+	 |      l_NormalLock
 	 |
 	 |________
 	 |        \
@@ -118,39 +166,59 @@ State, Layers, and Layered dependencies
 	 |      Code_NASHold   Code_NASLock_Protector   Code_LayerLock*  Code_LayerLock*
 	 |      l_NASHold      l_NASLock                l_tenKeyOff      l_tenKeyOn
 	 |
-	 |________________________________
-	           \                      \
-	        Code_LayerLock_MFSub   Code_LayerLock_MFSub
-            l_mouseOn              l_arrowOn
+	 |_________
+	 |         \
+	 |      Code_LayerLockMF_Protector
+	 |      l_MFLock
+	 |
+	 |________________________________________________________
+	           \                      \                       \
+	        Code_LayerLock_MFSub   Code_LayerLock_MFSub    Code_NumLock
+	        l_mouseOn              l_arrowOn               t_numLock
+```
 
-
-
-	               Code_NumLock    Code_LayerState_Toggle
-	               t_numLock       t_LRModf ________________________
-	                    \             /        \ \                \ \   
-	                     \           /       Code_LayeredScSc   Code_LayeredDoublePressToggle
-	                      \         /        lr_shift           t_ctrl
-	                       \       /         rl_shift           t_alt
-	                     LayerState_DH     
-	     _______________ layerState_DH _____________________
-	    /////               ||||                 \\\\\\\\\\\\
-	Code_LayeredNav      Code_LayeredOperator   Code_LayeredNumber
-	lr_insert            lr_plus                n_0 through n_9
-	lr_delete            lr_asterix             n_00
-	lr_pageUp            lr_minus
-	lr_pageDown          lr_slash
-	lr_end
-
+Layered dependencies (Layered objects depend on LayerState objects to determine which code to send)
+```
+	LayerState_DH     Code_LayerState_Toggle
+	layerState_DH     t_LRModf ___________________________
+	    |              /    \          \                  \
+	    |             /      \       Code_LayeredScSc   Code_LayeredDoublePressToggle
+	    |            /        \      lr_shift           t_ctrl
+	    |           /          \     rl_shift           t_alt
+	    |          /            \
+	    |_________/____________  \
+	    |    \   /             \  \
+	    |   Code_LayeredNav   Code_LayeredOperator
+	    |   lr_insert         lr_plus
+	    |   lr_delete         lr_asterix
+	    |   lr_pageUp         lr_minus
+	    |   lr_pageDown       lr_slash
+	    |   lr_end
+	    |
+	    |__________________________________________________
+	    |     \                     \                      \
+	    |   Code_LayeredNumber    Code_LayeredCodeSc_MF   IndicatorLEDs
+	    |   n_0 through n_9       mqA_right               indicatorLEDs
+	    |   n_00                  mqA_left                 |
+	    |                         mqA_down                LED
+	    |                         mqA_up                  LED_L1Yellow
+	Key_LayeredKeysArray          mb1Home                 LED_L2Yellow
+	all finger keys               msA_right               LED_L3Yellow
+	                              msA_left                LED_L4Green
+	                              msA_down                LED_R1Blue
+	                              msA_up                  LED_R2Green
+	                              mb2Home                 LED_R3Yellow
+	                                                      LED_R4Red
 ```
 
 Protected dependencies
 ```
-    Code_NASLock_Protector
+	Code_NASLock_Protector
 	l_NASLock.isPressed()
 	 |
 	 |_______________________________________________________
 	     \                         \                         \
-        Code_Protected_ByNASLock  Code_Protected_ByNASLock  Code_Protected_ByNASLock
+	    Code_Protected_ByNASLock  Code_Protected_ByNASLock  Code_Protected_ByNASLock
 	    p_tenKeyOn                p_tenKeyOff               pNAS_numLock
 	      |                         |                         |
 	    Code_LayerLock*           Code_LayerLock*           Code_NumLock
@@ -161,7 +229,7 @@ Protected dependencies
 	 |
 	 |______________________________________________________
 	 |    \                        \                        \
-     |   Code_Protected_ByMFLock  Code_Protected_ByMFLock  Code_Protected_ByMFLock
+	 |   Code_Protected_ByMFLock  Code_Protected_ByMFLock  Code_Protected_ByMFLock
 	 |   p_mouseOn                p_arrowOn                pMF_numLock
 	 |     |                        |                        |
 	 |   Code_LayerLock_MFSub     Code_LayerLock_MFSub     Code_NumLock
@@ -169,7 +237,7 @@ Protected dependencies
 	 |
 	 |______________________________________________________________________
 	 |    \                           \                          \\\\\\\\\\\\
-     |   Code_Protected_ByMFLock     Code_Protected_ByMFLock     Code_Protected_ByMFLock
+	 |   Code_Protected_ByMFLock     Code_Protected_ByMFLock     Code_Protected_ByMFLock
 	 |   p_printscreen               p_Modf                      p_F1 through p_F12
 	 |     |                           |                          ||||||||||||
 	 |   Code_Sc*                    Code_LayerState_Toggle      Code_Sc
@@ -190,7 +258,6 @@ Protected dependencies
 	                              \    |         |      /
 	                              StateStickyMouseButtons
 	                              mouseButtons
-
 ```
 
 ## LRModf-numLock scancode table

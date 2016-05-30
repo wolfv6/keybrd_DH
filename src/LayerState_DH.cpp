@@ -43,7 +43,7 @@ bool LayerState_DH::getNumberLayer()
 }
 
 //toggle lazyNumLock and update numLock LED
-void LayerState_DH::numLock()
+void LayerState_DH::toggleLazyNumLock()
 {
     lazyNumLock = !lazyNumLock;                 //toggle
     refIndicatorLEDs.updateNumLockLED(lazyNumLock);

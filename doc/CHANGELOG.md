@@ -7,6 +7,11 @@ Version 1.0.0 will be released when the public API is stable.
 
 ## [Unreleased][unreleased]
 
+## [0.3.1] - 2016-05-30
+### Added
+* IndicatorLEDs
+* Rename StateLayers to LayerState
+
 ## [0.3.0] - 2016-04-30
 ### Changed
 * Replaced SMB classes with StateStickyMouseButtons and Row_DH::keyWasPressed() 

@@ -5,11 +5,11 @@
 #include <Code_LayeredCodeScBase.h>
 #include <LayerState_DH.h>
 
-/* Class Code_LayeredCodeSc_MF is a 2-layer code, one object for each layer sub-MF layer e.g.
-    layer0: ms_up    //mouse up
-    layer1: KEY_UP   //up arrow
-When the key is pressed, the active layer is retrieved from refLayerState,
- and the object for the active layer is sent to USB.
+/* Class Code_LayeredCodeSc_MF is a 2-layer code, one object for each MF sub-layer e.g.
+    layer 0: ms_up    //mouse up
+    layer 1: KEY_UP   //up arrow
+When the key is pressed, the active layer is retrieved from LayerState_DH,
+ and the object of the active layer is sent to USB.
 */
 class Code_LayeredCodeSc_MF : public Code_LayeredCodeScBase
 {

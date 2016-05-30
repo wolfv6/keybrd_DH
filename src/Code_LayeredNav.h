@@ -6,7 +6,11 @@
 #include "LayerState_DH.h"
 #include "Code_LayerState_Toggle.h"
 
-/* Class Code_LayeredNav sends one of two scancodes, determined by refLayerState_DH.getNavLayer().
+/* Class Code_LayeredNav is a 2-layer code, one scancode for each Nav sub-layer e.g.
+    layer 0: KEY_PAGE_UP
+    layer 1: KEYPAD_9
+When the key is pressed, the active layer is retrieved from StateLRModf
+ and the scancode of the active layer is sent to USB.
 */
 class Code_LayeredNav : public Code_LayeredScScBase
 {
@@ -19,4 +23,3 @@ class Code_LayeredNav : public Code_LayeredScScBase
         virtual void press();
 };
 #endif
-

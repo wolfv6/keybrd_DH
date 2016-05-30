@@ -3,6 +3,7 @@
 
 #include <Row_DH.h>
 #include <Matrix.h>
+#include <Key_LayeredKeysArray.h>
 
 /* DH QWERTY layout
 101-keyboard mode (ENTER key on right ring finger sends KEYPAD_ENTER, there is no "Windows" key)

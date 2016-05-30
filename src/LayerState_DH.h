@@ -17,7 +17,7 @@ class LayerState_DH : public LayerState
     private:
         const uint8_t TEN_KEY_ON;
         IndicatorLEDs& refIndicatorLEDs;
-        bool lazyNumLock;                       //toggled by numLock key
+        bool lazyNumLock;
         bool activeMFSubLayer;
         virtual void setActiveLayer(const uint8_t layer);
     public:
@@ -33,7 +33,7 @@ class LayerState_DH : public LayerState
         enum numLock { NUMLOCK_OFF, NUMLOCK_ON };
         bool getLazyNumLock();
         bool getNumberLayer();
-        void numLock();
+        void toggleLazyNumLock();
         void updateNumLock(bool numLock);
 
         // =========== MF SubLayer =============

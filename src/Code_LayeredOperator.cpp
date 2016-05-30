@@ -1,8 +1,6 @@
 #include "Code_LayeredOperator.h"
 
 //Update layer and numLock
-//Logic is here rather than in LayerState_DH because
-//calling refStateLRModf from LayerState_DH caused circular dependency.
 void Code_LayeredOperator::press()
 {
     if (refLayerState_DH.getActiveLayer() == TEN_KEY_ON)

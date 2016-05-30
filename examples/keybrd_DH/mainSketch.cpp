@@ -1,14 +1,11 @@
 // ================ INCLUDES ===================
 #include <Arduino.h>
 
-//todo are forward declares enough for static vars?
 #include <Debug.h>
-#include <Row_DH.h> //todo or Row.h?
+#include <Row_DH.h>
 #include <Code_DoublePressProtected.h>
 #include <MouseMove.h>
 #include <IndicatorLEDs.h>
-#include <Key_LayeredKeysArray.h> //todo delete?
-
 
 // ================= DEBUG =====================
 #define PRINT_FREE_RAM      //print free RAM and headers
@@ -35,7 +32,7 @@ const uint8_t Code_MouseSpeed::HIGH_SPEED = 54;
 //smaller SCANS_PER_MOUSE_MOVE parameter results in faster mouse
 MouseMove mouseMove(4);
 
-//3 LEDs blink when LRModf is pressed.
+//three LEDs blink when LRModf is pressed.
 const uint8_t IndicatorLEDs::NUM_BLINKS = 5;       //number of blinks to stop blinking
 const uint8_t IndicatorLEDs::SCANS_PER_BLINK = 50; //smaller number makes blinking faster
 const uint8_t IndicatorLEDs::SCANS_BLINK_ON = 5;   //number of scans per blink that LED is on
