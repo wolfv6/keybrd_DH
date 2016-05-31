@@ -92,7 +92,7 @@ Class names tagged with '*' are located in keybrd/src/
 
 Class inheritance diagrams
 ```
-	Row*        StateStickyMouseButtons           LayerStateInterface*      IndicatorLEDs
+	RowBase*    StateStickyMouseButtons           LayerStateInterface*      IndicatorLEDs
 	  |                                            /           \
 	Row_DH                                 LayerState*          |
 	                                        /      \            |

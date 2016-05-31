@@ -1,4 +1,4 @@
-/* keybrd_DH_unit_tests.ino unit test most classes used in DH on a 5x5 matrix
+/* keybrd_DH_functional_tests.ino test most classes used in DH on a 5x5 matrix
 
  layout    | **0**                        | **1**                  | **2**                   | **3**                     | **4**                    |
 0          |------------------------------|------------------------|-------------------------|---------------------------|--------------------------|
