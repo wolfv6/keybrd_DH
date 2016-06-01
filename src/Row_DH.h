@@ -17,9 +17,9 @@ class Row_DH : public RowBase
 {
     private:
         static const unsigned int DELAY_MICROSECONDS; //delay between each Row scan for debouncing
-        uint8_t samples[SAMPLE_COUNT];      //bitwise, one bit per key, most recent readings
-        uint8_t samplesIndex;               //samples[] current write index
-        uint8_t debounce(const uint8_t rowState); //debouncer and I2C error correction
+        uint8_t samples[SAMPLE_COUNT];          //bitwise, one bit per key, most recent readings
+        uint8_t samplesIndex;                   //samples[] current write index
+        virtual uint8_t debounce(const uint8_t rowState, uint8_t& debounced);
 
         static StateStickyMouseButtons& refMouseButtons;
         static Code_LayeredDoublePressToggle& refCtrl; 

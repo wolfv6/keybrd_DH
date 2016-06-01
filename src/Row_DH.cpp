@@ -18,9 +18,12 @@ Marty's debounce algorithm:
  Periodically read samples and update the state when a number consecutive sample bits are equal.
 
 Output from keybrd/examples/debounce_unit_test.cpp with SAMPLE_COUNT 4:
-    button pressed:   100000001111111110000
-    bouncy signal:    100001001111011110000
-    debounced signal: 000000000001111111110
+    button pressed:            100000001111111110000
+    bouncy signal:             100001001111011110000
+    debounced signal:          000000000001111111110
+    isFallingEdge:             000000000000000000001
+    isRisingEdge:              000000000001000000000
+There is a latency equal to SAMPLE_COUNT, between button press and debounced signal.
  
 samples[SAMPLE_COUNT] is a ring buffer.  samplesIndex is it's current write index.
 SAMPLE_COUNT is the number of consecutive equal samples needed to debounce.
@@ -58,8 +61,9 @@ Slow-scan trick for debug message that print too fast:
     change DELAY_MICROSECONDS to a large number like 10000
 That way printing debug messages is slowed to a managable rate
 */
-uint8_t Row_DH::debounce(const uint8_t rowState)
+uint8_t Row_DH::debounce(const uint8_t rowState, uint8_t& debounced)
 {
+    uint8_t debouncedChanged;                   //bitwise
     uint8_t all_1 = ~0;                         //bitwise
     uint8_t all_0 = 0;                          //bitwise
 
@@ -82,7 +86,11 @@ uint8_t Row_DH::debounce(const uint8_t rowState)
     // if all samples=1 then debounced=1
     //     elseif all samples=0 then debounced=0
     //         else debounced=previousDebounced i.e. no change
-    return all_1 | (all_0 & previousDebounced);
+    debounced = all_1 | (all_0 & previousDebounced);
+
+    debouncedChanged = debounced xor previousDebounced;
+    previousDebounced = debounced;
+    return debouncedChanged;
 }
 
 /* Sticky mouse buttons, Ctrl, and Alt keys are effected by other key presses.
