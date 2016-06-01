@@ -79,10 +79,10 @@ uint8_t Row_DH::debounce(const uint8_t rowState)
     }
 
     // update newDebounce if all the samples agree with one another
-    // if all samples=1 then newDebounced=1
-    //     elseif all samples=0 then newDebounced=0
-    //         else newDebounced=debounced i.e. no change
-    return all_1 | (all_0 & debounced);
+    // if all samples=1 then debounced=1
+    //     elseif all samples=0 then debounced=0
+    //         else debounced=previousDebounced i.e. no change
+    return all_1 | (all_0 & previousDebounced);
 }
 
 /* Sticky mouse buttons, Ctrl, and Alt keys are effected by other key presses.
