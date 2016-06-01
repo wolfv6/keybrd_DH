@@ -4,7 +4,7 @@
 #include <IndicatorLEDs.h>
 
 // =========== SPEED CONFIGURATIONS ============
-const unsigned int Row_DH::DELAY_MICROSECONDS = 0; //optic switches don't bounce, and I2C is slow
+const unsigned int Row_DH::DELAY_MICROSECONDS = 0; //optic switches don't bounce, I2C poling is slow
 
 const uint8_t Code_DoublePressProtected::DOUBLE_PRESS_MILLIS = 250;
 
