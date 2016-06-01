@@ -57,13 +57,14 @@ Tactile switch MJTP series bounce 10 ms http://www.apem.com/files/apem/brochures
 Polling I2C may slow the scan rate enough so that no additional delay is needed:
     const unsigned int Row::DELAY_MICROSECONDS = 0;
 
-Slow-scan trick for debug message that print too fast:
+Slow-scan trick for debug messages that print too fast:
     change DELAY_MICROSECONDS to a large number like 10000
-That way printing debug messages is slowed to a managable rate
+That way debug messages are printed at a managable rate.
 */
-uint8_t Row_DH::debounce(const uint8_t rowState, uint8_t& debounced)
+uint8_t Row_DH::debounce(const uint8_t rowState)
 {
-    uint8_t debouncedChanged;                   //bitwise
+    uint8_t debounced;                          //bitwise, 1 means pressed, 0 means released
+    uint8_t debouncedChanged;                   //bitwise, 1 means debounced changed
     uint8_t all_1 = ~0;                         //bitwise
     uint8_t all_0 = 0;                          //bitwise
 
