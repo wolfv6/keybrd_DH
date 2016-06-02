@@ -6,12 +6,12 @@ For some mechanical switches, poling I2C is slow enough to not need a debouncer.
 */
 uint8_t Row_DH::debounce(const uint8_t rowState)
 {
-    uint8_t debounced;                          //bitwise, 1 means pressed, 0 means released
+    uint8_t previousDebounced;                  //bitwise, one bit per key
     uint8_t debouncedChanged;                   //bitwise, 1 means debounced changed
 
+    previousDebounced = debounced;
     debounced = rowState;
     debouncedChanged = debounced xor previousDebounced;
-    previousDebounced = debounced;
     return debouncedChanged;
 }
 
