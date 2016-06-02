@@ -1,4 +1,4 @@
-# Change Log
+# Change Log for keybrd_DH library
 All notable changes to the keybrd project will be documented in this file.
 This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 
@@ -7,10 +7,12 @@ Version 1.0.0 will be released when the public API is stable.
 
 ## [Unreleased][unreleased]
 
-## [0.3.1] - 2016-05-30
+## [0.3.1] - 2016-06-02
 ### Added
-* IndicatorLEDs
-* Rename StateLayers to LayerState
+* IndicatorLEDs class
+
+### Changed
+* Row_DH::debounce()
 
 ## [0.3.0] - 2016-04-30
 ### Changed
