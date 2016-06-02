@@ -4,6 +4,8 @@
 #include <IndicatorLEDs.h>
 
 // =========== SPEED CONFIGURATIONS ============
+const unsigned int RowBase::DELAY_MICROSECONDS = 0; //optic switches don't bounce, I2C poling slow
+
 const uint8_t Code_DoublePressProtected::DOUBLE_PRESS_MILLIS = 250;
 
 //Configure START_ values (START SPEED units are mouseMove() runs sinceSlowPressed).
