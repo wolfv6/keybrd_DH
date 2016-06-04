@@ -34,8 +34,8 @@ Number of ColPort::colPins should equal number of keys in Row::ptrsKeys array
 class Row_DH : public RowBase
 {
     private:
-        //Debouncer_4Samples debouncer;
-        Debouncer_Not debouncer;
+        Debouncer_4Samples debouncer;
+        //Debouncer_Not debouncer;
         virtual uint8_t debounce(const uint8_t rowState);
 
         static StateStickyMouseButtons& refMouseButtons;
@@ -47,8 +47,8 @@ class Row_DH : public RowBase
             ColPort *const ptrsColPorts[], const uint8_t colPortCount, Key *const ptrsKeys[])
             : RowBase(refRowPort, rowPin, ptrsColPorts, colPortCount, ptrsKeys)
         {
-         //   Debouncer_4Samples debouncer;
-            Debouncer_Not debouncer;
+            Debouncer_4Samples debouncer;
+            //Debouncer_Not debouncer;
         }
 };
 #endif

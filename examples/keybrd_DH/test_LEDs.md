@@ -26,14 +26,14 @@ Scroll lock LED removed, explanation in Code_LEDLock.cpp
     MODE        LEFT INDICATOR LIGHT    LAYERS
     ----        --------------------    ------
     ScrollLock  yellow     *
-    NumLock     yellow     *
+    NumLock     yellow     *D11 teensy onboard LED
     MouseOn     yellow     *            mouse on (arrow off)
     CapsLock    green
 
     MODE        RIGHT INDICATOR LIGHT   LAYERS
     ----        ---------------------   ------
     NAS         blue       *            TEN_KEY_OFF or TEN_KEY_ON
-    Normal      green      *            NORMAL
+    Normal      green      *D11         NORMAL
     MF          yellow     *            MF
     10-Key      red                     TEN_KEY_ON
 
