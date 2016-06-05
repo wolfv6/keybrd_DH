@@ -50,5 +50,6 @@ class Row_DH : public RowBase
             Debouncer_4Samples debouncer;
             //Debouncer_Not debouncer;
         }
+        virtual void process(const bool activeHigh);
 };
 #endif
