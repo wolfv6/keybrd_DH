@@ -13,17 +13,8 @@ void Row_DH::process(const bool activeHigh)
     wait();
     scan(activeHigh);                           //save column-port-pin values to portState
     rowState = getRowState(rowEnd, activeHigh);
-    debouncedChanged = debounce(rowState);
+    debouncedChanged = debouncer.debounce(rowState, debounced);
     pressRelease(rowEnd, debouncedChanged);
-}
-
-/* debounce() sets debounced and returns debouncedChanged.  All variables are bitwise.
-For parameter, 1 means pressed, 0 means released.
-For return, 1 means debounced changed.
-*/
-uint8_t Row_DH::debounce(const uint8_t rowState)
-{
-    return debouncer.debounce(rowState, debounced);
 }
 
 /* Sticky mouse buttons, Ctrl, and Alt keys are effected by other key presses.

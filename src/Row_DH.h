@@ -36,7 +36,6 @@ class Row_DH : public RowBase
     private:
         Debouncer_4Samples debouncer;
         //Debouncer_Not debouncer;
-        virtual uint8_t debounce(const uint8_t rowState);
 
         static StateStickyMouseButtons& refMouseButtons;
         static Code_LayeredDoublePressToggle& refCtrl; 
