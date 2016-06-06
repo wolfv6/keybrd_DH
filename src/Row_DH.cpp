@@ -11,8 +11,7 @@ void Row_DH::process(const bool activeHigh)
     uint8_t debouncedChanged;                   //1 means debounced changed
 
     wait();
-    scan(activeHigh);                           //save column-port-pin values to portState
-    rowState = getRowState(rowEnd, activeHigh);
+    //rowState = scanner.scan(rowEnd, activeHigh);
     debouncedChanged = debouncer.debounce(rowState, debounced);
     pressRelease(rowEnd, debouncedChanged);
 }

@@ -2,6 +2,7 @@
 #define ROW_DH_H
 
 #include <RowBase.h>
+#include <RowScanner_BitManipulation.h>
 #include <Debouncer_4Samples.h>
 #include <Debouncer_Not.h>
 #include "StateStickyMouseButtons.h"
@@ -34,6 +35,7 @@ Number of ColPort::colPins should equal number of keys in Row::ptrsKeys array
 class Row_DH : public RowBase
 {
     private:
+        //RowScanner_BitManipulation scanner;
         Debouncer_4Samples debouncer;
         //Debouncer_Not debouncer;
 
@@ -44,11 +46,9 @@ class Row_DH : public RowBase
     public:
         Row_DH( RowPort &refRowPort, const uint8_t rowPin,
             ColPort *const ptrsColPorts[], const uint8_t colPortCount, Key *const ptrsKeys[])
-            : RowBase(refRowPort, rowPin, ptrsColPorts, colPortCount, ptrsKeys)
-        {
-            Debouncer_4Samples debouncer;
-            //Debouncer_Not debouncer;
-        }
+            : RowBase(ptrsKeys)
+            //, RowScanner_BitManipulation scanner(refRowPort, rowPin, ptrsColPorts, colPortCount)
+            { }
         virtual void process(const bool activeHigh);
 };
 #endif
