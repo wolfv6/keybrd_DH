@@ -3,6 +3,9 @@
 #include <Code_MouseSpeed.h>
 #include <IndicatorLEDs.h>
 
+//logic level of strobe pin: 0=activeLow, 1=activeHigh
+const bool RowScanner_BitManipulation::activeHigh = true;
+
 // =========== SPEED CONFIGURATIONS ============
 const unsigned int RowBase::DELAY_MICROSECONDS = 0; //optic switches don't bounce, I2C poling slow
 
@@ -26,4 +29,3 @@ MouseMove mouseMove(4);
 const uint8_t IndicatorLEDs::NUM_BLINKS = 5;       //number of blinks to stop blinking
 const uint8_t IndicatorLEDs::SCANS_PER_BLINK = 50; //smaller number makes blinking faster
 const uint8_t IndicatorLEDs::SCANS_BLINK_ON = 5;   //number of scans per blink that LED is on
-

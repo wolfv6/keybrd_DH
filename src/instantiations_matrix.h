@@ -177,7 +177,7 @@ Row_DH row_L4(rowPortF_L, 1<<6, ptrsColPorts_L_short, COL_PORT_L_SHORT_COUNT, pt
 RowBase* const ptrsRows_L[] = { &row_L0, &row_L1, &row_L2, &row_L3, &row_L4 };
 const uint8_t ROW_L_COUNT = sizeof(ptrsRows_L)/sizeof(*ptrsRows_L);
 
-Matrix matrix_L(ptrsRows_L, ROW_L_COUNT, 1);
+Matrix matrix_L(ptrsRows_L, ROW_L_COUNT);
 
 // ============== RIGHT LAYOUT =================
 // -------------- RIGHT KEYS -------------------
@@ -273,6 +273,6 @@ Row_DH row_R4(rowPort1_R, 1<<4, ptrsColPorts_R_short, COL_PORT_R_SHORT_COUNT, pt
 RowBase* const ptrsRows_R[] = { &row_R0, &row_R1, &row_R2, &row_R3, &row_R4 };
 const uint8_t ROW_R_COUNT = sizeof(ptrsRows_R)/sizeof(*ptrsRows_R);
 
-Matrix matrix_R(ptrsRows_R, ROW_R_COUNT, 1);
+Matrix matrix_R(ptrsRows_R, ROW_R_COUNT);
 
 #endif
