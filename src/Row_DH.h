@@ -2,7 +2,7 @@
 #define ROW_DH_H
 
 #include <RowBase.h>
-#include <RowScanner_BitManipulation.h>
+#include <RowScanner_PinsBitwise.h>
 #include <Debouncer_4Samples.h>
 #include <Debouncer_Not.h>
 #include "StateStickyMouseButtons.h"
@@ -35,7 +35,7 @@ Number of ColPort::colPins should equal number of keys in Row::ptrsKeys array
 class Row_DH : public RowBase
 {
     private:
-        RowScanner_BitManipulation scanner;
+        RowScanner_PinsBitwise scanner;
         Debouncer_4Samples debouncer;
         //Debouncer_Not debouncer;
 

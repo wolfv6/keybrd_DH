@@ -4,7 +4,7 @@
 #include <IndicatorLEDs.h>
 
 //logic level of strobe pin: 0=activeLow, 1=activeHigh
-const bool RowScanner_BitManipulation::activeHigh = 1;
+const bool RowScanner_PinsBitwise::activeHigh = 1;
 
 // =========== SPEED CONFIGURATIONS ============
 const unsigned int RowBase::DELAY_MICROSECONDS = 0; //optic switches don't bounce, I2C poling slow
