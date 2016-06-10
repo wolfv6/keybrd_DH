@@ -2,6 +2,7 @@
 #define ROW_DH_H
 
 #include <RowBase.h>
+#include <RowScanner_PinsArray.h>
 #include <RowScanner_PinsBitwise.h>
 #include <Debouncer_4Samples.h>
 #include <Debouncer_Not.h>
@@ -22,6 +23,7 @@ Example instantiation of a row:
     ColPort_AVR colPortB(DDRB, PORTB, PINB, 1<<0 | 1<<1 | 1<<2 | 1<<3 );
     ColPort_AVR colPortD(DDRD, PORTD, PIND, 1<<2 | 1<<3 );
 
+todo - port arrays have been remvoed
     ColPort* const ptrsColPorts[] = { &colPortB, &colPortD };
     const uint8_t COL_PORTS_COUNT = sizeof(ptrsColPorts)/sizeof(*ptrsColPorts);
 
@@ -35,18 +37,11 @@ Number of ColPort::colPins should equal number of keys in Row::ptrsKeys array
 class Row_DH : public RowBase
 {
     private:
-        RowScanner_PinsBitwise scanner;
-        Debouncer_4Samples debouncer;
-        //Debouncer_Not debouncer;
-
         static StateStickyMouseButtons& refMouseButtons;
         static Code_LayeredDoublePressToggle& refCtrl; 
         static Code_LayeredDoublePressToggle& refAlt; 
         virtual void keyWasPressed();
     public:
-        Row_DH( RowPort &refRowPort, const uint8_t rowPin,
-            ColPort *const ptrsColPorts[], const uint8_t colPortCount, Key *const ptrsKeys[])
-            : RowBase(ptrsKeys), scanner(refRowPort, rowPin, ptrsColPorts, colPortCount) { }
-        virtual void process();
+        Row_DH(Key *const ptrsKeys[]): RowBase(ptrsKeys) { }
 };
 #endif

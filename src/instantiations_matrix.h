@@ -1,7 +1,8 @@
 #ifndef INSTANTIATIONS_MATRIX_H
 #define INSTANTIATIONS_MATRIX_H
 
-#include <Row_DH.h>
+#include <Row_DH_uC.h>
+#include <Row_DH_IOE.h>
 #include <Matrix.h>
 #include <Key_LayeredKeysArray.h>
 
@@ -155,23 +156,23 @@ Key_LayeredKeysArray k_L43(ptrsCodes_L43);
 
 //row_L0 North
 Key* const ptrsKeys_L0[] = { &k_L00, &k_L01, &k_L02, &k_L03, &s_tab, &o_capsLock };
-Row_DH row_L0(rowPortF_L, 1<<0, ptrsColPorts_L, COL_PORT_L_COUNT, ptrsKeys_L0);
+Row_DH_uC row_L0(21, colPins_L, COL_PIN_L_COUNT, ptrsKeys_L0);
 
 //row_L1 East
 Key* const ptrsKeys_L1[] = { &k_L10, &k_L11, &k_L12, &k_L13, &t_ctrl, &s_enter };
-Row_DH row_L1(rowPortF_L, 1<<1, ptrsColPorts_L, COL_PORT_L_COUNT, ptrsKeys_L1);
+Row_DH_uC row_L1(20, colPins_L, COL_PIN_L_COUNT, ptrsKeys_L1);
 
 //row_L2 center
 Key* const ptrsKeys_L2[] = { &k_L20, &k_L21, &k_L22, &k_L23, &lr_shift, &l_normalLock };
-Row_DH row_L2(rowPortF_L, 1<<4, ptrsColPorts_L, COL_PORT_L_COUNT, ptrsKeys_L2);
+Row_DH_uC row_L2(19, colPins_L, COL_PIN_L_COUNT, ptrsKeys_L2);
 
 //row_L3 South
 Key* const ptrsKeys_L3[] = { &k_L30, &k_L31, &k_L32, &k_L33 };
-Row_DH row_L3(rowPortF_L, 1<<5, ptrsColPorts_L_short, COL_PORT_L_SHORT_COUNT, ptrsKeys_L3);
+Row_DH_uC row_L3(18, colPins_L_short, COL_PIN_L_SHORT_COUNT, ptrsKeys_L3);
 
 //row_L4 West
 Key* const ptrsKeys_L4[] = { &lr_delete, &s_esc, &k_L42, &k_L43 };
-Row_DH row_L4(rowPortF_L, 1<<6, ptrsColPorts_L_short, COL_PORT_L_SHORT_COUNT, ptrsKeys_L4);
+Row_DH_uC row_L4(17, colPins_L_short, COL_PIN_L_SHORT_COUNT, ptrsKeys_L4);
 
 // -------------- LEFT MATRIX ------------------
 RowBase* const ptrsRows_L[] = { &row_L0, &row_L1, &row_L2, &row_L3, &row_L4 };
@@ -251,23 +252,23 @@ Key_LayeredKeysArray k_R45(ptrsCodes_R45);
 
 //row_R0 North  col
 Key* const ptrsKeys_R0[] = { &l_NASLock, &s_backspace, &k_R02, &k_R03, &k_R04, &k_R05 };
-Row_DH row_R0(rowPort1_R, 1<<0, colPort0_R, ptrsKeys_R0);
+Row_DH_IOE row_R0(rowPort1_R, 1<<0, colPort0_R, ptrsKeys_R0);
 
 //row_R1 West
 Key* const ptrsKeys_R1[] = { &s_space, &t_alt, &k_R12, &k_R13, &k_R14, &k_R15 };
-Row_DH row_R1(rowPort1_R, 1<<1, colPort0_R, ptrsKeys_R1);
+Row_DH_IOE row_R1(rowPort1_R, 1<<1, colPort0_R, ptrsKeys_R1);
 
 //row_R2 center
 Key* const ptrsKeys_R2[] = { &l_MFLock, &l_NASHold, &k_R22, &k_R23, &k_R24, &k_R25 };
-Row_DH row_R2(rowPort1_R, 1<<2, colPort0_R, ptrsKeys_R2);
+Row_DH_IOE row_R2(rowPort1_R, 1<<2, colPort0_R, ptrsKeys_R2);
 
 //row_R3 South
 Key* const ptrsKeys_R3[] = { &k_R32, &k_R33, &k_R34, &k_R35 };
-Row_DH row_R3(rowPort1_R, 1<<3, colPort0_R_short, ptrsKeys_R3);
+Row_DH_IOE row_R3(rowPort1_R, 1<<3, colPort0_R_short, ptrsKeys_R3);
 
 //row_R4 East
 Key* const ptrsKeys_R4[] = { &k_R42, &k_R43, &s_KPEnter, &k_R45 }; //s_KPEnter 101-keyboard mode
-Row_DH row_R4(rowPort1_R, 1<<4, colPort0_R_short, ptrsKeys_R4);
+Row_DH_IOE row_R4(rowPort1_R, 1<<4, colPort0_R_short, ptrsKeys_R4);
 
 // ------------- RIGHT MATRIX ------------------
 RowBase* const ptrsRows_R[] = { &row_R0, &row_R1, &row_R2, &row_R3, &row_R4 };

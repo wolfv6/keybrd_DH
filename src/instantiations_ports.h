@@ -9,14 +9,20 @@
 RowPort_AVR_Optic rowPortF_L(DDRF, PORTF);
 
 // ----------------- COL PORT ------------------
-ColPort_AVR colPortB_L(DDRB, PORTB, PINB, 1<<0 | 1<<1 | 1<<2 | 1<<3 );
-ColPort_AVR colPortD_L(DDRD, PORTD, PIND, 1<<2 | 1<<3 );
+const uint8_t colPins_L[] = {0,1,2,3,7,8};
+const uint8_t COL_PIN_L_COUNT = sizeof(colPins_L)/sizeof(*colPins_L);
 
-ColPort* const ptrsColPorts_L[] = { &colPortB_L, &colPortD_L };
-const uint8_t COL_PORT_L_COUNT = sizeof(ptrsColPorts_L)/sizeof(*ptrsColPorts_L);
+const uint8_t colPins_L_short[] = {0,1,2,3};
+const uint8_t COL_PIN_L_SHORT_COUNT = sizeof(colPins_L_short)/sizeof(*colPins_L_short);
 
-ColPort* const ptrsColPorts_L_short[] = { &colPortB_L };
-const uint8_t COL_PORT_L_SHORT_COUNT = sizeof(ptrsColPorts_L_short)/sizeof(*ptrsColPorts_L_short);
+//ColPort_AVR colPortB_L(DDRB, PORTB, PINB, 1<<0 | 1<<1 | 1<<2 | 1<<3 );
+//ColPort_AVR colPortD_L(DDRD, PORTD, PIND, 1<<2 | 1<<3 );
+
+//ColPort* const ptrsColPorts_L[] = { &colPortB_L, &colPortD_L };
+//const uint8_t COL_PORT_L_COUNT = sizeof(ptrsColPorts_L)/sizeof(*ptrsColPorts_L);
+
+//ColPort* const ptrsColPorts_L_short[] = { &colPortB_L };
+//const uint8_t COL_PORT_L_SHORT_COUNT = sizeof(ptrsColPorts_L_short)/sizeof(*ptrsColPorts_L_short);
 
 // =============== RIGHT PORTS =================
 #include <IOExpanderPort.h>
