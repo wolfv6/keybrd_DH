@@ -34,11 +34,11 @@ RowPort_PCA9655E rowPort1_R(port1_R);
 
 IOExpanderPort port0_R(0, 0);
 ColPort_PCA9655E colPort0_R(port0_R, 1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<5 );
-ColPort* const ptrsColPorts_R[] = { &colPort0_R };
-const uint8_t COL_PORT_R_COUNT = sizeof(ptrsColPorts_R)/sizeof(*ptrsColPorts_R);
+//ColPort* const ptrsColPorts_R[] = { &colPort0_R };
+//const uint8_t COL_PORT_R_COUNT = sizeof(ptrsColPorts_R)/sizeof(*ptrsColPorts_R);
 
 ColPort_PCA9655E colPort0_R_short(port0_R, 1<<2 | 1<<3 | 1<<4 | 1<<5 );
-ColPort* const ptrsColPorts_R_short[] = { &colPort0_R_short };
-const uint8_t COL_PORT_R_SHORT_COUNT = sizeof(ptrsColPorts_R_short)/sizeof(*ptrsColPorts_R_short);
+//ColPort* const ptrsColPorts_R_short[] = { &colPort0_R_short };
+//const uint8_t COL_PORT_R_SHORT_COUNT = sizeof(ptrsColPorts_R_short)/sizeof(*ptrsColPorts_R_short);
 
 #endif

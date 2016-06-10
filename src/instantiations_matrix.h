@@ -251,23 +251,23 @@ Key_LayeredKeysArray k_R45(ptrsCodes_R45);
 
 //row_R0 North  col
 Key* const ptrsKeys_R0[] = { &l_NASLock, &s_backspace, &k_R02, &k_R03, &k_R04, &k_R05 };
-Row_DH row_R0(rowPort1_R, 1<<0, ptrsColPorts_R, COL_PORT_R_COUNT, ptrsKeys_R0);
+Row_DH row_R0(rowPort1_R, 1<<0, colPort0_R, ptrsKeys_R0);
 
 //row_R1 West
 Key* const ptrsKeys_R1[] = { &s_space, &t_alt, &k_R12, &k_R13, &k_R14, &k_R15 };
-Row_DH row_R1(rowPort1_R, 1<<1, ptrsColPorts_R, COL_PORT_R_COUNT, ptrsKeys_R1);
+Row_DH row_R1(rowPort1_R, 1<<1, colPort0_R, ptrsKeys_R1);
 
 //row_R2 center
 Key* const ptrsKeys_R2[] = { &l_MFLock, &l_NASHold, &k_R22, &k_R23, &k_R24, &k_R25 };
-Row_DH row_R2(rowPort1_R, 1<<2, ptrsColPorts_R, COL_PORT_R_COUNT, ptrsKeys_R2);
+Row_DH row_R2(rowPort1_R, 1<<2, colPort0_R, ptrsKeys_R2);
 
 //row_R3 South
 Key* const ptrsKeys_R3[] = { &k_R32, &k_R33, &k_R34, &k_R35 };
-Row_DH row_R3(rowPort1_R, 1<<3, ptrsColPorts_R_short, COL_PORT_R_SHORT_COUNT, ptrsKeys_R3);
+Row_DH row_R3(rowPort1_R, 1<<3, colPort0_R_short, ptrsKeys_R3);
 
 //row_R4 East
 Key* const ptrsKeys_R4[] = { &k_R42, &k_R43, &s_KPEnter, &k_R45 }; //s_KPEnter 101-keyboard mode
-Row_DH row_R4(rowPort1_R, 1<<4, ptrsColPorts_R_short, COL_PORT_R_SHORT_COUNT, ptrsKeys_R4);
+Row_DH row_R4(rowPort1_R, 1<<4, colPort0_R_short, ptrsKeys_R4);
 
 // ------------- RIGHT MATRIX ------------------
 RowBase* const ptrsRows_R[] = { &row_R0, &row_R1, &row_R2, &row_R3, &row_R4 };
