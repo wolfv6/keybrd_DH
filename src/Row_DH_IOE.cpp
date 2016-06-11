@@ -1,5 +1,7 @@
 #include "Row_DH_IOE.h"
 
+const bool RowScanner_PinsBitwise::activeHigh = 1;
+
 uint8_t Row_DH_IOE::scan(uint16_t& rowEnd)
 {
     return scanner.scan(rowEnd);

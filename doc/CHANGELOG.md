@@ -7,6 +7,14 @@ Version 1.0.0 will be released when the public API is stable.
 
 ## [Unreleased][unreleased]
 
+## [0.3.2] - 2016-06-10
+### Added
+* Row_DH_uC
+* Row_DH_IOE
+
+### Removed
+* Port arrays
+
 ## [0.3.1] - 2016-06-02
 ### Added
 * IndicatorLEDs class

@@ -82,7 +82,6 @@ where
 and numbers are LED position on DataHand unit followed by LED color.
 
 ## Class inheritance diagrams
-These diagrams depict all LayerState, Layer, and Layered classes used in DH.
 The classes are found in two libraries:
 
     keybrd/src/
@@ -90,11 +89,21 @@ The classes are found in two libraries:
 
 Class names tagged with '*' are located in keybrd/src/
 
-Class inheritance diagrams
+Class inheritance diagrams of DH Rows
 ```
-	RowBase*    StateStickyMouseButtons           LayerStateInterface*      IndicatorLEDs
-	  |                                            /           \
-	Row_DH                                 LayerState*          |
+	       RowBase*
+	         |
+	       Row_DH
+	       /    \
+	Row_DH_uC  Row_DH_IOE
+
+```
+
+Class inheritance diagrams of DH LayerState, Layer, and Layered classes
+```
+	  StateStickyMouseButtons                 LayerStateInterface*      IndicatorLEDs
+	                                               /           \
+	                                       LayerState*          |
 	                                        /      \            |
 	                             LayerState_DH  LayerState_NAS  |
 	Code*                                                       |

@@ -5,13 +5,8 @@
 #include <RowScanner_PinsArray.h>
 #include <Debouncer_4Samples.h>
 
-/*
-Configuration
--------------
-
-Instantiation
--------------
- todo - see RowDH
+/* Row_DH_uC is a row connected to a micro controller.
+Configuration and Instantiation instructions are in keybrd/src/Row_uC.h
 */
 class Row_DH_uC : public Row_DH
 {

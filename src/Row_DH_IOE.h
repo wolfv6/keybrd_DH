@@ -5,14 +5,8 @@
 #include <RowScanner_PinsBitwise.h>
 #include <Debouncer_4Samples.h>
 
-/*
-Simlar to Row but using RowScanner_PinsBitwise.
-
-Configuration
--------------
-
-Instantiation
--------------
+/* Row_DH_IOE is a row connected to an Input/Output Expander.
+Configuration and Instantiation instructions are in keybrd/src/Row_IOE.h
 */
 class Row_DH_IOE : public Row_DH
 {

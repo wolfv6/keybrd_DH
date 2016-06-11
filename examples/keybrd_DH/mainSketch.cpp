@@ -7,7 +7,6 @@
 
 // ================= DEBUG =====================
 #define PRINT_FREE_RAM      //print free RAM and headers
-//#define PRINT_SCAN_RATE     //print scan rate every second
 
 Debug debug;
 
@@ -40,8 +39,6 @@ void loop()
     indicatorLEDs.blink();
     mouseMove.send();
 
-#ifdef PRINT_SCAN_RATE
     //debug.print_scans_per_second();
-    debug.print_microseconds_per_scan();
-#endif
+    //debug.print_microseconds_per_scan();
 }
