@@ -19,6 +19,8 @@ Debug debug;
 // ================== MAIN =====================
 void setup()
 {
+    Wire.begin(); //todo has not been tested yet,
+        //Wire.begin() must be called before rowPort.begin() colPort.begin()
     rowPort1_R.begin();
     colPort0_R.begin();
     indicatorLEDs.begin(&layerState_DH);
