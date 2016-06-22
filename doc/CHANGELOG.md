@@ -7,6 +7,10 @@ Version 1.0.0 will be released when the public API is stable.
 
 ## [Unreleased][unreleased]
 
+## [0.3.2] - 2016-06-21
+### Changed
+* updated sketch to use config_keybrd.h
+
 ## [0.3.2] - 2016-06-10
 ### Added
 * Row_DH_uC
