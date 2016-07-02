@@ -1,6 +1,6 @@
 #include "Row_DH_uC.h"
 
-const bool RowScanner_PinsArray::activeHigh = 1;
+const bool RowScanner_PinsArray::ACTIVE_HIGH = 1;
 
 read_pins_t Row_DH_uC::scan(read_pins_mask_t& rowEnd)
 {

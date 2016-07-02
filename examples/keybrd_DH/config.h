@@ -3,8 +3,8 @@
 #include <Code_MouseSpeed.h>
 #include <IndicatorLEDs.h>
 
-// =========== SIZE CONFIGURATIONS ============
-/* edit types and SAMPLE_COUNT in keybrd/src/config_keybrd.h to be like this:
+/* =========== SIZE CONFIGURATIONS ============
+edit types and SAMPLE_COUNT in keybrd/src/config_keybrd.h to be like this:
 typedef uint8_t read_pins_mask_t;
 typedef uint8_t read_pins_t;
 #define SAMPLE_COUNT 4
