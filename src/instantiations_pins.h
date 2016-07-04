@@ -1,5 +1,5 @@
-#ifndef INSTANTIATIONS_PORTS_H
-#define INSTANTIATIONS_PORTS_H
+#ifndef INSTANTIATIONS_PINS_H
+#define INSTANTIATIONS_PINS_H
 
 // ================= LEFT PINS =================
 const uint8_t colPins_L[] = {0,1,2,3,7,8};

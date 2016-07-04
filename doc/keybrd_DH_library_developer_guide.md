@@ -48,7 +48,7 @@ Thumb keys are one-layer Code objects.
 
 Layer objects and LayerState objects are instantiated in instantiations_codes.h
 Layered objects with 2 sublayers are also instantiated in instantiations_codes.h
-Key_LayeredKeysArray objects are instantiated in instantiations_matrix.h
+Key_LayeredKeysArray objects are instantiated in instantiations_rows.h
 
 ## Object naming conventions
 Object names are based on descriptions in DataHand User's Guide, except for "modes" which are called "layers" in the keybrd library.
@@ -68,7 +68,7 @@ CODE PREFIXES
     s_   scancode
     t_   toggle
 
-LED names are
+LED names are:
 
     LED_L1Yellow    LED_R1Blue
     LED_L2Yellow    LED_R2Green

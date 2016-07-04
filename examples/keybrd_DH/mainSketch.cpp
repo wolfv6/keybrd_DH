@@ -12,7 +12,7 @@ Debug debug;
 
 // ======= INSTANTIATION THE KEYBOARD ==========
 #include "config.h"
-#include <instantiations_ports.h>
+#include <instantiations_pins.h>
 #include <instantiations_codes.h>
 #include <instantiations_rows.h>                //layout table is with instantiations_rows.h
 
