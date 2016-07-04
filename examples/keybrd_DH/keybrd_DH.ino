@@ -50,10 +50,6 @@ code is in mainSketch.cpp so that Arduino IDE does not mangle directives
 #include <Code_DoublePressProtected.h>
 
 //back end
-#include <RowPort_AVR_Optic.h>
-#include <ColPort_AVR.h>
-#include <LED_AVR.h>
-
 #include <IOExpanderPort.h>
 #include <RowPort_PCA9655E.h>
 #include <ColPort_PCA9655E.h>
@@ -61,7 +57,6 @@ code is in mainSketch.cpp so that Arduino IDE does not mangle directives
 
 #include <Wire.h>
 #include <Row_DH.h>
-#include <Matrix.h>
 #include <MouseMove.h>
 
 #include <Debug.h>

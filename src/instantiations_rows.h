@@ -3,7 +3,6 @@
 
 #include <Row_DH_uC.h>
 #include <Row_DH_IOE.h>
-#include <Matrix.h>
 #include <Key_LayeredKeysArray.h>
 
 /* DH QWERTY layout
