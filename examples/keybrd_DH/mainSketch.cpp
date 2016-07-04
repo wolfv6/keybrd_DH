@@ -14,7 +14,7 @@ Debug debug;
 #include "config.h"
 #include <instantiations_ports.h>
 #include <instantiations_codes.h>
-#include <instantiations_matrix.h>              //layout table is with instantiations_matrix.h
+#include <instantiations_rows.h>                //layout table is with instantiations_rows.h
 
 // ================== MAIN =====================
 void setup()
@@ -36,8 +36,20 @@ void setup()
 
 void loop()
 {
-    matrix_L.scan();
-    matrix_R.scan();
+    //left matrix
+    row_L0.process();
+    row_L1.process();
+    row_L2.process();
+    row_L3.process();
+    row_L4.process();
+
+    //right matrix
+    row_R0.process();
+    row_R1.process();
+    row_R2.process();
+    row_R3.process();
+    row_R4.process();
+
     indicatorLEDs.blink();
     mouseMove.send();
 

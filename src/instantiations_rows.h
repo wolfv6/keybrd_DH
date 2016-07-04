@@ -174,12 +174,6 @@ Row_DH_uC row_L3(18, colPins_L_short, COL_PIN_L_SHORT_COUNT, ptrsKeys_L3);
 Key* const ptrsKeys_L4[] = { &lr_delete, &s_esc, &k_L42, &k_L43 };
 Row_DH_uC row_L4(17, colPins_L_short, COL_PIN_L_SHORT_COUNT, ptrsKeys_L4);
 
-// -------------- LEFT MATRIX ------------------
-RowBase* const ptrsRows_L[] = { &row_L0, &row_L1, &row_L2, &row_L3, &row_L4 };
-const uint8_t ROW_L_COUNT = sizeof(ptrsRows_L)/sizeof(*ptrsRows_L);
-
-Matrix matrix_L(ptrsRows_L, ROW_L_COUNT);
-
 // ============== RIGHT LAYOUT =================
 // -------------- RIGHT KEYS -------------------
 //Layers:                   {normal,      10KeyOff,       10KeyOn,        mouseOn   };
@@ -269,11 +263,4 @@ Row_DH_IOE row_R3(rowPort1_R, 1<<3, colPort0_R_short, ptrsKeys_R3);
 //row_R4 East
 Key* const ptrsKeys_R4[] = { &k_R42, &k_R43, &s_KPEnter, &k_R45 }; //s_KPEnter 101-keyboard mode
 Row_DH_IOE row_R4(rowPort1_R, 1<<4, colPort0_R_short, ptrsKeys_R4);
-
-// ------------- RIGHT MATRIX ------------------
-RowBase* const ptrsRows_R[] = { &row_R0, &row_R1, &row_R2, &row_R3, &row_R4 };
-const uint8_t ROW_R_COUNT = sizeof(ptrsRows_R)/sizeof(*ptrsRows_R);
-
-Matrix matrix_R(ptrsRows_R, ROW_R_COUNT);
-
 #endif
