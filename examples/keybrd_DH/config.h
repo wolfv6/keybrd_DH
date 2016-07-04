@@ -1,4 +1,5 @@
 #include <Row_DH.h>
+#include <RowDelay.h>
 #include <Code_DoublePressProtected.h>
 #include <Code_MouseSpeed.h>
 #include <IndicatorLEDs.h>
@@ -11,7 +12,7 @@ typedef uint8_t read_pins_t;
 */
 
 // =========== SPEED CONFIGURATIONS ============
-const unsigned int RowBase::DELAY_MICROSECONDS = 0; //optic switches don't bounce, I2C poling slow
+const unsigned int RowDelay::DELAY_MICROSECONDS = 0; //optic switches don't bounce, I2C poling slow
 
 const uint8_t Code_DoublePressProtected::DOUBLE_PRESS_MILLIS = 250;
 
