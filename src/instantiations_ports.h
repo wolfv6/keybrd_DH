@@ -1,14 +1,7 @@
 #ifndef INSTANTIATIONS_PORTS_H
 #define INSTANTIATIONS_PORTS_H
 
-// ================ LEFT PORTS =================
-#include <RowPort_AVR_Optic.h>
-#include <ColPort_AVR.h>
-
-// ----------------- ROW PORT ------------------
-RowPort_AVR_Optic rowPortF_L(DDRF, PORTF);
-
-// ----------------- COL PORT ------------------
+// ================= LEFT PINS =================
 const uint8_t colPins_L[] = {0,1,2,3,7,8};
 const uint8_t COL_PIN_L_COUNT = sizeof(colPins_L)/sizeof(*colPins_L);
 

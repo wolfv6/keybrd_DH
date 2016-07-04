@@ -16,7 +16,7 @@
 
 //LED
 #include <LED.h>
-#include <LED_AVR.h>
+#include <LED_PinNumber.h>
 #include <LED_PCA9655E.h>
 #include <IndicatorLEDs.h>
 
@@ -152,10 +152,11 @@ Code_ScS s_question(KEY_SLASH);
 
 // ------------------- LEDs --------------------
 //left LEDs in order of appearance
-LED_AVR LED_L1Yellow(PORTD, 1<<4);          //LED_2     ScrollLock (PCB uses pin B7, D4 is disconnected, explanation in Code_LEDLock.cpp)
-LED_AVR LED_L2Yellow(PORTB, 1<<4);          //LED_D6_3  NumLock (PCB uses pin D6, but that is Teensy's on-board LED)
-LED_AVR LED_L3Yellow(PORTB, 1<<5);          //LED_1     MOUSE_ON
-LED_AVR LED_L4Green(PORTB, 1<<6);           //LED_0     CapsLock
+LED_PinNumber LED_L1Yellow(22); //LED_2     ScrollLock (PCB uses pin 4, pin 22 is disconnected, explanation in Code_LEDLock.cpp)
+LED_PinNumber LED_L2Yellow(13); //LED_D6_3  NumLock (PCB uses pin 11, but that is Teensy's on-board LED)
+LED_PinNumber LED_L3Yellow(14); //LED_1     MOUSE_ON
+LED_PinNumber LED_L4Green(15);  //LED_0     CapsLock
+
 LED * ptrsLEDs_L[] = { &LED_L1Yellow, &LED_L2Yellow, &LED_L3Yellow, &LED_L4Green };
 
 //right LEDs in order of appearance
