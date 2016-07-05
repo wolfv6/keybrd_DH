@@ -2,7 +2,6 @@
 #define ROWIOE_H
 
 #include <Row_DH.h>
-#include <RowDelay.h>
 #include <RowScanner_PinsBitwise.h>
 #include <Debouncer_4Samples.h>
 
@@ -12,7 +11,6 @@ Configuration and Instantiation instructions are in keybrd/src/Row_IOE.h
 class Row_DH_IOE : public Row_DH
 {
     private:
-        RowDelay rowDelay;
         RowScanner_PinsBitwise scanner;
         Debouncer_4Samples debouncer;
         //Debouncer_Not debouncer;

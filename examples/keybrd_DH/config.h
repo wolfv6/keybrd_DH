@@ -1,5 +1,4 @@
 #include <Row_DH.h>
-#include <RowDelay.h>
 #include <Code_DoublePressProtected.h>
 #include <Code_MouseSpeed.h>
 #include <IndicatorLEDs.h>
@@ -12,8 +11,6 @@ typedef uint8_t read_pins_t;
 */
 
 // =========== SPEED CONFIGURATIONS ============
-const unsigned int RowDelay::DELAY_MICROSECONDS = 0; //optic switches don't bounce, I2C poling slow
-
 const uint8_t Code_DoublePressProtected::DOUBLE_PRESS_MILLIS = 250;
 
 //Configure START_ values (START SPEED units are mouseMove() runs sinceSlowPressed).
@@ -34,3 +31,5 @@ MouseMove mouseMove(4);
 const uint8_t IndicatorLEDs::NUM_BLINKS = 5;       //number of blinks to stop blinking
 const uint8_t IndicatorLEDs::SCANS_PER_BLINK = 50; //smaller number makes blinking faster
 const uint8_t IndicatorLEDs::SCANS_BLINK_ON = 5;   //number of scans per blink that LED is on
+
+//ScanDelay is omitted because optic switches don't bounce and I2C poling is slow

@@ -2,7 +2,6 @@
 #define ROW_H
 
 #include <Row_DH.h>
-#include <RowDelay.h>
 #include <RowScanner_PinsArray.h>
 #include <Debouncer_4Samples.h>
 
@@ -12,7 +11,6 @@ Configuration and Instantiation instructions are in keybrd/src/Row_uC.h
 class Row_DH_uC : public Row_DH
 {
     private:
-        RowDelay rowDelay;
         RowScanner_PinsArray scanner;
         Debouncer_4Samples debouncer;
         //Debouncer_Not debouncer;
