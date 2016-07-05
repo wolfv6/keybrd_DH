@@ -45,6 +45,7 @@ void loop()
 
     //right matrix
     row_R0.process();
+    /*
     row_R1.process();
     row_R2.process();
     row_R3.process();
@@ -52,7 +53,7 @@ void loop()
 
     indicatorLEDs.blink();
     mouseMove.send();
-
+*/
     //debug.print_scans_per_second();
     //debug.print_microseconds_per_scan();
 }
