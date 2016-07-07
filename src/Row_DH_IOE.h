@@ -14,11 +14,12 @@ class Row_DH_IOE : public Row_DH
         RowScanner_PinsBitwise scanner;
         Debouncer_4Samples debouncer;
         //Debouncer_Not debouncer;
+        const uint8_t KEY_COUNT;
     public:
         Row_DH_IOE( RowPort& refRowPort, const uint8_t strobePin,
              ColPort& refColPort, Key *const ptrsKeys[])
-            : Row_DH(ptrsKeys), scanner(refRowPort, strobePin, refColPort) { }
+            : Row_DH(ptrsKeys), scanner(refRowPort, strobePin, refColPort),
+            KEY_COUNT(4) { }
         void process();
-        uint8_t getRowState(ColPort* refColPort, read_pins_mask_t& rowEnd);
 };
 #endif
