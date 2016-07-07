@@ -17,9 +17,9 @@ class Row_DH_IOE : public Row_DH
         const uint8_t KEY_COUNT;
     public:
         Row_DH_IOE( RowPort& refRowPort, const uint8_t strobePin,
-             ColPort& refColPort, Key *const ptrsKeys[])
+             ColPort& refColPort, Key *const ptrsKeys[], const uint8_t KEY_COUNT)
             : Row_DH(ptrsKeys), scanner(refRowPort, strobePin, refColPort),
-            KEY_COUNT(4) { }
+            KEY_COUNT(KEY_COUNT) { }
         void process();
 };
 #endif

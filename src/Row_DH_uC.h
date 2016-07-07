@@ -15,9 +15,9 @@ class Row_DH_uC : public Row_DH
         Debouncer_4Samples debouncer;
         //Debouncer_Not debouncer;
     public:
-        Row_DH_uC(const uint8_t strobePin, const uint8_t readPins[], const uint8_t READ_PIN_COUNT,
-                Key *const ptrsKeys[])
-            : Row_DH(ptrsKeys), scanner(strobePin, readPins, READ_PIN_COUNT) { }
+        Row_DH_uC(const uint8_t strobePin, const uint8_t readPins[],
+                Key *const ptrsKeys[], const uint8_t KEY_COUNT)
+            : Row_DH(ptrsKeys), scanner(strobePin, readPins, KEY_COUNT) { }
         void process();
 };
 #endif
