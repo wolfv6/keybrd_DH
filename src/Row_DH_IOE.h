@@ -19,5 +19,6 @@ class Row_DH_IOE : public Row_DH
              ColPort& refColPort, Key *const ptrsKeys[])
             : Row_DH(ptrsKeys), scanner(refRowPort, strobePin, refColPort) { }
         void process();
+        uint8_t getRowState(ColPort* refColPort, read_pins_mask_t& rowEnd);
 };
 #endif
