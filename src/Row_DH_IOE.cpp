@@ -1,6 +1,6 @@
 #include "Row_DH_IOE.h"
 
-const bool RowScanner_PinsBitwise::activeHigh = 1;
+const bool RowScanner_PinsBitwise::STROBE_ON = HIGH; //active high
 
 void Row_DH_IOE::process()
 {

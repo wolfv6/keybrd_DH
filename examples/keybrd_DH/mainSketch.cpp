@@ -6,8 +6,6 @@
 #include <IndicatorLEDs.h>
 
 // ================= DEBUG =====================
-#define PRINT_FREE_RAM      //print free RAM and headers
-
 Debug debug;
 
 // ======= INSTANTIATION THE KEYBOARD ==========
@@ -27,11 +25,8 @@ void setup()
     Keyboard.begin();
     Mouse.begin();
 
-#ifdef PRINT_FREE_RAM
     delay(1000);        //time for OS to detect USB before printing
-    Keyboard.print(F("keybrd_DH.ino "));
-    debug.print_free_RAM();
-#endif //end PRINT_FREE_RAM
+    Keyboard.println(F("keybrd_DH.ino"));
 }
 
 void loop()

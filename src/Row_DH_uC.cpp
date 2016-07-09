@@ -1,6 +1,7 @@
 #include "Row_DH_uC.h"
 
-const bool RowScanner_PinsArray::ACTIVE_HIGH = 1;
+const bool RowScanner_PinsArray::STROBE_ON = HIGH; //active high
+const bool RowScanner_PinsArray::STROBE_OFF = LOW;
 
 void Row_DH_uC::process()
 {
