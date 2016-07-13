@@ -2,21 +2,23 @@
 TEST W/O NUMLOCK
 lock LED:
 layer LED:              R2Green R1Blue     R1Blue                  R3Yellow
-sublayer LED:                                           R4Red      L2Yellow off
+sublayer LED:                                           R4Red      L3Yellow off
 layer:                  NORMAL NAS         NAS                     MF
 sublayer:                      TEN_KEY_OFF TEN_KEY_OFF  TEN_KEY_ON 0        1
 input:                  Normal NAS         NASLock      10KeyOn    MouseOn  ArrowOn
+protected by:                                           NASLock    MF       MF
 
 TEST WITH NUMLOCK
-lock LED:       L3Yellow                                                              off
+lock LED:       L2Yellow                                                              off
 layer LED:              R2Green R1Blue     R1Blue                  R3Yellow
 sublayer LED:                                           R4Red      L2Yellow off
 layer:                  NORMAL NAS         NAS                     MF
 sublayer:                      TEN_KEY_OFF TEN_KEY_OFF  TEN_KEY_ON 0        1
 input:          NumLock Normal NAS         NASLock      10KeyOn    MouseOn  ArrowOn  NumLock
+protected by:   NASLock                                 NASLock    MF       MF       NASLock
 
 TEST LOCKS
-lock LED:       L1Green        off      L4Yellow   off
+lock LED:       L4Green        off      L1Yellow   off
 input:          capsLock shift capsLock scrollLock scrollLock 
 
 Scroll lock LED removed, explanation in Code_LEDLock.cpp

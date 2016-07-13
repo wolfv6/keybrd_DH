@@ -160,10 +160,10 @@ LED_PinNumber LED_L4Green(15);  //LED_0     CapsLock
 LED * ptrsLEDs_L[] = { &LED_L1Yellow, &LED_L2Yellow, &LED_L3Yellow, &LED_L4Green };
 
 //right LEDs in order of appearance
-LED_PCA9655E LED_R1Blue(port1_R, 1<<5);     //LED_2     NAS (TEN_KEY_OFF or TEN_KEY_ON)
-LED_PCA9655E LED_R2Green(port1_R, 1<<6);    //LED_D6_3  NORMAL
-LED_PCA9655E LED_R3Yellow(port0_R, 1<<7);   //LED_1     MF
-LED_PCA9655E LED_R4Red(port0_R, 1<<6);      //LED_0     TEN_KEY_ON
+LED_PCA9655E LED_R1Blue(strobePort1_R, 1<<5);   //LED_2     NAS (TEN_KEY_OFF or TEN_KEY_ON)
+LED_PCA9655E LED_R2Green(strobePort1_R, 1<<6);  //LED_D6_3  NORMAL
+LED_PCA9655E LED_R3Yellow(strobePort0_R, 1<<7); //LED_1     MF
+LED_PCA9655E LED_R4Red(strobePort0_R, 1<<6);    //LED_0     TEN_KEY_ON
 LED * ptrsLEDs_R[] = { &LED_R1Blue, &LED_R2Green, &LED_R3Yellow, &LED_R4Red };
 
 // -------------- PRIMARY LAYERS ---------------
