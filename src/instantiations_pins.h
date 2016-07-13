@@ -24,6 +24,5 @@ StrobePort_PCA9655E strobePort1_R(port1_R);
 
 IOEPort port0_R(0, 0);
 ReadPort_PCA9655E readPort0_R(port0_R, 1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<5);
-ReadPort_PCA9655E readPort0_R_short(port0_R, 1<<2 | 1<<3 | 1<<4 | 1<<5);
 
 #endif
