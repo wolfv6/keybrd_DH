@@ -19,8 +19,8 @@ void setup()
 {
     Wire.begin(); //todo has not been tested yet,
         //Wire.begin() must be called before rowPort.begin() colPort.begin()
-    rowPort1_R.begin();
-    colPort0_R.begin();
+    strobePort1_R.begin();
+    readPort0_R.begin();
     indicatorLEDs.begin(&layerState_DH);
     Keyboard.begin();
     Mouse.begin();
@@ -37,6 +37,8 @@ void loop()
     row_L2.process();
     row_L3.process();
     row_L4.process();
+/*
+*/
 
     //right matrix
     row_R0.process();
@@ -45,9 +47,10 @@ void loop()
     row_R3.process();
     row_R4.process();
 
+/*todo uncommment
     indicatorLEDs.blink();
     mouseMove.send();
-
+*/
     //debug.print_scans_per_second();
     //debug.print_microseconds_per_scan();
 }

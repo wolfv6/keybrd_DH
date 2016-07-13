@@ -50,13 +50,13 @@ code is in mainSketch.cpp so that Arduino IDE does not mangle directives
 #include <Code_DoublePressProtected.h>
 
 //back end
-#include <IOExpanderPort.h>
-#include <RowPort_PCA9655E.h>
-#include <ColPort_PCA9655E.h>
+#include <IOEPort.h>
+#include <StrobePort_PCA9655E.h>
+#include <StrobePort_PCA9655E.h>
 #include <LED_PCA9655E.h>
 
 #include <Wire.h>
-#include <Row_DH.h>
+#include <Row_DH_uC.h>
 #include <MouseMove.h>
 
 #include <Debug.h>

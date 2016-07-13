@@ -1,16 +1,16 @@
 #include "Row_DH_IOE.h"
 
-const bool RowScanner_PinsBitwise::STROBE_ON = HIGH; //active high
+const bool Scanner_Port::STROBE_ON = HIGH; //active high
 
 void Row_DH_IOE::process()
 {
     //these variables are all bitwise, one bit per key
-    uint8_t rowState;                       //1 means pressed, 0 means released
+    uint8_t readState;                       //1 means pressed, 0 means released
     uint8_t debouncedChanged;               //1 means debounced changed
-    ColPort* ptrColPort; //new
+    ReadPort* ptrReadPort;
 
-    ptrColPort = scanner.scan();
-    rowState = ptrColPort->getPortState() >> (6-KEY_COUNT);
-    debouncedChanged = debouncer.debounce(rowState, debounced);
-    pressRelease(KEY_COUNT, debouncedChanged);
+    ptrReadPort = scanner.scan();
+    readState = ptrReadPort->getPortState() >> (6-READ_PIN_COUNT);
+    debouncedChanged = debouncer.debounce(readState, debounced);
+    pressRelease(READ_PIN_COUNT, debouncedChanged);
 }

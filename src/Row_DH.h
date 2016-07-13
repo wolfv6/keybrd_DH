@@ -1,15 +1,15 @@
 #ifndef ROW_DH_H
 #define ROW_DH_H
 
-#include <RowBase.h>
+#include <Row.h>
 #include <Debouncer_4Samples.h>
 #include <Debouncer_Not.h>
-#include "StateStickyMouseButtons.h"
-#include "Code_LayeredDoublePressToggle.h"
+#include <StateStickyMouseButtons.h>
+#include <Code_LayeredDoublePressToggle.h>
 
 /* Row_DH is an abstract class.
 */
-class Row_DH : public RowBase
+class Row_DH : public Row
 {
     private:
         static StateStickyMouseButtons& refMouseButtons;
@@ -17,6 +17,6 @@ class Row_DH : public RowBase
         static Code_LayeredDoublePressToggle& refAlt; 
         virtual void keyWasPressed();
     public:
-        Row_DH(Key *const ptrsKeys[]): RowBase(ptrsKeys) { }
+        Row_DH(Key *const ptrsKeys[]): Row(ptrsKeys) { }
 };
 #endif

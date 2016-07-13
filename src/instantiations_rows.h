@@ -81,9 +81,6 @@ row 4   West        East
 column number:                          0       1       2       3       4       5
 finger:                                 pinky   ring    middle  index   thumb   thumb
 */
-const uint8_t KEY_COUNT = 6;
-const uint8_t KEY_COUNT_SHORT = 4;
-
 Code_LayeredDoublePressToggle& Row_DH::refCtrl = t_ctrl; 
 Code_LayeredDoublePressToggle& Row_DH::refAlt = t_alt; 
 
@@ -157,28 +154,27 @@ Key_LayeredKeysArray k_L43(ptrsCodes_L43);
 
 //row_L0 North
 Key* const ptrsKeys_L0[] = { &k_L00, &k_L01, &k_L02, &k_L03, &s_tab, &o_capsLock };
-Row_DH_uC row_L0(21, colPins_L, ptrsKeys_L0, KEY_COUNT);
+Row_DH_uC row_L0(21, readPins_L, READ_PIN_COUNT, ptrsKeys_L0);
 
 //row_L1 East
 Key* const ptrsKeys_L1[] = { &k_L10, &k_L11, &k_L12, &k_L13, &t_ctrl, &s_enter };
-Row_DH_uC row_L1(20, colPins_L, ptrsKeys_L1, KEY_COUNT);
+Row_DH_uC row_L1(20, readPins_L, READ_PIN_COUNT, ptrsKeys_L1);
 
 //row_L2 center
 Key* const ptrsKeys_L2[] = { &k_L20, &k_L21, &k_L22, &k_L23, &lr_shift, &l_normalLock };
-Row_DH_uC row_L2(19, colPins_L, ptrsKeys_L2, KEY_COUNT);
+Row_DH_uC row_L2(19, readPins_L, READ_PIN_COUNT, ptrsKeys_L2);
 
 //row_L3 South
 Key* const ptrsKeys_L3[] = { &k_L30, &k_L31, &k_L32, &k_L33 };
-Row_DH_uC row_L3(18, colPins_L_short, ptrsKeys_L3, KEY_COUNT_SHORT);
+Row_DH_uC row_L3(18, readPins_L_short, READ_PIN_COUNT_SHORT, ptrsKeys_L3);
 
 //row_L4 West
 Key* const ptrsKeys_L4[] = { &lr_delete, &s_esc, &k_L42, &k_L43 };
-Row_DH_uC row_L4(17, colPins_L_short, ptrsKeys_L4, KEY_COUNT_SHORT);
+Row_DH_uC row_L4(17, readPins_L_short, READ_PIN_COUNT_SHORT, ptrsKeys_L4);
 
 // ============== RIGHT LAYOUT =================
 // -------------- RIGHT KEYS -------------------
 //Layers:                   {normal,      10KeyOff,       10KeyOn,        mouseOn   };
-
 //row_R0 North keys
 Key* const ptrsCodes_R02[]= {&s_u,        &s_ampersand,   &n_7,           &msA_up    };
 Key_LayeredKeysArray k_R02(ptrsCodes_R02);
@@ -247,21 +243,22 @@ Key_LayeredKeysArray k_R45(ptrsCodes_R45);
 
 //row_R0 North  col
 Key* const ptrsKeys_R0[] = { &l_NASLock, &s_backspace, &k_R02, &k_R03, &k_R04, &k_R05 };
-Row_DH_IOE row_R0(rowPort1_R, 1<<0, colPort0_R, ptrsKeys_R0, KEY_COUNT);
+Row_DH_IOE row_R0(strobePort1_R, 1<<0, readPort0_R, READ_PIN_COUNT, ptrsKeys_R0);
 
 //row_R1 West
 Key* const ptrsKeys_R1[] = { &s_space, &t_alt, &k_R12, &k_R13, &k_R14, &k_R15 };
-Row_DH_IOE row_R1(rowPort1_R, 1<<1, colPort0_R, ptrsKeys_R1, KEY_COUNT);
+Row_DH_IOE row_R1(strobePort1_R, 1<<1, readPort0_R, READ_PIN_COUNT, ptrsKeys_R1);
 
 //row_R2 center
 Key* const ptrsKeys_R2[] = { &l_MFLock, &l_NASHold, &k_R22, &k_R23, &k_R24, &k_R25 };
-Row_DH_IOE row_R2(rowPort1_R, 1<<2, colPort0_R, ptrsKeys_R2, KEY_COUNT);
+Row_DH_IOE row_R2(strobePort1_R, 1<<2, readPort0_R, READ_PIN_COUNT, ptrsKeys_R2);
 
 //row_R3 South
 Key* const ptrsKeys_R3[] = { &k_R32, &k_R33, &k_R34, &k_R35 };
-Row_DH_IOE row_R3(rowPort1_R, 1<<3, colPort0_R_short, ptrsKeys_R3, KEY_COUNT_SHORT);
+Row_DH_IOE row_R3(strobePort1_R, 1<<3, readPort0_R_short, READ_PIN_COUNT_SHORT, ptrsKeys_R3);
 
 //row_R4 East
 Key* const ptrsKeys_R4[] = { &k_R42, &k_R43, &s_KPEnter, &k_R45 }; //s_KPEnter 101-keyboard mode
-Row_DH_IOE row_R4(rowPort1_R, 1<<4, colPort0_R_short, ptrsKeys_R4, KEY_COUNT_SHORT);
+    Row_DH_IOE row_R4(strobePort1_R, 1<<4, readPort0_R_short, READ_PIN_COUNT_SHORT, ptrsKeys_R4);
+
 #endif
