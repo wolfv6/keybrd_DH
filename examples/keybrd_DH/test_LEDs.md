@@ -1,3 +1,4 @@
+test_LEDs.md
 
 TEST W/O NUMLOCK
 lock LED:
