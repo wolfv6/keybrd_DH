@@ -243,22 +243,22 @@ Key_LayeredKeysArray k_R45(ptrsCodes_R45);
 
 //row_R0 North  col
 Key* const ptrsKeys_R0[] = { &l_NASLock, &s_backspace, &k_R02, &k_R03, &k_R04, &k_R05 };
-Row_DH_IOE row_R0(strobePort1_R, 1<<0, readPort0_R, READ_PIN_COUNT, ptrsKeys_R0);
+Row_DH_IOE row_R0(portWrite1_R, 1<<0, portRead0_R, READ_PIN_COUNT, ptrsKeys_R0);
 
 //row_R1 West
 Key* const ptrsKeys_R1[] = { &s_space, &t_alt, &k_R12, &k_R13, &k_R14, &k_R15 };
-Row_DH_IOE row_R1(strobePort1_R, 1<<1, readPort0_R, READ_PIN_COUNT, ptrsKeys_R1);
+Row_DH_IOE row_R1(portWrite1_R, 1<<1, portRead0_R, READ_PIN_COUNT, ptrsKeys_R1);
 
 //row_R2 center
 Key* const ptrsKeys_R2[] = { &l_MFLock, &l_NASHold, &k_R22, &k_R23, &k_R24, &k_R25 };
-Row_DH_IOE row_R2(strobePort1_R, 1<<2, readPort0_R, READ_PIN_COUNT, ptrsKeys_R2);
+Row_DH_IOE row_R2(portWrite1_R, 1<<2, portRead0_R, READ_PIN_COUNT, ptrsKeys_R2);
 
 //row_R3 South
 Key* const ptrsKeys_R3[] = { &k_R32, &k_R33, &k_R34, &k_R35 };
-Row_DH_IOE row_R3(strobePort1_R, 1<<3, readPort0_R, READ_PIN_COUNT_SHORT, ptrsKeys_R3);
+Row_DH_IOE row_R3(portWrite1_R, 1<<3, portRead0_R, READ_PIN_COUNT_SHORT, ptrsKeys_R3);
 
 //row_R4 East
 Key* const ptrsKeys_R4[] = { &k_R42, &k_R43, &s_KPEnter, &k_R45 }; //s_KPEnter 101-keyboard mode
-    Row_DH_IOE row_R4(strobePort1_R, 1<<4, readPort0_R, READ_PIN_COUNT_SHORT, ptrsKeys_R4);
+    Row_DH_IOE row_R4(portWrite1_R, 1<<4, portRead0_R, READ_PIN_COUNT_SHORT, ptrsKeys_R4);
 
 #endif

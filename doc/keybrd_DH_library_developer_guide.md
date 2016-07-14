@@ -91,7 +91,7 @@ Class names tagged with '*' are located in keybrd/src/
 
 Class inheritance diagrams of DH Rows
 ```
-	       RowBase*
+	       Row*
 	         |
 	       Row_DH
 	       /    \

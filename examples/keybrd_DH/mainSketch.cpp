@@ -19,8 +19,8 @@ void setup()
 {
     Wire.begin(); //todo has not been tested yet,
         //Wire.begin() must be called before rowPort.begin() colPort.begin()
-    strobePort1_R.begin();
-    readPort0_R.begin();
+    portWrite1_R.begin();
+    portRead0_R.begin();
     indicatorLEDs.begin(&layerState_DH);
     Keyboard.begin();
     Mouse.begin();
