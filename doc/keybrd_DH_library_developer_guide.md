@@ -4,6 +4,60 @@ The keybrd_DH library is an extension of the [keybrd library](https://github.com
 
 The keybrd_DH firmware is reverse engineered from the DataHand Professional II Users Guide version 1.7.8, October 2003.
 
+## DH QWERTY layout
+101-keyboard mode (ENTER key on right ring finger sends KEYPAD_ENTER, there is no "Windows" key)
+on breadboard, finger keys are on the outer 4 columns
+
+```
+            LEFT                                        RIGHT
+ NORMAL
+    NORTH   q      w      e      r              NORTH   u      i      o      p
+    EAST    [{     b      t      g              WEST    h      y      n      ]}
+    CENTER  a      s      d      f              CENTER  j      k      l      ;:
+    SOUTH   z      x      c      v              SOUTH   m      ,      .      /?
+    WEST    Del    Esc    `      "              EAST    '      :      Ent    \|
+
+ NAS TEN_KEY_OFF                    NASLck proected: 10KeyOff, 10KeyOn, NumLck
+    NORTH   !      @      #      $              NORTH   &      *      (      )
+    EAST    ~      NumLck >      5              WEST    6      ^      ;      10KeyOff
+    CENTER  1      2      3      4              CENTER  7      8      9      0
+    SOUTH   =      00     %      -              SOUTH   +      ,      .      ?
+    WEST    Del    Esc    <      /              EAST    _      :      Ent    10KeyOn
+
+ NAS TEN_KEY_ON
+    NORTH   !      @      #      Up             NORTH   7      8      9      *
+    EAST    ~      null   >      Right          WEST    0      +      =      10KeyOff
+    CENTER  ,      $      &      Home           CENTER  4      5      6      .
+    SOUTH   (      )      %      Down           SOUTH   1      2      3      /
+    WEST    Del    Esc    <      Left           EAST    00     -      Ent    10KeyOn
+
+                                    MF protected: ArrowOn, MouseOn, F1-F12, NumLck, L/RModf, Print
+ MF MOUSE_ON                     QUICK                  SLOW
+    NORTH   F2     F4     F6     Up             NORTH   Up     F8     F10    PgUp
+    EAST    ScrLck NumLck Ent    Right          WEST    Left   End    Ins    F11
+    CENTER  L/RModf MB3  MouseOn MB1            CENTER  MB2    ArrowOn Print Pause
+    SOUTH   F1     F3     F5     Down           SOUTH   Down   F7     F9     PgDn
+    WEST    Del    Esc    =      Left           EAST    Right  Shift  Ent    F12
+
+ MF ARROW_ON
+    NORTH                        Up             NORTH   Up
+    EAST                         Right          WEST    Left
+    CENTER                       Home           CENTER  Home
+    SOUTH                        Down           SOUTH   Down
+    WEST                         Left           EAST    Right
+
+on breadboard, thumb keys are inner 2 columns on first 3 rows
+            LEFT                                        RIGHT
+    NORTH   Tab    CapLck                       NORTH   NASLck BkSp
+    EAST    Ctrl   Ent                          WEST    Sp     Alt
+    CENTER  Shift  Normal                       CENTER  MF     NAS
+
+PCB thumb keys
+            LEFT                                        RIGHT
+    TOP     Ent    Shift  Tab                   TOP     BkSp   NAS    Sp
+    BOT     Normal CapLck Ctrl                  BOT     Alt    NASLck MF
+```
+
 ## The keybrd_DH layer scheme
 **Key_Layer** objects are used to select an active layer.
 When a Code_Layer object is pressed, it tells layerState_DH to update the active layer.

@@ -1,23 +1,10 @@
-#ifndef INSTANTIATIONS_CODES_H
-#define INSTANTIATIONS_CODES_H
+#ifndef INSTANTIATIONS_LAYERCODES_H
+#define INSTANTIATIONS_LAYERCODES_H
 
-//Code
-#include <Code_Shift.h>
-#include <Code_Sc.h>
-#include <Code_ScS.h>
-#include <Code_Null.h>
-#include <Code_LEDLock.h>
-
-//Mouse
-#include <StateStickyMouseButtons.h>
-#include <Code_StickyMouseButton.h>
-#include <Code_Mouse_Slow.h>
-#include <Code_Mouse_Quick.h>
+/* This file instantiates layer-code and scancode objects that depend on layer codes.
+*/
 
 //LED
-#include <LED.h>
-#include <LED_uC.h>
-#include <LED_PCA9655E.h>
 #include <IndicatorLEDs.h>
 
 //LayerState
@@ -44,127 +31,16 @@ class LayerStateInterface;
 #include <Code_LayeredDoublePressToggle.h>
 #include <Code_LayeredScSc.h>
 
+//Mouse
+#include <StateStickyMouseButtons.h>
+#include <Code_StickyMouseButton.h>
+#include <Code_Mouse_Slow.h>
+#include <Code_Mouse_Quick.h>
+
 //protected
 #include <Code_Protected_ByMFLock.h>
 #include <Code_Protected_ByNASLock.h>
 #include <Code_DoublePressProtected.h>
-
-// ================= CODES =====================
-// ---------- SCANCODES ---------
-/* scancode macros are defined in the top part of
-Arduino\hardware\teensy\cores\teensy\keylayouts.h which is intended for use in "normal" programs.
-This has been tested on teensy2.0.
-*/
-Code_Sc s_a(KEY_A);
-Code_Sc s_b(KEY_B);
-Code_Sc s_c(KEY_C);
-Code_Sc s_d(KEY_D);
-Code_Sc s_e(KEY_E);
-Code_Sc s_f(KEY_F);
-Code_Sc s_g(KEY_G);
-Code_Sc s_h(KEY_H);
-Code_Sc s_i(KEY_I);
-Code_Sc s_j(KEY_J);
-Code_Sc s_k(KEY_K);
-Code_Sc s_l(KEY_L);
-Code_Sc s_m(KEY_M);
-Code_Sc s_n(KEY_N);
-Code_Sc s_o(KEY_O);
-Code_Sc s_p(KEY_P);
-Code_Sc s_q(KEY_Q);
-Code_Sc s_r(KEY_R);
-Code_Sc s_s(KEY_S);
-Code_Sc s_t(KEY_T);
-Code_Sc s_u(KEY_U);
-Code_Sc s_v(KEY_V);
-Code_Sc s_w(KEY_W);
-Code_Sc s_x(KEY_X);
-Code_Sc s_y(KEY_Y);
-Code_Sc s_z(KEY_Z);
-
-Code_Sc s_enter(KEY_ENTER);
-Code_Sc s_esc(KEY_ESC);
-Code_Sc s_backspace(KEY_BACKSPACE);
-Code_Sc s_tab(KEY_TAB);
-Code_Sc s_space(KEY_SPACE);
-Code_Sc s_minus(KEY_MINUS);
-Code_Sc s_equal(KEY_EQUAL);
-Code_Sc s_leftBracket(KEY_LEFT_BRACE);           //[ ("brace" means curly bracket {})
-Code_Sc s_rightBracket(KEY_RIGHT_BRACE);         //]
-Code_Sc s_backslash(KEY_BACKSLASH);
-Code_Sc s_semicolon(KEY_SEMICOLON);
-Code_Sc s_quote(KEY_QUOTE);
-Code_Sc s_graves(KEY_TILDE);                      //`
-//Code_Sc s_graves(ASCII_60);                       //`
-Code_Sc s_comma(KEY_COMMA);
-Code_Sc s_period(KEY_PERIOD);
-Code_Sc s_slash(KEY_SLASH);
-
-Code_Sc s_F1(KEY_F1);
-Code_Sc s_F2(KEY_F2);
-Code_Sc s_F3(KEY_F3);
-Code_Sc s_F4(KEY_F4);
-Code_Sc s_F5(KEY_F5);
-Code_Sc s_F6(KEY_F6);
-Code_Sc s_F7(KEY_F7);
-Code_Sc s_F8(KEY_F8);
-Code_Sc s_F9(KEY_F9);
-Code_Sc s_F10(KEY_F10);
-Code_Sc s_F11(KEY_F11);
-Code_Sc s_F12(KEY_F12);
-
-Code_Sc s_printscreen(KEY_PRINTSCREEN);
-Code_Sc s_pause(KEY_PAUSE);
-Code_Sc s_home(KEY_HOME);
-Code_Sc s_end(KEY_END);
-Code_Sc s_right(KEY_RIGHT);                      //arrow
-Code_Sc s_left(KEY_LEFT);
-Code_Sc s_down(KEY_DOWN);
-Code_Sc s_up(KEY_UP);
-
-Code_Sc s_KPEnter(KEYPAD_ENTER);
-Code_Null code_null;                            //usefull for blank codes
-
-// ---------- SCANCODES SHIFTED ---------
-// shifted objects are named after ascii symbol names
-Code_ScS s_exclamation(KEY_1);
-Code_ScS s_at(KEY_2);
-Code_ScS s_number(KEY_3);                        //#
-Code_ScS s_dollar(KEY_4);
-Code_ScS s_percent(KEY_5);
-Code_ScS s_circumflex(KEY_6);                    //^
-Code_ScS s_ampersand(KEY_7);
-Code_ScS s_asterix(KEY_8);
-Code_ScS s_leftParen(KEY_9);                     //(
-Code_ScS s_rightParen(KEY_0);
-
-Code_ScS s_underscore(KEY_MINUS);
-Code_ScS s_plus(KEY_EQUAL);
-Code_ScS s_leftBrace(KEY_LEFT_BRACE);            //{
-Code_ScS s_rightBrace(KEY_RIGHT_BRACE);          //}
-Code_ScS s_vertBar(KEY_BACKSLASH);               //|
-Code_ScS s_colon(KEY_SEMICOLON);
-Code_ScS s_doubleQuote(KEY_QUOTE);
-Code_ScS s_tilde(KEY_TILDE);
-Code_ScS s_lessThan(KEY_COMMA);
-Code_ScS s_greaterThan(KEY_PERIOD);
-Code_ScS s_question(KEY_SLASH);
-
-// ------------------- LEDs --------------------
-//left LEDs in order of appearance
-LED_uC LED_L1Yellow(22); //LED_2     ScrollLock (PCB uses pin 4, pin 22 is disconnected, explanation in Code_LEDLock.cpp)
-LED_uC LED_L2Yellow(13); //LED_D6_3  NumLock (PCB uses pin 11, but that is Teensy's on-board LED)
-LED_uC LED_L3Yellow(14); //LED_1     MOUSE_ON
-LED_uC LED_L4Green(15);  //LED_0     CapsLock
-
-LED * ptrsLEDs_L[] = { &LED_L1Yellow, &LED_L2Yellow, &LED_L3Yellow, &LED_L4Green };
-
-//right LEDs in order of appearance
-LED_PCA9655E LED_R1Blue(portWrite1_R, 1<<5);    //LED_2     NAS (TEN_KEY_OFF or TEN_KEY_ON)
-LED_PCA9655E LED_R2Green(portWrite1_R, 1<<6);   //LED_D6_3  NORMAL
-LED_PCA9655E LED_R3Yellow(portWrite0_R, 1<<7);  //LED_1     MF
-LED_PCA9655E LED_R4Red(portWrite0_R, 1<<6);     //LED_0     TEN_KEY_ON
-LED * ptrsLEDs_R[] = { &LED_R1Blue, &LED_R2Green, &LED_R3Yellow, &LED_R4Red };
 
 // -------------- PRIMARY LAYERS ---------------
 //            NORMAL  NAS          NAS         MF
@@ -218,17 +94,23 @@ Code_LayeredScSc lr_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //th
 Code_LayeredScSc rl_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //finger shift acts opposite
 LayerStateInterface& Code_LayeredScSc::refLayerState = t_LRModf;
 
-// --------------- SHIFT CODE ------------------
-Code_Shift s_shift(MODIFIERKEY_LEFT_SHIFT);
-Code_Shift* const ptrsS[] = { &s_shift };
-Code_Shift* const* const Code_AutoShift::ptrsShifts = ptrsS;
-const uint8_t Code_AutoShift::shiftCount = sizeof(ptrsShifts)/sizeof(*ptrsShifts);
+// ------------- NUMBER CODES ------------------
+Code_NumLock t_numLock(layerState_DH);
 
-// --------------- LOCK CODES ------------------
-Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_L4Green);
+//n_0 through n_9 are used in TEN_KEY_OFF and TEN_KEY_ON
+Code_LayeredNumber n_0(KEY_0);
+Code_LayeredNumber n_1(KEY_1);
+Code_LayeredNumber n_2(KEY_2);
+Code_LayeredNumber n_3(KEY_3);
+Code_LayeredNumber n_4(KEY_4);
+Code_LayeredNumber n_5(KEY_5);
+Code_LayeredNumber n_6(KEY_6);
+Code_LayeredNumber n_7(KEY_7);
+Code_LayeredNumber n_8(KEY_8);
+Code_LayeredNumber n_9(KEY_9);
+Code_LayeredNumber_00 n_00;
 
-//Scroll lock LED removed, explanation in Code_LEDLock.cpp
-Code_Sc o_scrollLock(KEY_SCROLL_LOCK);
+LayerState_DH& Code_LayeredNumber::refLayerState_DH = layerState_DH;
 
 // -------------- MOUSE CODES ------------------
 Code_Mouse_Quick mq_right(1<<1);
@@ -266,24 +148,6 @@ Code_LayeredCodeSc_MF mb2Home(mb_2, KEY_HOME); //mouse-button 2, Home
 //define static variable
 LayerState_DH& Code_LayeredCodeSc_MF::refLayerState_DH = layerState_DH;
 
-// ------------- NUMBER CODES ------------------
-Code_NumLock t_numLock(layerState_DH);
-
-//n_0 through n_9 are used in TEN_KEY_OFF and TEN_KEY_ON
-Code_LayeredNumber n_0(KEY_0);
-Code_LayeredNumber n_1(KEY_1);
-Code_LayeredNumber n_2(KEY_2);
-Code_LayeredNumber n_3(KEY_3);
-Code_LayeredNumber n_4(KEY_4);
-Code_LayeredNumber n_5(KEY_5);
-Code_LayeredNumber n_6(KEY_6);
-Code_LayeredNumber n_7(KEY_7);
-Code_LayeredNumber n_8(KEY_8);
-Code_LayeredNumber n_9(KEY_9);
-Code_LayeredNumber_00 n_00;
-
-LayerState_DH& Code_LayeredNumber::refLayerState_DH = layerState_DH;
-
 // ------------ PROTECTED CODES ----------------
 Code_Protected_ByMFLock p_mouseOn(l_mouseOn);
 Code_Protected_ByMFLock p_arrowOn(l_arrowOn);
@@ -310,4 +174,5 @@ Code_Protected_ByNASLock pNAS_numLock(t_numLock);
 Code_NASLock_Protector& Code_Protected_ByNASLock::refProtector = l_NASLock;
 
 Code_DoublePressProtected d_printscreen(p_printscreen);
+
 #endif

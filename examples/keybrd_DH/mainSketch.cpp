@@ -9,10 +9,13 @@
 Debug debug;
 
 // ======= INSTANTIATION THE KEYBOARD ==========
+//layout table is in keybrd_DH_library_developer_guide.md
 #include "config.h"
 #include <instantiations_pins.h>
-#include <instantiations_codes.h>
-#include <instantiations_rows.h>                //layout table is with instantiations_rows.h
+#include <instantiations_scancodes.h>
+#include <instantiations_layercodes.h>
+#include <instantiations_rows_L.h>
+#include <instantiations_rows_R.h>
 
 // ================== MAIN =====================
 void setup()
