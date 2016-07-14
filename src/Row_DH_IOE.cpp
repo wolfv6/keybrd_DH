@@ -11,5 +11,5 @@ void Row_DH_IOE::process()
 
     readState = scanner.scan() >> (6-READ_PIN_COUNT);
     debouncedChanged = debouncer.debounce(readState, debounced);
-    pressRelease(READ_PIN_COUNT, debouncedChanged);
+    send(READ_PIN_COUNT, debouncedChanged);
 }

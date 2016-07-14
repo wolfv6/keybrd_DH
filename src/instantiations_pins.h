@@ -1,7 +1,7 @@
 #ifndef INSTANTIATIONS_PINS_H
 #define INSTANTIATIONS_PINS_H
 
-/* This file instantiates pin, port, and LED objects.
+/* This file instantiates uC pin, IOE port, and LED objects.
 */
 
 #include <LED.h>

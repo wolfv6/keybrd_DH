@@ -3,7 +3,7 @@
 
 #include <Row_DH.h>
 #include <Scanner_Port.h>
-#include <Debouncer_4Samples.h>
+#include <Debouncer_Samples.h>
 class PortWrite;
 class PortRead;
 
@@ -14,7 +14,7 @@ class Row_DH_IOE : public Row_DH
 {
     private:
         Scanner_Port scanner;
-        Debouncer_4Samples debouncer;
+        Debouncer_Samples debouncer;
         //Debouncer_Not debouncer;
         const uint8_t READ_PIN_COUNT;           //number of read pins
     public:

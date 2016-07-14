@@ -1,7 +1,7 @@
 #include "StateStickyMouseButtons.h"
 
 /* trace of isUnstickKey when mouse button is pressed
-Row::pressRelease()
+Row::send()
     Code_StickyMouseButton::press()
         StateStickyMouseButtons::press(scancode)
             StateStickyMouseButtons::releaseStuckButton()

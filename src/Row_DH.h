@@ -2,7 +2,7 @@
 #define ROW_DH_H
 
 #include <Row.h>
-#include <Debouncer_4Samples.h>
+#include <Debouncer_Samples.h>
 #include <Debouncer_Not.h>
 #include <StateStickyMouseButtons.h>
 #include <Code_LayeredDoublePressToggle.h>
