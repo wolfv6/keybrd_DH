@@ -16,12 +16,12 @@ class Row_DH_IOE : public Row_DH
         Scanner_Port scanner;
         Debouncer_Samples debouncer;
         //Debouncer_Not debouncer;
-        const uint8_t READ_PIN_COUNT;           //number of read pins
+        const uint8_t readPinCount;           //number of read pins
     public:
         Row_DH_IOE(PortWrite& refPortWrite, const uint8_t strobePin,
-             PortRead& refPortRead, const uint8_t READ_PIN_COUNT, Key *const ptrsKeys[])
+             PortRead& refPortRead, const uint8_t readPinCount, Key *const ptrsKeys[])
             : Row_DH(ptrsKeys), scanner(refPortWrite, strobePin, refPortRead),
-            READ_PIN_COUNT(READ_PIN_COUNT) { }
+            readPinCount(readPinCount) { }
         void process();
 };
 #endif

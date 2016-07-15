@@ -9,7 +9,7 @@ void Row_DH_IOE::process()
     uint8_t readState;                       //1 means pressed, 0 means released
     uint8_t debouncedChanged;               //1 means debounced changed
 
-    readState = scanner.scan() >> (6-READ_PIN_COUNT);
+    readState = scanner.scan() >> (6-readPinCount);
     debouncedChanged = debouncer.debounce(readState, debounced);
-    send(READ_PIN_COUNT, debouncedChanged);
+    send(readPinCount, debouncedChanged);
 }

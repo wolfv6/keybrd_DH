@@ -14,12 +14,12 @@ class Row_DH_uC : public Row_DH
         Scanner_uC scanner;
         Debouncer_Samples debouncer;
         //Debouncer_Not debouncer;
-        const uint8_t READ_PIN_COUNT;           //number of read pins
+        const uint8_t readPinCount;           //number of read pins
     public:
-        Row_DH_uC(const uint8_t strobePin, const uint8_t READ_PINS[], const uint8_t READ_PIN_COUNT,
+        Row_DH_uC(const uint8_t strobePin, const uint8_t readPins[], const uint8_t readPinCount,
                 Key *const ptrsKeys[])
-            : Row_DH(ptrsKeys), scanner(strobePin, READ_PINS, READ_PIN_COUNT),
-            READ_PIN_COUNT(READ_PIN_COUNT) { }
+            : Row_DH(ptrsKeys), scanner(strobePin, readPins, readPinCount),
+            readPinCount(readPinCount) { }
         void process();
 };
 #endif

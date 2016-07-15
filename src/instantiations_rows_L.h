@@ -106,22 +106,22 @@ Key_LayeredKeysArray k_L43(ptrsCodes_L43);
 
 //row_L0 North
 Key* const ptrsKeys_L0[] = { &k_L00, &k_L01, &k_L02, &k_L03, &s_tab, &o_capsLock };
-Row_DH_uC row_L0(21, readPins_L, READ_PIN_COUNT, ptrsKeys_L0);
+Row_DH_uC row_L0(21, readPins_L, readPinCount, ptrsKeys_L0);
 
 //row_L1 East
 Key* const ptrsKeys_L1[] = { &k_L10, &k_L11, &k_L12, &k_L13, &t_ctrl, &s_enter };
-Row_DH_uC row_L1(20, readPins_L, READ_PIN_COUNT, ptrsKeys_L1);
+Row_DH_uC row_L1(20, readPins_L, readPinCount, ptrsKeys_L1);
 
 //row_L2 center
 Key* const ptrsKeys_L2[] = { &k_L20, &k_L21, &k_L22, &k_L23, &lr_shift, &l_normalLock };
-Row_DH_uC row_L2(19, readPins_L, READ_PIN_COUNT, ptrsKeys_L2);
+Row_DH_uC row_L2(19, readPins_L, readPinCount, ptrsKeys_L2);
 
 //row_L3 South
 Key* const ptrsKeys_L3[] = { &k_L30, &k_L31, &k_L32, &k_L33 };
-Row_DH_uC row_L3(18, readPins_L_short, READ_PIN_COUNT_SHORT, ptrsKeys_L3);
+Row_DH_uC row_L3(18, readPins_L_short, readPinCount_SHORT, ptrsKeys_L3);
 
 //row_L4 West
 Key* const ptrsKeys_L4[] = { &lr_delete, &s_esc, &k_L42, &k_L43 };
-Row_DH_uC row_L4(17, readPins_L_short, READ_PIN_COUNT_SHORT, ptrsKeys_L4);
+Row_DH_uC row_L4(17, readPins_L_short, readPinCount_SHORT, ptrsKeys_L4);
 
 #endif

@@ -8,8 +8,8 @@
 #include <LED_uC.h>
 #include <LED_PCA9655E.h>
 
-const uint8_t READ_PIN_COUNT = 6;               //for rows with thumb keys
-const uint8_t READ_PIN_COUNT_SHORT = 4;         //for rows w/o thumb keys
+const uint8_t readPinCount = 6;               //for rows with thumb keys
+const uint8_t readPinCount_SHORT = 4;         //for rows w/o thumb keys
 
 // =============== LEFT uC MATRIX ==============
 const uint8_t readPins_L[] = {0,1,2,3,7,8};
