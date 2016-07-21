@@ -14,7 +14,7 @@ void Code_MouseSpeed::mouseMove()
     int8_t x = mouseDistance(speedByte);
     int8_t y = mouseDistance(speedByte >> 4);
     Mouse.move(x,y,0);                          //https://www.arduino.cc/en/Reference/MouseMove
-    
+
     if (sinceSlowPressed != 255)                //roll-over guard
     {
         sinceSlowPressed++;
@@ -38,29 +38,29 @@ uint8_t Code_MouseSpeed::magnitude(uint8_t speedBits)
 
     switch (speedBits & (SLOW_BIT + QUICK_BIT)) //read two bits
     {
-        case (SLOW_BIT + QUICK_BIT):            //high speed
+    case (SLOW_BIT + QUICK_BIT):            //high speed
+    {
+        return HIGH_SPEED;
+    }
+    case QUICK_BIT:                         //quick
+    {
+        return QUICK_SPEED;
+    }
+    case SLOW_BIT:                          //slow
+    {
+        if (sinceSlowPressed >= START_SLOW)
         {
-            return HIGH_SPEED;
+            return SLOW_SPEED;
         }
-        case QUICK_BIT:                         //quick
+        if (sinceSlowPressed >= START_NUDGE)
         {
-            return QUICK_SPEED;
+            return NUDGE_SPEED;
         }
-        case SLOW_BIT:                          //slow
-        {
-            if (sinceSlowPressed >= START_SLOW)
-            {
-                return SLOW_SPEED;
-            }
-            if (sinceSlowPressed >= START_NUDGE)
-            {
-                return NUDGE_SPEED;
-            }
-            return 0;
-        }
-        default:
-        {
-            return 0;
-        }
+        return 0;
+    }
+    default:
+    {
+        return 0;
+    }
     }
 }

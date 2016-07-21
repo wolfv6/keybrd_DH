@@ -4,7 +4,7 @@
 #include <inttypes.h>
 #include <Code_MouseSpeed.h>
 
-/* Class MouseMove 
+/* Class MouseMove
 
 Example:
     MouseMove mouseMove(4);       //smaller parameter results in faster mouse

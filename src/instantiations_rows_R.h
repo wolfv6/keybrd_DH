@@ -35,7 +35,7 @@ column number:  0       1       2       3       4       5
 finger:         thumb   thumb   index   middle  ring    pinky
 */
 
-Code_LayeredDoublePressToggle& Row_DH::refAlt = t_alt; 
+Code_LayeredDoublePressToggle& Row_DH::refAlt = t_alt;
 
 // -------------- RIGHT KEYS -------------------
 //Layers:                   {normal,      10KeyOff,       10KeyOn,        mouseOn   };
@@ -123,6 +123,6 @@ Row_DH_IOE row_R3(portWrite1_R, 1<<3, portRead0_R, readPinCount_SHORT, ptrsKeys_
 
 //row_R4 East
 Key* const ptrsKeys_R4[] = { &k_R42, &k_R43, &s_KPEnter, &k_R45 }; //s_KPEnter 101-keyboard mode
-    Row_DH_IOE row_R4(portWrite1_R, 1<<4, portRead0_R, readPinCount_SHORT, ptrsKeys_R4);
+Row_DH_IOE row_R4(portWrite1_R, 1<<4, portRead0_R, readPinCount_SHORT, ptrsKeys_R4);
 
 #endif

@@ -17,7 +17,8 @@ const uint8_t readPins_L_short[] = {0,1,2,3};
 
 // ------------------- LEDs --------------------
 //left LEDs in order of appearance
-LED_uC LED_L1Yellow(22); //LED_2     ScrollLock (PCB uses pin 4, pin 22 is disconnected, explanation in Code_LEDLock.cpp)
+LED_uC LED_L1Yellow(
+    22); //LED_2     ScrollLock (PCB uses pin 4, pin 22 is disconnected, explanation in Code_LEDLock.cpp)
 LED_uC LED_L2Yellow(13); //LED_D6_3  NumLock (PCB uses pin 11, but that is Teensy's on-board LED)
 LED_uC LED_L3Yellow(14); //LED_1     MOUSE_ON
 LED_uC LED_L4Green(15);  //LED_0     CapsLock

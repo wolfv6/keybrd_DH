@@ -13,8 +13,8 @@ class Row_DH : public Row
 {
     private:
         static StateStickyMouseButtons& refMouseButtons;
-        static Code_LayeredDoublePressToggle& refCtrl; 
-        static Code_LayeredDoublePressToggle& refAlt; 
+        static Code_LayeredDoublePressToggle& refCtrl;
+        static Code_LayeredDoublePressToggle& refAlt;
         virtual void keyWasPressed();
     public:
         Row_DH(Key *const ptrsKeys[]): Row(ptrsKeys) { }

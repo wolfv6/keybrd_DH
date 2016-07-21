@@ -10,7 +10,8 @@ void LayerState_DH::setActiveLayer(const uint8_t layer)
     refIndicatorLEDs.updateLayerSubMFLayerLEDs(activeLayer, activeMFSubLayer);
 }
 
-void LayerState_DH::getLayerStates(uint8_t& refActiveLayer, bool& refActiveMFSubLayer, bool& refLazyNumLock)
+void LayerState_DH::getLayerStates(uint8_t& refActiveLayer, bool& refActiveMFSubLayer,
+                                   bool& refLazyNumLock)
 {
     refActiveLayer = activeLayer;
     refLazyNumLock = lazyNumLock;

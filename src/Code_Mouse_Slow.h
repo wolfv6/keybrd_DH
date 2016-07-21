@@ -4,7 +4,7 @@
 #include <inttypes.h>
 #include <Code_MouseSpeed.h>
 
-/* Class Code_Mouse_Slow 
+/* Class Code_Mouse_Slow
 Mouse movement keys on DataHand right index finger are slow.
 
 x and y are for initial pointer movement, usually 1 or -1 for one coordinate, and 0 for the other.

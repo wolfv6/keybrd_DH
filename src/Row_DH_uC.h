@@ -17,9 +17,9 @@ class Row_DH_uC : public Row_DH
         const uint8_t readPinCount;           //number of read pins
     public:
         Row_DH_uC(const uint8_t strobePin, const uint8_t readPins[], const uint8_t readPinCount,
-                Key *const ptrsKeys[])
+                  Key *const ptrsKeys[])
             : Row_DH(ptrsKeys), scanner(strobePin, readPins, readPinCount),
-            readPinCount(readPinCount) { }
+              readPinCount(readPinCount) { }
         void process();
 };
 #endif

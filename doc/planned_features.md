@@ -2,7 +2,7 @@ PLANNED FEATURES is a view of where the keybrd_DH project is headed.
 
 Top priority
 ============
-Someone with DataHand keyboard Beta Test keybrd_DH firmware.
+Waiting for DodoHand hardware to Beta test the keybrd_DH firmware.
 
 Med priority
 =============

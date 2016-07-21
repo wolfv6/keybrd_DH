@@ -22,11 +22,11 @@ class LayerState_DH : public LayerState
         virtual void setActiveLayer(const uint8_t layer);
     public:
         LayerState_DH(
-                const uint8_t TEN_KEY_ON,
-                IndicatorLEDs& refIndicatorLEDs)
+            const uint8_t TEN_KEY_ON,
+            IndicatorLEDs& refIndicatorLEDs)
             : TEN_KEY_ON(TEN_KEY_ON),
-                refIndicatorLEDs(refIndicatorLEDs),
-                lazyNumLock(NUMLOCK_OFF) {}
+              refIndicatorLEDs(refIndicatorLEDs),
+              lazyNumLock(NUMLOCK_OFF) {}
         void getLayerStates(uint8_t& refActiveLayer, bool& refActiveMFSubLayer, bool& refLazyNumLock);
 
         // ============= NumLock ===============

@@ -23,12 +23,12 @@ class IndicatorLEDs
         enum LED_ROLES_R { LED_NAS, LED_NORMAL, LED_MF, LED_TEN_KEY_ON };
         LayerState_DH* ptrLayerState_DH;
         LED*const *const ptrsLEDs_L;            //pointer to left-indicator LEDs pointer array
-                                                // ordered by appearance on keyboard
+        // ordered by appearance on keyboard
         const uint8_t TEN_KEY_OFF;              //layer id
         const uint8_t TEN_KEY_ON;               //layer id
         const uint8_t MF;                       //layer id
         LED* ptrsLayerLEDs[LED_COUNT_PER_ARRAY];//pointer to right-indicator LEDs pointer array
-                                                    //ordered by layer id
+        //ordered by layer id
         // ============ blinker ================
         LED*const * ptrsBlinkingLEDs;           //array of pointers to blinking indicator LEDs
         static LayerState_DH& refLayerState_DH;
@@ -38,8 +38,8 @@ class IndicatorLEDs
         uint16_t scansSinceFirstBlink;          //magic number 0 means not blinking
     public:
         IndicatorLEDs(LED*const ptrsLEDs_L[], LED*const ptrsLEDs_R[],
-                const uint8_t TEN_KEY_OFF, const uint8_t TEN_KEY_ON, const uint8_t MF)
-              : ptrsLEDs_L(ptrsLEDs_L),
+                      const uint8_t TEN_KEY_OFF, const uint8_t TEN_KEY_ON, const uint8_t MF)
+            : ptrsLEDs_L(ptrsLEDs_L),
               TEN_KEY_OFF(TEN_KEY_OFF), TEN_KEY_ON(TEN_KEY_ON), MF(MF)
         {
             //map layer ids to LED roles.  ptrsLayerLEDs is used to turn LED on or off by layer id.

@@ -19,9 +19,9 @@ class Row_DH_IOE : public Row_DH
         const uint8_t readPinCount;           //number of read pins
     public:
         Row_DH_IOE(PortWrite& refPortWrite, const uint8_t strobePin,
-             PortRead& refPortRead, const uint8_t readPinCount, Key *const ptrsKeys[])
+                   PortRead& refPortRead, const uint8_t readPinCount, Key *const ptrsKeys[])
             : Row_DH(ptrsKeys), scanner(refPortWrite, strobePin, refPortRead),
-            readPinCount(readPinCount) { }
+              readPinCount(readPinCount) { }
         void process();
 };
 #endif

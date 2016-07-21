@@ -1,5 +1,5 @@
-#ifndef STATESTICKYMOUSEBUTTONS_H 
-#define STATESTICKYMOUSEBUTTONS_H 
+#ifndef STATESTICKYMOUSEBUTTONS_H
+#define STATESTICKYMOUSEBUTTONS_H
 #include <Arduino.h>
 #include <inttypes.h>
 #include <Code_LayerLockMF_Protector.h>
@@ -18,7 +18,7 @@ class StateStickyMouseButtons
         Code_LayerLockMF_Protector& refProtector;
         uint16_t stuckButton; //scancode of currently stuck Code_StickyMouseButton, 0 if not stuck
         bool isUnstickKey; //binary semaphore, true if key that was pressed unsticks mouse buttons
-                          //cleared by keys that do not unstick mouse buttons e.g. Code_Mouse_Quick
+        //cleared by keys that do not unstick mouse buttons e.g. Code_Mouse_Quick
     public:
         StateStickyMouseButtons(Code_LayerLockMF_Protector& refProtector)
             : refProtector(refProtector), stuckButton(0) {}

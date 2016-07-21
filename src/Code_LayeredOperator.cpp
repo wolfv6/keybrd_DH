@@ -16,6 +16,6 @@ void Code_LayeredOperator::press()
     {
         refLayerState_DH.updateNumLock(LayerState_DH::NUMLOCK_OFF);
     }
-    
+
     pressCode();
 }

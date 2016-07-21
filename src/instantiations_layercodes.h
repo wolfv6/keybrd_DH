@@ -69,10 +69,10 @@ Code_LayerState_Toggle t_LRModf(indicatorLEDs, ptrsLEDs_L, ptrsLEDs_R);
 Code_LayeredDoublePressToggle t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
 Code_LayeredDoublePressToggle t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
 Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refLayerState = t_LRModf;
-    //To remove Code_LayeredDoublePressToggle feature,
-    //remove refCtrl and refAlt from Row_DH and use Code_LayeredScSc instead:
-    //Code_LayeredScSc t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
-    //Code_LayeredScSc t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
+//To remove Code_LayeredDoublePressToggle feature,
+//remove refCtrl and refAlt from Row_DH and use Code_LayeredScSc instead:
+//Code_LayeredScSc t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
+//Code_LayeredScSc t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
 
 Code_LayeredNav lr_insert(KEY_INSERT, KEYPAD_0);
 Code_LayeredNav lr_delete(KEY_DELETE, KEYPAD_PERIOD);
@@ -91,7 +91,8 @@ Code_LayerState_Toggle& Code_LayeredOperator::refStateLRModf = t_LRModf;
 const uint8_t Code_LayeredOperator::TEN_KEY_ON = TEN_KEY_ON;
 
 Code_LayeredScSc lr_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //thumb shift
-Code_LayeredScSc rl_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //finger shift acts opposite
+Code_LayeredScSc rl_shift(MODIFIERKEY_LEFT_SHIFT,
+                          MODIFIERKEY_RIGHT_SHIFT); //finger shift acts opposite
 LayerStateInterface& Code_LayeredScSc::refLayerState = t_LRModf;
 
 // ------------- NUMBER CODES ------------------

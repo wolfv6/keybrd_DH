@@ -13,7 +13,7 @@ class Code_Protected : public Code
     private:
         Code &refCode;                          //code to be protected
         bool protectorWasPressed;               //true if the protoctor was already pressed
-                                                // when the protected code was pressed
+        // when the protected code was pressed
     public:
         Code_Protected(Code &refCode)
             : refCode(refCode), protectorWasPressed(false) {}

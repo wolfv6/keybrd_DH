@@ -8,7 +8,7 @@
 // ================= DEBUG =====================
 Debug debug;
 
-// ======= INSTANTIATION THE KEYBOARD ==========
+// ========= INSTANTIATE THE KEYBOARD ==========
 //layout table is in keybrd_DH_library_developer_guide.md
 #include "config.h"
 #include <instantiations_pins.h>
