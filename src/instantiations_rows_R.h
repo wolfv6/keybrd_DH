@@ -119,10 +119,10 @@ Row_DH_IOE row_R2(portWrite1_R, 1<<2, portRead0_R, readPinCount, ptrsKeys_R2);
 
 //row_R3 South
 Key* const ptrsKeys_R3[] = { &k_R32, &k_R33, &k_R34, &k_R35 };
-Row_DH_IOE row_R3(portWrite1_R, 1<<3, portRead0_R, readPinCount_SHORT, ptrsKeys_R3);
+Row_DH_IOE row_R3(portWrite1_R, 1<<3, portRead0_R, readPinCountShort, ptrsKeys_R3);
 
 //row_R4 East
 Key* const ptrsKeys_R4[] = { &k_R42, &k_R43, &s_KPEnter, &k_R45 }; //s_KPEnter 101-keyboard mode
-Row_DH_IOE row_R4(portWrite1_R, 1<<4, portRead0_R, readPinCount_SHORT, ptrsKeys_R4);
+Row_DH_IOE row_R4(portWrite1_R, 1<<4, portRead0_R, readPinCountShort, ptrsKeys_R4);
 
 #endif

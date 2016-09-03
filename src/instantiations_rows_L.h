@@ -118,10 +118,10 @@ Row_DH_uC row_L2(19, readPins_L, readPinCount, ptrsKeys_L2);
 
 //row_L3 South
 Key* const ptrsKeys_L3[] = { &k_L30, &k_L31, &k_L32, &k_L33 };
-Row_DH_uC row_L3(18, readPins_L_short, readPinCount_SHORT, ptrsKeys_L3);
+Row_DH_uC row_L3(18, readPins_L_short, readPinCountShort, ptrsKeys_L3);
 
 //row_L4 West
 Key* const ptrsKeys_L4[] = { &lr_delete, &s_esc, &k_L42, &k_L43 };
-Row_DH_uC row_L4(17, readPins_L_short, readPinCount_SHORT, ptrsKeys_L4);
+Row_DH_uC row_L4(17, readPins_L_short, readPinCountShort, ptrsKeys_L4);
 
 #endif
