@@ -1,64 +1,9 @@
 keybrd_DH Library Developer's Guide
 ===================================
-The keybrd_DH library is an extension of the [keybrd library](https://github.com/wolfv6/keybrd) for emulating the DataHand keyboard.
-
 The keybrd_DH firmware is reverse engineered from the DataHand Professional II Users Guide version 1.7.8, October 2003.
 
-## DH QWERTY layout
-101-keyboard mode (ENTER key on right ring finger sends KEYPAD_ENTER, there is no "Windows" key)
-on breadboard, finger keys are on the outer 4 columns
-
-```
-            LEFT                                        RIGHT
- NORMAL
-    NORTH   q      w      e      r              NORTH   u      i      o      p
-    EAST    [{     b      t      g              WEST    h      y      n      ]}
-    CENTER  a      s      d      f              CENTER  j      k      l      ;:
-    SOUTH   z      x      c      v              SOUTH   m      ,      .      /?
-    WEST    Del    Esc    `      "              EAST    '      :      Ent    \|
-
- NAS TEN_KEY_OFF                    NASLck proected: 10KeyOff, 10KeyOn, NumLck
-    NORTH   !      @      #      $              NORTH   &      *      (      )
-    EAST    ~      NumLck >      5              WEST    6      ^      ;      10KeyOff
-    CENTER  1      2      3      4              CENTER  7      8      9      0
-    SOUTH   =      00     %      -              SOUTH   +      ,      .      ?
-    WEST    Del    Esc    <      /              EAST    _      :      Ent    10KeyOn
-
- NAS TEN_KEY_ON
-    NORTH   !      @      #      Up             NORTH   7      8      9      *
-    EAST    ~      null   >      Right          WEST    0      +      =      10KeyOff
-    CENTER  ,      $      &      Home           CENTER  4      5      6      .
-    SOUTH   (      )      %      Down           SOUTH   1      2      3      /
-    WEST    Del    Esc    <      Left           EAST    00     -      Ent    10KeyOn
-
-                                    MF protected: ArrowOn, MouseOn, F1-F12, NumLck, L/RModf, Print
- MF MOUSE_ON                     QUICK                  SLOW
-    NORTH   F2     F4     F6     Up             NORTH   Up     F8     F10    PgUp
-    EAST    ScrLck NumLck Ent    Right          WEST    Left   End    Ins    F11
-    CENTER  L/RModf MB3  MouseOn MB1            CENTER  MB2    ArrowOn Print Pause
-    SOUTH   F1     F3     F5     Down           SOUTH   Down   F7     F9     PgDn
-    WEST    Del    Esc    =      Left           EAST    Right  Shift  Ent    F12
-
- MF ARROW_ON
-    NORTH                        Up             NORTH   Up
-    EAST                         Right          WEST    Left
-    CENTER                       Home           CENTER  Home
-    SOUTH                        Down           SOUTH   Down
-    WEST                         Left           EAST    Right
-
-on breadboard, thumb keys are inner 2 columns on first 3 rows
-            LEFT                                        RIGHT
-    NORTH   Tab    CapLck                       NORTH   NASLck BkSp
-    EAST    Ctrl   Ent                          WEST    Sp     Alt
-    CENTER  Shift  Normal                       CENTER  MF     NAS
-
-PCB thumb keys
-            LEFT                                        RIGHT
-    TOP     Ent    Shift  Tab                   TOP     BkSp   NAS    Sp
-    BOT     Normal CapLck Ctrl                  BOT     Alt    NASLck MF
-```
-
-## The keybrd_DH layer scheme
+The keybrd_DH layer scheme
+--------------------------
 **Key_Layer** objects are used to select an active layer.
 When a Code_Layer object is pressed, it tells layerState_DH to update the active layer.
 Key_Layer objects are:
@@ -104,7 +49,8 @@ Layer objects and LayerState objects are instantiated in instantiations_codes.h
 Layered objects with 2 sublayers are also instantiated in instantiations_codes.h
 Key_LayeredKeysArray objects are instantiated in instantiations_rows.h
 
-## Object naming conventions
+Object naming conventions
+-------------------------
 Object names are based on descriptions in DataHand User's Guide, except for "modes" which are called "layers" in the keybrd library.
 
 CODE PREFIXES
@@ -135,7 +81,8 @@ where
 
 and numbers are LED position on DataHand unit followed by LED color.
 
-## Class inheritance diagrams
+Class inheritance diagrams
+--------------------------
 The classes are found in two libraries:
 
     keybrd/src/
@@ -203,7 +150,8 @@ Class inheritance diagrams of DH LayerState, Layer, and Layered classes
 
 ```
 
-## Dependency diagrams
+Dependency diagrams
+-------------------
 Objects are expressed in two or more lines:
 
     class name on top
@@ -323,7 +271,8 @@ Protected dependencies
 	                              mouseButtons
 ```
 
-## LRModf-numLock scancode table
+LRModf-numLock scancode table
+-----------------------------
 This table was used to figure out how LRModf and numLock determine what scancodes get sent.
 tests are in:
 
@@ -387,3 +336,4 @@ This could happen when simultaneously pressing multiple Code_LayeredNumber
 
 <br>
 <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">keybrd tutorial</span> by <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd" property="cc:attributionName" rel="cc:attributionURL">Wolfram Volpi</a> is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd/issues/new" rel="cc:morePermissions">https://github.com/wolfv6/keybrd/issues/new</a>.
+
