@@ -4,8 +4,8 @@
 #include <Row_DH.h>
 #include <Scanner_Port.h>
 #include <Debouncer_Samples.h>
-class PortWrite;
-class PortRead;
+class PortWriteInterface;
+class PortReadInterface;
 
 /* Row_DH_IOE is a row connected to an Input/Output Expander.
 Configuration and Instantiation instructions are in keybrd/src/Row_IOE.h
@@ -18,8 +18,8 @@ class Row_DH_IOE : public Row_DH
         //Debouncer_Not debouncer;
         const uint8_t readPinCount;           //number of read pins
     public:
-        Row_DH_IOE(PortWrite& refPortWrite, const uint8_t strobePin,
-                   PortRead& refPortRead, const uint8_t readPinCount, Key *const ptrsKeys[])
+        Row_DH_IOE(PortWriteInterface& refPortWrite, const uint8_t strobePin,
+              PortReadInterface& refPortRead, const uint8_t readPinCount, Key *const ptrsKeys[])
             : Row_DH(ptrsKeys), scanner(refPortWrite, strobePin, refPortRead),
               readPinCount(readPinCount) { }
         void process();
