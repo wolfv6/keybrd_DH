@@ -20,12 +20,12 @@ Debug debug;
 // ================== MAIN =====================
 void setup()
 {
+    Keyboard.begin();
+    Mouse.begin();
     Wire.begin();                               //Wire.begin() must be called before port begin()
     portWrite1_R.begin();
     portRead0_R.begin();
     indicatorLEDs.begin(&layerState_DH);
-    Keyboard.begin();
-    Mouse.begin();
 
     delay(1000);                                //time for OS to detect USB before printing
     Keyboard.println(F("keybrd_DH.ino"));

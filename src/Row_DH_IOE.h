@@ -16,7 +16,7 @@ class Row_DH_IOE : public Row_DH
         Scanner_Port scanner;
         Debouncer_Samples debouncer;
         //Debouncer_Not debouncer;
-        const uint8_t readPinCount;           //number of read pins
+        const uint8_t readPinCount;             //number of read pins
     public:
         Row_DH_IOE(PortWriteInterface& refPortWrite, const uint8_t strobePin,
               PortReadInterface& refPortRead, const uint8_t readPinCount, Key *const ptrsKeys[])
