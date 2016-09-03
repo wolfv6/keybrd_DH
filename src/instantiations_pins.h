@@ -30,7 +30,7 @@ LED * ptrsLEDs_L[] = { &LED_L1Yellow, &LED_L2Yellow, &LED_L3Yellow, &LED_L4Green
 #include <PortWrite_PCA9655E.h>
 #include <PortRead_PCA9655E.h>
 
-const uint8_t PortIOE::ADDR = 0x18;
+const uint8_t PortIOE::DEVICE_ADDR = 0x18;
 
 // ------------------ PORT 1 -------------------
 PortIOE port1_R(1, 0);
