@@ -49,14 +49,16 @@ code is in mainSketch.cpp so that Arduino IDE does not mangle directives
 #include <Code_Protected_ByNASLock.h>
 #include <Code_DoublePressProtected.h>
 
-//back end
+//left matrix
+#include <Scanner_uC.h>
+
+//right matrix
 #include <PortIOE.h>
-#include <PortRead_PCA9655E.h>
 #include <PortWrite_PCA9655E.h>
+#include <PortRead_PCA9655E.h>
+#include <Scanner_IOE.h>
 #include <LED_PCA9655E.h>
 
-#include <Wire.h>
-#include <Row_DH_uC.h>
+//main loop()
 #include <MouseMove.h>
-
 #include <Debug.h>

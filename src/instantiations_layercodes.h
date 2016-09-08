@@ -36,6 +36,7 @@ class LayerStateInterface;
 #include <Code_StickyMouseButton.h>
 #include <Code_Mouse_Slow.h>
 #include <Code_Mouse_Quick.h>
+#include <Row_DH.h>
 
 //protected
 #include <Code_Protected_ByMFLock.h>

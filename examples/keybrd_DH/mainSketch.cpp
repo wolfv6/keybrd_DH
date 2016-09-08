@@ -22,9 +22,7 @@ void setup()
 {
     Keyboard.begin();
     Mouse.begin();
-    Wire.begin();                               //Wire.begin() must be called before port begin()
-    portWrite1_R.begin();
-    portRead0_R.begin();
+    scanner_R.begin();
     indicatorLEDs.begin(&layerState_DH);
 
     delay(1000);                                //time for OS to detect USB before printing
