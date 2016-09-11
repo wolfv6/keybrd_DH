@@ -38,10 +38,10 @@ LED * ptrsLEDs_L[] = { &LED_L1Yellow, &LED_L2Yellow, &LED_L3Yellow, &LED_L4Green
 const uint8_t PortIOE::DEVICE_ADDR = 0x18;
 
 PortIOE port_R1(1, 0);
-PortWrite_PCA9655E portWrite_R1(port_R1);
+PortWrite_PCA9655E portWrite_R1(port_R1);       //for strobePins and LEDs
 
 PortIOE port_R0(0, 0);
-PortWrite_PCA9655E portWrite_R0(port_R0);
+PortWrite_PCA9655E portWrite_R0(port_R0);       //for LEDs
 PortRead_PCA9655E portRead_R0(port_R0, 1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<5);
 
 Scanner_IOE scanner_R(HIGH, portWrite_R1, portRead_R0);
