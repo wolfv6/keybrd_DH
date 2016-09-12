@@ -1,5 +1,5 @@
-#ifndef INSTANTIATIONS_PINS_H
-#define INSTANTIATIONS_PINS_H
+#ifndef INSTANTIATIONS_SCANNERSLEDS_H
+#define INSTANTIATIONS_SCANNERSLEDS_H
 
 /* This file instantiates uC pin, IOE port, and LED objects.
 column and pin numbers on schematic_switch_matrix.png and schematic_pca9655_pin_assignments.png
@@ -37,21 +37,21 @@ LED * ptrsLEDs_L[] = { &LED_L1Yellow, &LED_L2Yellow, &LED_L3Yellow, &LED_L4Green
 // ------------------ SCANNER ------------------
 const uint8_t PortIOE::DEVICE_ADDR = 0x18;
 
-PortIOE port_R1(1, 0);
-PortWrite_PCA9655E portWrite_R1(port_R1);       //for strobePins and LEDs
+PortIOE port_1(1);
+PortWrite_PCA9655E portWrite_1(port_1);         //for strobePins and LEDs
 
-PortIOE port_R0(0, 0);
-PortWrite_PCA9655E portWrite_R0(port_R0);       //for LEDs
-PortRead_PCA9655E portRead_R0(port_R0, 1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<5);
+PortIOE port_0(0);
+PortWrite_PCA9655E portWrite_0(port_0);         //for LEDs
+PortRead_PCA9655E portRead_0(port_0, 1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<5);
 
-Scanner_IOE scanner_R(HIGH, portWrite_R1, portRead_R0);
+Scanner_IOE scanner_R(HIGH, portWrite_1, portRead_0);
 
 // ------------------- LEDs --------------------
 //right LEDs in order of appearance
-LED_PCA9655E LED_R1Blue(portWrite_R1, 1<<5);    //LED_2     NAS (TEN_KEY_OFF or TEN_KEY_ON)
-LED_PCA9655E LED_R2Green(portWrite_R1, 1<<6);   //LED_D6_3  NORMAL
-LED_PCA9655E LED_R3Yellow(portWrite_R0, 1<<7);  //LED_1     MF
-LED_PCA9655E LED_R4Red(portWrite_R0, 1<<6);     //LED_0     TEN_KEY_ON
+LED_PCA9655E LED_R1Blue(portWrite_1, 1<<5);     //LED_2     NAS (TEN_KEY_OFF or TEN_KEY_ON)
+LED_PCA9655E LED_R2Green(portWrite_1, 1<<6);    //LED_D6_3  NORMAL
+LED_PCA9655E LED_R3Yellow(portWrite_0, 1<<7);   //LED_1     MF
+LED_PCA9655E LED_R4Red(portWrite_0, 1<<6);      //LED_0     TEN_KEY_ON
 LED * ptrsLEDs_R[] = { &LED_R1Blue, &LED_R2Green, &LED_R3Yellow, &LED_R4Red };
 
 #endif

@@ -21,8 +21,8 @@ class Row_DH : public Row
         virtual void keyWasPressed();
     public:
         Row_DH(ScannerInterface& refScanner, const uint8_t strobePin,
-                Key* const ptrsKeys[], const uint8_t readPinCount, const uint8_t rightShift)
-            : Row(refScanner, strobePin, ptrsKeys, readPinCount), rightShift(rightShift) {}
+                Key* const ptrsKeys[], const uint8_t keyCount, const uint8_t rightShift)
+            : Row(refScanner, strobePin, ptrsKeys, keyCount), rightShift(rightShift) {}
         virtual void process();
 };
 #endif

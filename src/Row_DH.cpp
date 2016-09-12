@@ -11,7 +11,7 @@ void Row_DH::process()
 
     readState = refScanner.scan(strobePin) >> rightShift;
     debouncedChanged = debouncer.debounce(readState, debounced);
-    send(readPinCount, debouncedChanged);
+    send(keyCount, debouncedChanged);
 }
 
 /* Sticky mouse buttons, Ctrl, and Alt keys are effected by other key presses.

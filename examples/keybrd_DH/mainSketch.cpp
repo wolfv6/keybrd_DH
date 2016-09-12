@@ -11,7 +11,7 @@ Debug debug;
 // ========= INSTANTIATE THE KEYBOARD ==========
 //layout table is in keybrd_DH_library_developer_guide.md
 #include "config.h"
-#include <instantiations_pins.h>
+#include <instantiations_scannersLEDs.h>
 #include <instantiations_scancodes.h>
 #include <instantiations_layercodes.h>
 #include <instantiations_rows_L.h>
