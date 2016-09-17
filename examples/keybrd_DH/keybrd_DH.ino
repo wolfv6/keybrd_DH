@@ -39,10 +39,10 @@ code is in mainSketch.cpp so that Arduino IDE does not mangle directives
 
 //Layered
 #include <Key_LayeredKeysArray.h>
-#include <Code_LayeredCodeSc.h>
-#include <Code_LayeredNumber.h>
-#include <Code_LayeredNumber_00.h>
-#include <Code_LayeredDoublePressToggle.h>
+#include <Key_LayeredCodeSc.h>
+#include <Key_LayeredNumber.h>
+#include <Key_LayeredNumber_00.h>
+#include <Key_LayeredDoublePressToggle.h>
 
 //protected
 #include <Code_Protected_ByMFLock.h>

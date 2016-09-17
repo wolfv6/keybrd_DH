@@ -1,6 +1,6 @@
-#include "Code_LayeredDoublePressToggle.h"
+#include "Key_LayeredDoublePressToggle.h"
 
-void Code_LayeredDoublePressToggle::press()
+void Key_LayeredDoublePressToggle::press()
 {
     bool layerState = refLayerState.getActiveLayer();
 
@@ -22,7 +22,7 @@ void Code_LayeredDoublePressToggle::press()
     pressScancode();
 }
 
-void Code_LayeredDoublePressToggle::prevent_toggle()
+void Key_LayeredDoublePressToggle::prevent_toggle()
 {
     if (isOther)
     {

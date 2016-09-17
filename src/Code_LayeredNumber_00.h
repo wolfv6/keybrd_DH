@@ -1,16 +1,16 @@
-#ifndef CODE_LAYEREDNUMBER_00_H
-#define CODE_LAYEREDNUMBER_00_H
+#ifndef KEY_LAYEREDNUMBER_00_H
+#define KEY_LAYEREDNUMBER_00_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include "Code_LayeredNumber.h"
+#include "Key_LayeredNumber.h"
 #include "LayerState_DH.h"
 
-/* Class Code_LayeredNumber_00 sends double zero ("00" as seen on old adding machines).
+/* Class Key_LayeredNumber_00 sends double zero ("00" as seen on old adding machines).
 */
-class Code_LayeredNumber_00 : public Code_LayeredNumber
+class Key_LayeredNumber_00 : public Key_LayeredNumber
 {
     public:
-        Code_LayeredNumber_00(): Code_LayeredNumber(KEY_0) { }
+        Key_LayeredNumber_00(): Key_LayeredNumber(KEY_0) { }
         virtual void press();
 };
 #endif

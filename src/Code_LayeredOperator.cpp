@@ -1,7 +1,7 @@
-#include "Code_LayeredOperator.h"
+#include "Key_LayeredOperator.h"
 
 //Update layer and numLock
-void Code_LayeredOperator::press()
+void Key_LayeredOperator::press()
 {
     if (refLayerState_DH.getActiveLayer() == TEN_KEY_ON)
     {

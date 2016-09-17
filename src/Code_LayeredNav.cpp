@@ -1,7 +1,7 @@
-#include "Code_LayeredNav.h"
+#include "Key_LayeredNav.h"
 
 //Update layer and numLock
-void Code_LayeredNav::press()
+void Key_LayeredNav::press()
 {
     layer = refStateLRModf.getActiveLayer(); //LRModf determines layer
 

@@ -20,10 +20,10 @@ Key_Layer objects are:
 The **layerState_DH** object keeps track of the active layer.
 LayerState_DH's activeLayer is always up to date.
 
-**Code_Layered** objects contain multiple elements, one element for each layer.
+**Key_Layered** objects contain multiple elements, one element for each layer.
 Layer ids are used like indexes to send the appropriate element.
-When a Code_Layered object is pressed, it gets the active layer from a LayerState object and then sends the appropriate element.
-Code_LayeredNav and Code_LayeredOperator objects consult two LayerState objects to determine which element to send.
+When a Key_Layered object is pressed, it gets the active layer from a LayerState object and then sends the appropriate element.
+Key_LayeredNav and Key_LayeredOperator objects consult two LayerState objects to determine which element to send.
 
 Key_LayeredKeysArray class has 4 primary layers:
 * NORMAL
@@ -36,12 +36,12 @@ Other Layered classes have 2 sublayers each:
 * 1
 
 The following Layered classes have 2 sublayers each:
-* Code_LayeredNumber
-* Code_LayeredCodeSc_MF
-* Code_LayeredScSc
-* Code_LayeredDoublePressToggle
-* Code_LayeredNav
-* Code_LayeredOperator
+* Key_LayeredNumber
+* Key_LayeredCodeSc_MF
+* Key_LayeredScSc
+* Key_LayeredDoublePressToggle
+* Key_LayeredNav
+* Key_LayeredOperator
 
 Thumb keys are one-layer Code objects.
 
@@ -118,17 +118,17 @@ Class inheritance diagrams of DH LayerState, Layer, and Layered classes
 	 |
 	 |___________
 	 |           \                                           Key_LayeredKeysArray*
-	 |   Code_LayeredScScBase*
+	 |   Key_LayeredScScBase*
 	 |             \________________________________
 	 |             /             \                  \
-	 |   Code_LayeredScSc*  Code_LayeredNav  Code_LayeredDoublePressToggle 
+	 |   Key_LayeredScSc*  Key_LayeredNav  Key_LayeredDoublePressToggle 
 	 |
 	 |_____________________________________________________
 	 |           \                                         \
-	 |   Code_LayeredCodeScBase*                      Code_LayeredNumber
+	 |   Key_LayeredCodeScBase*                      Key_LayeredNumber
 	 |             \__________________                      |
-	 |             /                  \               Code_LayeredNumber_00
-	 |   Code_LayeredCodeSc_MF*  Code_LayeredOperator
+	 |             /                  \               Key_LayeredNumber_00
+	 |   Key_LayeredCodeSc_MF*  Key_LayeredOperator
 	 |
 	 |________________________________________
 	 |                          \             \
@@ -193,13 +193,13 @@ Layered dependencies (Layered objects depend on LayerState objects to determine 
 	LayerState_DH     Code_LayerState_Toggle
 	layerState_DH     t_LRModf ___________________________
 	    |              /    \          \                  \
-	    |             /      \       Code_LayeredScSc   Code_LayeredDoublePressToggle
+	    |             /      \       Key_LayeredScSc   Key_LayeredDoublePressToggle
 	    |            /        \      lr_shift           t_ctrl
 	    |           /          \     rl_shift           t_alt
 	    |          /            \
 	    |_________/____________  \
 	    |    \   /             \  \
-	    |   Code_LayeredNav   Code_LayeredOperator
+	    |   Key_LayeredNav   Key_LayeredOperator
 	    |   lr_insert         lr_plus
 	    |   lr_delete         lr_asterix
 	    |   lr_pageUp         lr_minus
@@ -208,7 +208,7 @@ Layered dependencies (Layered objects depend on LayerState objects to determine 
 	    |
 	    |__________________________________________________
 	    |     \                     \                      \
-	    |   Code_LayeredNumber    Code_LayeredCodeSc_MF   IndicatorLEDs
+	    |   Key_LayeredNumber    Key_LayeredCodeSc_MF   IndicatorLEDs
 	    |   n_0 through n_9       mqA_right               indicatorLEDs
 	    |   n_00                  mqA_left                 |
 	    |                         mqA_down                LED
@@ -285,43 +285,43 @@ LRModf keys effected by numLock are followed by either numLockOn or numLockOff
 Code_LayerState_Toggle                          LayerState_DH
 LRModf left             LRModf right            isNumLocked false       isNumLocked true
 ALL LAYERS --------------------------------------------------------------------------------------
-Code_LayeredDoublePressToggle::press()
+Key_LayeredDoublePressToggle::press()
 MODIFIERKEY_LEFT_ALT    MODIFIERKEY_RIGHT_ALT
 MODIFIERKEY_LEFT_CTRL   MODIFIERKEY_RIGHT_CTRL
 MODIFIERKEY_LEFT_SHIFT  MODIFIERKEY_RIGHT_SHIFT
 
-Code_LayeredOperator::press() calls LayerState_DH::getOperatorLayer()
+Key_LayeredOperator::press() calls LayerState_DH::getOperatorLayer()
 KEY_DELETE              KEYPAD_PERIOD numLockOff
 
 NORMAL ------------------------------------------------------------------------------------------
-Code_LayeredOperator::press() calls LayerState_DH::getOperatorLayer()
+Key_LayeredOperator::press() calls LayerState_DH::getOperatorLayer()
 KEY_SLASH               KEYPAD_SLASH
 
 TEN_KEY_OFF -------------------------------------------------------------------------------------
-Code_LayeredOperator::press() calls LayerState_DH::getOperatorLayer()
+Key_LayeredOperator::press() calls LayerState_DH::getOperatorLayer()
 KEY_SLASH               KEYPAD_SLASH numLockOff
 KEY_MINUS               KEYPAD_MINUS numLockOff
 KEY_8+shift             KEYPAD_ASTERIX numLockOff
 KEY_EQUAL+shift         KEYPAD_PLUS numLockOff
 
 TEN_KEY_ON --------------------------------------------------------------------------------------
-                                                Code_LayeredOperator::press() calls LayerState_DH::getOperatorLayer()
+                                                Key_LayeredOperator::press() calls LayerState_DH::getOperatorLayer()
                                                 KEY_SLASH               KEYPAD_SLASH numLockOff
                                                 KEY_MINUS               KEYPAD_MINUS numLockOff
                                                 KEY_8+shift             KEYPAD_ASTERIX numLockOff
                                                 KEY_EQUAL+shift         KEYPAD_PLUS numLockOff
 
-                                                Code_LayeredNumber::press() calls LayerState_DH::getNumberLayer()
+                                                Key_LayeredNumber::press() calls LayerState_DH::getNumberLayer()
                                                 KEY_0..9                KEYPAD_0..9 numLockOn
 
 MF ----------------------------------------------------------------------------------------------
-Code_LayeredNav::press() calls LayerState_DH::getNavLayer()
+Key_LayeredNav::press() calls LayerState_DH::getNavLayer()
 KEY_INSERT              KEYPAD_0 numLockOff
 KEY_PAGE_UP             KEYPAD_9 numLockOff
 KEY_PAGE_DOWN           KEYPAD_6 numLockOff
 KEY_PAGE_END            KEYPAD_1 numLockOff
 
-                                                Code_LayeredCodeSc_MF::press() calls layerState_DH.getActiveMFSubLayer()
+                                                Key_LayeredCodeSc_MF::press() calls layerState_DH.getActiveMFSubLayer()
                                                 MF, arrowOn, left hand, arrows are keypad
                                                             KEYPAD_2 numLockOff
                                                             KEYPAD_4 numLockOff
@@ -332,7 +332,7 @@ KEY_PAGE_END            KEYPAD_1 numLockOff
 ```
 Use lazy synNumLock because if typing keypad numbers is faster than USB keyboard_leds,
  then numLock will not synchronize with isNumLocked
-This could happen when simultaneously pressing multiple Code_LayeredNumber
+This could happen when simultaneously pressing multiple Key_LayeredNumber
 
 <br>
 <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">keybrd tutorial</span> by <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd" property="cc:attributionName" rel="cc:attributionURL">Wolfram Volpi</a> is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="https://creativecommons.org/ns" href="https://github.com/wolfv6/keybrd/issues/new" rel="cc:morePermissions">https://github.com/wolfv6/keybrd/issues/new</a>.

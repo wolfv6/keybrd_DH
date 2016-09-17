@@ -5,7 +5,7 @@
 #include <Debouncer_Samples.h>
 #include <Debouncer_Not.h>
 #include <StateStickyMouseButtons.h>
-#include <Code_LayeredDoublePressToggle.h>
+#include <Key_LayeredDoublePressToggle.h>
 
 /* Row_DH is an abstract class.
 The left 2 keys in row_R3 and row_R4 are non-existent (right-matrix rows w/o thumb keys).
@@ -15,8 +15,8 @@ class Row_DH : public Row
 {
     private:
         static StateStickyMouseButtons& refMouseButtons;
-        static Code_LayeredDoublePressToggle& refCtrl;
-        static Code_LayeredDoublePressToggle& refAlt;
+        static Key_LayeredDoublePressToggle& refCtrl;
+        static Key_LayeredDoublePressToggle& refAlt;
         const uint8_t rightShift;
         virtual void keyWasPressed();
     public:

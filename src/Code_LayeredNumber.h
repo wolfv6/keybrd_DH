@@ -1,11 +1,11 @@
-#ifndef CODE_LAYEREDNUMBER_H
-#define CODE_LAYEREDNUMBER_H
+#ifndef KEY_LAYEREDNUMBER_H
+#define KEY_LAYEREDNUMBER_H
 #include <Arduino.h>
 #include <inttypes.h>
-#include <Code.h>
+#include <Key.h>
 #include "LayerState_DH.h"
 
-/* Class Code_LayeredNumber is a 2-layer code, one scancode for each Number sub-layer e.g.
+/* Class Key_LayeredNumber is a 2-layer key, one scancode for each Number sub-layer e.g.
     layer 0: KEY_1
     layer 1: KEYPAD_1
 When the key is pressed, the active layer is retrieved from LayerState_DH
@@ -15,10 +15,10 @@ Only the layer-0 scancode is stored (the layer-1 scancode is computed).
 
 Example instantiation:
     Code_S s_numLock(KEY_NUM_LOCK);
-    Code_LayeredNumber n_1(KEY_1);
-    LayerState_DH& Code_LayeredNumber::refLayerState_DH = layerState_DH;
+    Key_LayeredNumber n_1(KEY_1);
+    LayerState_DH& Key_LayeredNumber::refLayerState_DH = layerState_DH;
 */
-class Code_LayeredNumber : public Code
+class Key_LayeredNumber : public Key
 {
     private:
         static LayerState_DH& refLayerState_DH;
@@ -27,7 +27,7 @@ class Code_LayeredNumber : public Code
     protected:
         uint16_t scancodeNum;
     public:
-        Code_LayeredNumber(const uint16_t scancode): scancode(scancode), numberLayer(0) { }
+        Key_LayeredNumber(const uint16_t scancode): scancode(scancode), numberLayer(0) { }
         virtual void press();
         virtual void release();
         void setScancodeNum();

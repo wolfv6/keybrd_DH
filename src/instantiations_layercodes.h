@@ -23,13 +23,13 @@ class LayerStateInterface;
 
 //Layered
 #include <Key_LayeredKeysArray.h>
-#include <Code_LayeredCodeSc_MF.h>
-#include <Code_LayeredNumber.h>
-#include <Code_LayeredNumber_00.h>
-#include <Code_LayeredNav.h>
-#include <Code_LayeredOperator.h>
-#include <Code_LayeredDoublePressToggle.h>
-#include <Code_LayeredScSc.h>
+#include <Key_LayeredCodeSc_MF.h>
+#include <Key_LayeredNumber.h>
+#include <Key_LayeredNumber_00.h>
+#include <Key_LayeredNav.h>
+#include <Key_LayeredOperator.h>
+#include <Key_LayeredDoublePressToggle.h>
+#include <Key_LayeredScSc.h>
 
 //Mouse
 #include <StateStickyMouseButtons.h>
@@ -67,52 +67,52 @@ LayerStateInterface& Key_LayeredKeysArray::refLayerState = layerState_DH;
 // ----------------- L-R CODES -----------------
 Code_LayerState_Toggle t_LRModf(indicatorLEDs, ptrsLEDs_L, ptrsLEDs_R);
 
-Code_LayeredDoublePressToggle t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
-Code_LayeredDoublePressToggle t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
-Code_LayerState_Toggle& Code_LayeredDoublePressToggle::refLayerState = t_LRModf;
-//To remove Code_LayeredDoublePressToggle feature,
-//remove refCtrl and refAlt from Row_DH and use Code_LayeredScSc instead:
-//Code_LayeredScSc t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
-//Code_LayeredScSc t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
+Key_LayeredDoublePressToggle t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
+Key_LayeredDoublePressToggle t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
+Code_LayerState_Toggle& Key_LayeredDoublePressToggle::refLayerState = t_LRModf;
+//To remove Key_LayeredDoublePressToggle feature,
+//remove refCtrl and refAlt from Row_DH and use Key_LayeredScSc instead:
+//Key_LayeredScSc t_ctrl(MODIFIERKEY_LEFT_CTRL, MODIFIERKEY_RIGHT_CTRL);
+//Key_LayeredScSc t_alt(MODIFIERKEY_LEFT_ALT, MODIFIERKEY_RIGHT_ALT);
 
-Code_LayeredNav lr_insert(KEY_INSERT, KEYPAD_0);
-Code_LayeredNav lr_delete(KEY_DELETE, KEYPAD_PERIOD);
-Code_LayeredNav lr_pageUp(KEY_PAGE_UP, KEYPAD_9);
-Code_LayeredNav lr_pageDown(KEY_PAGE_DOWN, KEYPAD_3);
-Code_LayeredNav lr_end(KEY_END, KEYPAD_1);
-LayerState_DH& Code_LayeredNav::refLayerState_DH = layerState_DH;
-Code_LayerState_Toggle& Code_LayeredNav::refStateLRModf = t_LRModf;
+Key_LayeredNav lr_insert(KEY_INSERT, KEYPAD_0);
+Key_LayeredNav lr_delete(KEY_DELETE, KEYPAD_PERIOD);
+Key_LayeredNav lr_pageUp(KEY_PAGE_UP, KEYPAD_9);
+Key_LayeredNav lr_pageDown(KEY_PAGE_DOWN, KEYPAD_3);
+Key_LayeredNav lr_end(KEY_END, KEYPAD_1);
+LayerState_DH& Key_LayeredNav::refLayerState_DH = layerState_DH;
+Code_LayerState_Toggle& Key_LayeredNav::refStateLRModf = t_LRModf;
 
-Code_LayeredOperator lr_plus(s_plus, KEYPAD_PLUS);
-Code_LayeredOperator lr_asterix(s_asterix, KEYPAD_ASTERIX);
-Code_LayeredOperator lr_minus(s_minus, KEYPAD_MINUS);
-Code_LayeredOperator lr_slash(s_slash, KEYPAD_SLASH);  //also Normal layer
-LayerState_DH& Code_LayeredOperator::refLayerState_DH = layerState_DH;
-Code_LayerState_Toggle& Code_LayeredOperator::refStateLRModf = t_LRModf;
-const uint8_t Code_LayeredOperator::TEN_KEY_ON = TEN_KEY_ON;
+Key_LayeredOperator lr_plus(s_plus, KEYPAD_PLUS);
+Key_LayeredOperator lr_asterix(s_asterix, KEYPAD_ASTERIX);
+Key_LayeredOperator lr_minus(s_minus, KEYPAD_MINUS);
+Key_LayeredOperator lr_slash(s_slash, KEYPAD_SLASH);  //also Normal layer
+LayerState_DH& Key_LayeredOperator::refLayerState_DH = layerState_DH;
+Code_LayerState_Toggle& Key_LayeredOperator::refStateLRModf = t_LRModf;
+const uint8_t Key_LayeredOperator::TEN_KEY_ON = TEN_KEY_ON;
 
-Code_LayeredScSc lr_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //thumb shift
-Code_LayeredScSc rl_shift(MODIFIERKEY_LEFT_SHIFT,
+Key_LayeredScSc lr_shift(MODIFIERKEY_LEFT_SHIFT, MODIFIERKEY_RIGHT_SHIFT); //thumb shift
+Key_LayeredScSc rl_shift(MODIFIERKEY_LEFT_SHIFT,
                           MODIFIERKEY_RIGHT_SHIFT); //finger shift acts opposite
-LayerStateInterface& Code_LayeredScSc::refLayerState = t_LRModf;
+LayerStateInterface& Key_LayeredScSc::refLayerState = t_LRModf;
 
 // ------------- NUMBER CODES ------------------
 Code_NumLock t_numLock(layerState_DH);
 
 //n_0 through n_9 are used in TEN_KEY_OFF and TEN_KEY_ON
-Code_LayeredNumber n_0(KEY_0);
-Code_LayeredNumber n_1(KEY_1);
-Code_LayeredNumber n_2(KEY_2);
-Code_LayeredNumber n_3(KEY_3);
-Code_LayeredNumber n_4(KEY_4);
-Code_LayeredNumber n_5(KEY_5);
-Code_LayeredNumber n_6(KEY_6);
-Code_LayeredNumber n_7(KEY_7);
-Code_LayeredNumber n_8(KEY_8);
-Code_LayeredNumber n_9(KEY_9);
-Code_LayeredNumber_00 n_00;
+Key_LayeredNumber n_0(KEY_0);
+Key_LayeredNumber n_1(KEY_1);
+Key_LayeredNumber n_2(KEY_2);
+Key_LayeredNumber n_3(KEY_3);
+Key_LayeredNumber n_4(KEY_4);
+Key_LayeredNumber n_5(KEY_5);
+Key_LayeredNumber n_6(KEY_6);
+Key_LayeredNumber n_7(KEY_7);
+Key_LayeredNumber n_8(KEY_8);
+Key_LayeredNumber n_9(KEY_9);
+Key_LayeredNumber_00 n_00;
 
-LayerState_DH& Code_LayeredNumber::refLayerState_DH = layerState_DH;
+LayerState_DH& Key_LayeredNumber::refLayerState_DH = layerState_DH;
 
 // -------------- MOUSE CODES ------------------
 Code_Mouse_Quick mq_right(1<<1);
@@ -135,20 +135,20 @@ StateStickyMouseButtons& Code_MouseSpeed::refMouseButtons = mouseButtons;
 StateStickyMouseButtons& Row_DH::refMouseButtons = mouseButtons;
 
 // ----------- MOUSE-ARROW CODES ---------------
-Code_LayeredCodeSc_MF mqA_right(mq_right, KEYPAD_6); //mouse quick, Arrow
-Code_LayeredCodeSc_MF mqA_left(mq_left, KEYPAD_4);
-Code_LayeredCodeSc_MF mqA_down(mq_down, KEYPAD_2);
-Code_LayeredCodeSc_MF mqA_up(mq_up, KEYPAD_8);
-Code_LayeredCodeSc_MF mb1Home(mb_1, KEY_HOME); //mouse-button 1, Home
+Key_LayeredCodeSc_MF mqA_right(mq_right, KEYPAD_6); //mouse quick, Arrow
+Key_LayeredCodeSc_MF mqA_left(mq_left, KEYPAD_4);
+Key_LayeredCodeSc_MF mqA_down(mq_down, KEYPAD_2);
+Key_LayeredCodeSc_MF mqA_up(mq_up, KEYPAD_8);
+Key_LayeredCodeSc_MF mb1Home(mb_1, KEY_HOME); //mouse-button 1, Home
 
-Code_LayeredCodeSc_MF msA_right(ms_right, KEY_RIGHT); //mouse slow, Arrow
-Code_LayeredCodeSc_MF msA_left(ms_left, KEY_LEFT);
-Code_LayeredCodeSc_MF msA_down(ms_down, KEY_DOWN);
-Code_LayeredCodeSc_MF msA_up(ms_up, KEY_UP);
-Code_LayeredCodeSc_MF mb2Home(mb_2, KEY_HOME); //mouse-button 2, Home
+Key_LayeredCodeSc_MF msA_right(ms_right, KEY_RIGHT); //mouse slow, Arrow
+Key_LayeredCodeSc_MF msA_left(ms_left, KEY_LEFT);
+Key_LayeredCodeSc_MF msA_down(ms_down, KEY_DOWN);
+Key_LayeredCodeSc_MF msA_up(ms_up, KEY_UP);
+Key_LayeredCodeSc_MF mb2Home(mb_2, KEY_HOME); //mouse-button 2, Home
 
 //define static variable
-LayerState_DH& Code_LayeredCodeSc_MF::refLayerState_DH = layerState_DH;
+LayerState_DH& Key_LayeredCodeSc_MF::refLayerState_DH = layerState_DH;
 
 // ------------ PROTECTED CODES ----------------
 Code_Protected_ByMFLock p_mouseOn(l_mouseOn);

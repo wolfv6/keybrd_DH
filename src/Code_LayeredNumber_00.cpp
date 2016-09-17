@@ -1,6 +1,6 @@
-#include "Code_LayeredNumber_00.h"
+#include "Key_LayeredNumber_00.h"
 
-void Code_LayeredNumber_00::press()
+void Key_LayeredNumber_00::press()
 {
     setScancodeNum();
     Keyboard.press(scancodeNum);
