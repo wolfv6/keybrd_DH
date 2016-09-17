@@ -33,13 +33,13 @@ class Code_MouseSpeed : public Code
         static const uint8_t HIGH_SPEED;
     protected:
         static uint8_t speedByte;
-        /* speedByte is bitwise, set by Code_Mouse_Slow and Code_Mouse_Quick
+        /* speedByte is a bit pattern, set by Code_Mouse_Slow and Code_Mouse_Quick
            speedByte represents 8 directions-speeds in this order:
                 +xSlow, +xQuick,        right
                 -xSlow, -xQuick,        left
                 +ySlow, +yQuick,        down
                 -ySlow, -yQuick         up            */
-        const uint8_t speedBit;          //bitwise, one bit of speedbyte
+        const uint8_t speedBit;          //bit pattern, one bit of speedbyte
         static uint8_t sinceSlowPressed; //number of mouseMove() runs since Code_Mouse_Speed press
         static int8_t mouseDistance(uint8_t speedBits);
         static uint8_t magnitude(uint8_t speedBits);
