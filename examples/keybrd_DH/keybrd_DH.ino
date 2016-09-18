@@ -38,7 +38,7 @@ code is in mainSketch.cpp so that Arduino IDE does not mangle directives
 #include <Code_LayerState_Toggle.h>
 
 //Layered
-#include <Key_LayeredKeysArray.h>
+#include <Key_LayeredKeys.h>
 #include <Key_LayeredCodeSc.h>
 #include <Key_LayeredNumber.h>
 #include <Key_LayeredNumber_00.h>

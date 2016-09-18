@@ -5,7 +5,7 @@
 */
 
 #include <Row_DH.h>
-#include <Key_LayeredKeysArray.h>
+#include <Key_LayeredKeys.h>
 
 /* ================ COORDINATES ================
 Key names identify the key's position by coordinates
@@ -41,65 +41,65 @@ Key_LayeredDoublePressToggle& Row_DH::refAlt = t_alt;
 //Layers:                   {normal,      10KeyOff,       10KeyOn,        mouseOn   };
 //row_R0 North keys
 Key* const ptrsCodes_R02[]= {&s_u,        &s_ampersand,   &n_7,           &msA_up    };
-Key_LayeredKeysArray k_R02(ptrsCodes_R02);
+Key_LayeredKeys k_R02(ptrsCodes_R02);
 
 Key* const ptrsCodes_R03[]= {&s_i,        &lr_asterix,    &n_8,           &p_F8     };
-Key_LayeredKeysArray k_R03(ptrsCodes_R03);
+Key_LayeredKeys k_R03(ptrsCodes_R03);
 
 Key* const ptrsCodes_R04[]= {&s_o,        &s_leftParen,   &n_9,           &p_F10    };
-Key_LayeredKeysArray k_R04(ptrsCodes_R04);
+Key_LayeredKeys k_R04(ptrsCodes_R04);
 
 Key* const ptrsCodes_R05[]= {&s_p,        &s_rightParen,  &lr_asterix,    &lr_pageUp };
-Key_LayeredKeysArray k_R05(ptrsCodes_R05);
+Key_LayeredKeys k_R05(ptrsCodes_R05);
 
 //row_R1 West keys
 Key* const ptrsCodes_R12[]= {&s_h,        &n_6,           &n_0,           &msA_left  };
-Key_LayeredKeysArray k_R12(ptrsCodes_R12);
+Key_LayeredKeys k_R12(ptrsCodes_R12);
 
 Key* const ptrsCodes_R13[]= {&s_y,        &s_circumflex,  &lr_plus,        &lr_end    };
-Key_LayeredKeysArray k_R13(ptrsCodes_R13);
+Key_LayeredKeys k_R13(ptrsCodes_R13);
 
 Key* const ptrsCodes_R14[]= {&s_n,        &s_semicolon,   &s_equal,       &lr_insert };
-Key_LayeredKeysArray k_R14(ptrsCodes_R14);
+Key_LayeredKeys k_R14(ptrsCodes_R14);
 
 Key* const ptrsCodes_R15[]= {&s_rightBracket, &p_tenKeyOff, &p_tenKeyOff, &p_F11    };
-Key_LayeredKeysArray k_R15(ptrsCodes_R15);
+Key_LayeredKeys k_R15(ptrsCodes_R15);
 
 //row_R2 Center keys
 Key* const ptrsCodes_R22[]= {&s_j,        &n_7,           &n_4,           &mb2Home      };
-Key_LayeredKeysArray k_R22(ptrsCodes_R22);
+Key_LayeredKeys k_R22(ptrsCodes_R22);
 
 Key* const ptrsCodes_R23[]= {&s_k,        &n_8,           &n_5,           &p_arrowOn};
-Key_LayeredKeysArray k_R23(ptrsCodes_R23);
+Key_LayeredKeys k_R23(ptrsCodes_R23);
 
 Key* const ptrsCodes_R24[]= {&s_l,        &n_9,           &n_6,        &d_printscreen};
-Key_LayeredKeysArray k_R24(ptrsCodes_R24);
+Key_LayeredKeys k_R24(ptrsCodes_R24);
 
 Key* const ptrsCodes_R25[]= {&s_semicolon, &n_0,          &s_period,      &s_pause  };
-Key_LayeredKeysArray k_R25(ptrsCodes_R25);
+Key_LayeredKeys k_R25(ptrsCodes_R25);
 
 //row_R3 South keys
 Key* const ptrsCodes_R32[]= {&s_m,        &lr_plus,        &n_1,           &msA_down  };
-Key_LayeredKeysArray k_R32(ptrsCodes_R32);
+Key_LayeredKeys k_R32(ptrsCodes_R32);
 
 Key* const ptrsCodes_R33[]= {&s_comma,    &s_comma,       &n_2,           &p_F7     };
-Key_LayeredKeysArray k_R33(ptrsCodes_R33);
+Key_LayeredKeys k_R33(ptrsCodes_R33);
 
 Key* const ptrsCodes_R34[]= {&s_period,   &s_period,      &n_3,           &p_F9     };
-Key_LayeredKeysArray k_R34(ptrsCodes_R34);
+Key_LayeredKeys k_R34(ptrsCodes_R34);
 
 Key* const ptrsCodes_R35[]= {&lr_slash,    &s_question,    &lr_slash,       &lr_pageDown};
-Key_LayeredKeysArray k_R35(ptrsCodes_R35);
+Key_LayeredKeys k_R35(ptrsCodes_R35);
 
 //row_R4 East
 Key* const ptrsCodes_R42[]= {&s_quote,    &s_underscore,  &n_00,        &msA_right };
-Key_LayeredKeysArray k_R42(ptrsCodes_R42);
+Key_LayeredKeys k_R42(ptrsCodes_R42);
 
 Key* const ptrsCodes_R43[]= {&s_colon,    &s_colon,       &lr_minus,       &rl_shift  };
-Key_LayeredKeysArray k_R43(ptrsCodes_R43);
+Key_LayeredKeys k_R43(ptrsCodes_R43);
 
 Key* const ptrsCodes_R45[]= {&s_backslash, &p_tenKeyOn,   &p_tenKeyOn,    &p_F12    };
-Key_LayeredKeysArray k_R45(ptrsCodes_R45);
+Key_LayeredKeys k_R45(ptrsCodes_R45);
 
 // -------------- RIGHT ROWS -------------------
 //column number:  0       1       2       3       4       5

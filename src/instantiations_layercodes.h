@@ -22,7 +22,7 @@ class LayerStateInterface;
 #include <Code_LayerState_Toggle.h>
 
 //Layered
-#include <Key_LayeredKeysArray.h>
+#include <Key_LayeredKeys.h>
 #include <Key_LayeredCodeSc_MF.h>
 #include <Key_LayeredNumber.h>
 #include <Key_LayeredNumber_00.h>
@@ -62,7 +62,7 @@ Code_LayerLock l_tenKeyOn(TEN_KEY_ON, layerState_NAS);
 Code_LayerLock_MFSub l_mouseOn(0, layerState_DH);
 Code_LayerLock_MFSub l_arrowOn(1, layerState_DH);
 
-LayerStateInterface& Key_LayeredKeysArray::refLayerState = layerState_DH;
+LayerStateInterface& Key_LayeredKeys::refLayerState = layerState_DH;
 
 // ----------------- L-R CODES -----------------
 Code_LayerState_Toggle t_LRModf(indicatorLEDs, ptrsLEDs_L, ptrsLEDs_R);

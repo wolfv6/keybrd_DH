@@ -25,7 +25,7 @@ Layer ids are used like indexes to send the appropriate element.
 When a Key_Layered object is pressed, it gets the active layer from a LayerState object and then sends the appropriate element.
 Key_LayeredNav and Key_LayeredOperator objects consult two LayerState objects to determine which element to send.
 
-Key_LayeredKeysArray class has 4 primary layers:
+Key_LayeredKeys class has 4 primary layers:
 * NORMAL
 * TEN_KEY_OFF
 * TEN_KEY_ON (DataHand User's Guide describes this layer as a submode of NAS)
@@ -47,7 +47,7 @@ Thumb keys are one-layer Code objects.
 
 Layer objects and LayerState objects are instantiated in instantiations_codes.h
 Layered objects with 2 sublayers are also instantiated in instantiations_codes.h
-Key_LayeredKeysArray objects are instantiated in instantiations_rows.h
+Key_LayeredKeys objects are instantiated in instantiations_rows.h
 
 Object naming conventions
 -------------------------
@@ -117,7 +117,7 @@ Class inheritance diagrams of DH LayerState, Layer, and Layered classes
 	 |   Code_NASHold   Code_NASLock_Protector   Code_NumLock
 	 |
 	 |___________
-	 |           \                                           Key_LayeredKeysArray*
+	 |           \                                           Key_LayeredKeys*
 	 |   Key_LayeredScScBase*
 	 |             \________________________________
 	 |             /             \                  \
@@ -213,7 +213,7 @@ Layered dependencies (Layered objects depend on LayerState objects to determine 
 	    |   n_00                  mqA_left                 |
 	    |                         mqA_down                LED
 	    |                         mqA_up                  LED_L1Yellow
-	Key_LayeredKeysArray          mb1Home                 LED_L2Yellow
+	Key_LayeredKeys          mb1Home                 LED_L2Yellow
 	all finger keys               msA_right               LED_L3Yellow
 	                              msA_left                LED_L4Green
 	                              msA_down                LED_R1Blue
