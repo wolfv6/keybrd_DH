@@ -19,9 +19,9 @@ void LayerState_NAS::NASUnhold()
 }
 
 // =================== function called from Code_LayerLock ===================
-void LayerState_NAS::lock(const uint8_t layer)
+void LayerState_NAS::lock(const uint8_t layerId)
 {
-    activeNASLayer = layer;
+    activeNASLayer = layerId;
     setActiveDHLayer();
 }
 

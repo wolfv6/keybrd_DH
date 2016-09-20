@@ -2,10 +2,10 @@
 #include "IndicatorLEDs.h"  //included here for circular dependency
 
 //set active layer and update LEDs
-void LayerState_DH::setActiveLayer(const uint8_t layer)
+void LayerState_DH::setActiveLayer(const uint8_t layerId)
 {
     refIndicatorLEDs.layerLEDsOff(activeLayer);
-    activeLayer = layer;
+    activeLayer = layerId;
     refIndicatorLEDs.updateLayerLEDs(activeLayer);
     refIndicatorLEDs.updateLayerSubMFLayerLEDs(activeLayer, activeMFSubLayer);
 }
@@ -61,9 +61,9 @@ void LayerState_DH::updateNumLock(bool numLock)
 }
 
 // ================= MF SubLayer ===============
-void LayerState_DH::lockMFSubLayer(bool sublayer)
+void LayerState_DH::lockMFSubLayer(bool sublayerId)
 {
-    activeMFSubLayer = sublayer;
+    activeMFSubLayer = sublayerId;
     refIndicatorLEDs.mouseOnLEDUpdate(activeMFSubLayer);
 }
 

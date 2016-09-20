@@ -7,13 +7,13 @@ void Key_LayeredDoublePressToggle::press()
     if (activeLayer != layerState)      //if Modf activeLayer changed
     {
         activeLayer = layerState;
-        layer = layerState;             //update layer
+        layerId = layerState;             //update layerId
     }
     else                                //if Modf activeLayer has not changed
     {
         if ( !otherWasPressed )         //if no other key was pressed since this code was pressed
         {
-            layer = !layer;             //toggle layer
+            layerId = !layerId;             //toggle layerId
         }
     }
     isOther = false;

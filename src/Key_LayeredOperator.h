@@ -9,7 +9,7 @@
 /* Class Key_LayeredOperator is a 2-layer code, one item for each operator sub-layer e.g.
     layer 0: s_plus
     layer 1: KEYPAD_PLUS
-When the key is pressed, the active layer is determined,
+When the key is pressed, the active layerId is retrieved,
  and the object of the active layer is sent to USB.
 The active layer is determined by
  refLayerState_DH::activeLayer, LayerState_DH::lazyNumLock, and StateLRModf::activeLayer

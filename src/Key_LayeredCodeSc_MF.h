@@ -8,7 +8,7 @@
 /* Class Key_LayeredCodeSc_MF is a 2-layer code, one object for each MF sub-layer e.g.
     layer 0: ms_up    //mouse up
     layer 1: KEY_UP   //up arrow
-When the key is pressed, the active layer is retrieved from LayerState_DH,
+When the key is pressed, the active layerId is retrieved from LayerState_DH,
  and the object of the active layer is sent to USB.
 */
 class Key_LayeredCodeSc_MF : public Key_LayeredCodeScBase

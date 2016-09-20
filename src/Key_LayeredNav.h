@@ -9,7 +9,7 @@
 /* Class Key_LayeredNav is a 2-layer code, one scancode for each Nav sub-layer e.g.
     layer 0: KEY_PAGE_UP
     layer 1: KEYPAD_9
-When the key is pressed, the active layer is retrieved from StateLRModf
+When the key is pressed, the active layerId is retrieved from StateLRModf
  and the scancode of the active layer is sent to USB.
 */
 class Key_LayeredNav : public Key_LayeredScScBase

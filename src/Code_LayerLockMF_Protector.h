@@ -10,12 +10,12 @@
 class Code_LayerLockMF_Protector : public Code
 {
     private:
-        const uint8_t layer;
+        const uint8_t layerId;
         LayerState& refLayerState;
         bool isPressed;
     public:
-        Code_LayerLockMF_Protector(const uint8_t layer, LayerState& refLayerState)
-            : layer(layer), refLayerState(refLayerState) {}
+        Code_LayerLockMF_Protector(const uint8_t layerId, LayerState& refLayerState)
+            : layerId(layerId), refLayerState(refLayerState) {}
         virtual void press();
         virtual void release();
         bool getIsPressed();

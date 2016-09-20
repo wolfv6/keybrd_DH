@@ -8,7 +8,7 @@
 /* Class Key_LayeredNumber is a 2-layer key, one scancode for each Number sub-layer e.g.
     layer 0: KEY_1
     layer 1: KEYPAD_1
-When the key is pressed, the active layer is retrieved from LayerState_DH
+When the key is pressed, the active layerId is retrieved from LayerState_DH
  and the scancode of the active layer is sent to USB.
 
 Only the layer-0 scancode is stored (the layer-1 scancode is computed).

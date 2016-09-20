@@ -21,7 +21,7 @@ class LayerState_NAS : public LayerState
         void NASLock();
         void NASHold();
         void NASUnhold();
-        void lock(const uint8_t layer);
+        void lock(const uint8_t layerId);
 };
 #endif
 

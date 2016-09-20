@@ -10,11 +10,11 @@
 class Code_LayerLock_MFSub : public Code
 {
     private:
-        const uint8_t layer;
+        const uint8_t layerId;
         LayerState_DH& refLayerState_DH;
     public:
-        Code_LayerLock_MFSub(const uint8_t layer, LayerState_DH& refLayerState_DH)
-            : layer(layer), refLayerState_DH(refLayerState_DH) {}
+        Code_LayerLock_MFSub(const uint8_t layerId, LayerState_DH& refLayerState_DH)
+            : layerId(layerId), refLayerState_DH(refLayerState_DH) {}
         virtual void press();
         virtual void release();
 };
