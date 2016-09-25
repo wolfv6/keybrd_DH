@@ -81,7 +81,7 @@ Then blink() increments scansSinceFirstBlink on every loop().
 At predetermined values of scansSinceFirstBlink, LEDs are turned on or off.
 At end of the blink cycle, scansSinceFirstBlink is set to 0, and the LEDs' states are restored.
 */
-void IndicatorLEDs::startBlinking(LED*const ptrsLEDs[])
+void IndicatorLEDs::startBlinking(LEDInterface*const ptrsLEDs[])
 {
     if (scansSinceFirstBlink > 0)               //if previous blinking not done yet
     {
