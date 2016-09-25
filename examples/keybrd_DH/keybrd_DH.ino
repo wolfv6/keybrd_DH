@@ -53,7 +53,7 @@ code is in mainSketch.cpp so that Arduino IDE does not mangle directives
 #include <Scanner_uC.h>
 
 //right matrix
-#include <PortPCA9655E.h>
+#include <Port_PCA9655E.h>
 #include <Scanner_IOE.h>
 #include <LED_IOE.h>
 

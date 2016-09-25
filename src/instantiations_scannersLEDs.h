@@ -6,8 +6,7 @@ column and pin numbers on schematic_switch_matrix.png and schematic_pca9655_pin_
 */
 #include <Scanner_uC.h>
 
-#include <PortPCA9655E.h>
-#include <PortPCA9655E.h>
+#include <Port_PCA9655E.h>
 #include <Scanner_IOE.h>
 
 #include <LED.h>
@@ -34,10 +33,8 @@ LED * ptrsLEDs_L[] = { &LED_L1Yellow, &LED_L2Yellow, &LED_L3Yellow, &LED_L4Green
 // --------------- RIGHT SCANNER ---------------
 const uint8_t IOE_ADDR = 0x18;
 
-PortPCA9655E port1(IOE_ADDR, 1, 0);             //for strobe and LEDs
-
-PortPCA9655E port0(IOE_ADDR, 0, 1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<5); //for read
-
+Port_PCA9655E port1(IOE_ADDR, 1, 0);             //for strobe and LEDs
+Port_PCA9655E port0(IOE_ADDR, 0, 1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<5); //for read
 Scanner_IOE scanner_R(HIGH, port1, port0);
 
 // ---------------- RIGHT LEDs -----------------
