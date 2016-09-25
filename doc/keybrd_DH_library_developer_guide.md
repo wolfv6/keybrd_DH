@@ -128,7 +128,7 @@ Class inheritance diagrams of DH LayerState, Layer, and Layered classes
 	 |   Key_LayeredCodeScBase*                      Key_LayeredNumber
 	 |             \__________________                      |
 	 |             /                  \               Key_LayeredNumber_00
-	 |   Key_LayeredCodeSc_MF*  Key_LayeredOperator
+	 |   Key_LayeredCodeSc_MF   Key_LayeredOperator
 	 |
 	 |________________________________________
 	 |                          \             \

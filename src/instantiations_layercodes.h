@@ -45,7 +45,7 @@ class LayerStateInterface;
 
 // -------------- PRIMARY LAYERS ---------------
 //            NORMAL  NAS          NAS         MF
-enum layers { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
+enum layerIds { NORMAL, TEN_KEY_OFF, TEN_KEY_ON, MF };
 
 IndicatorLEDs indicatorLEDs(ptrsLEDs_L, ptrsLEDs_R, TEN_KEY_OFF, TEN_KEY_ON, MF);
 
