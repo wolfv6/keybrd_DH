@@ -55,7 +55,7 @@ code is in mainSketch.cpp so that Arduino IDE does not mangle directives
 //right matrix
 #include <Port_PCA9655E.h>
 #include <Scanner_IOE.h>
-#include <LED_IOE.h>
+#include <LED_Port.h>
 
 //main loop()
 #include <MouseMove.h>

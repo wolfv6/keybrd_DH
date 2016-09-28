@@ -10,6 +10,16 @@ Unreleased
 ----------
 -->
 
+0.3.2 (2016-09-28)
+------------------
+* Enhancements
+  * Updated keybrd_DH to be compatible with keybrd library release 0.6.0
+
+* Backward incompatible changes
+  * Delete Row_DH_uC and Row_DH_IOE, and replace them with Row_DH
+  * Rename instantiations_pins.h to instantiations_scannersLEDs.h
+  * Currently DH firmware is about 100 bytes too large for Teensy 2.0 SRAM
+
 0.3.2 (2016-06-21)
 ------------------
 * Enhancements
@@ -17,12 +27,12 @@ Unreleased
 
 0.3.2 (2016-06-10)
 ------------------
-* Backward incompatible changes
-  * Remove Port arrays
-
 * Enhancements
   * Add Row_DH_uC
   * Add Row_DH_IOE
+
+* Backward incompatible changes
+  * Remove Port arrays
 
 0.3.1 (2016-06-02)
 ------------------

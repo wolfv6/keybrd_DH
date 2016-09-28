@@ -9,7 +9,7 @@ column and pin numbers on schematic_switch_matrix.png and schematic_pca9655_pin_
 #include <Scanner_IOE.h>
 #include <LEDInterface.h>
 #include <LED_uC.h>
-#include <LED_IOE.h>
+#include <LED_Port.h>
 
 // --------------- LEFT SCANNER ----------------
 uint8_t readPins_L[] = {0,1,2,3,7,8};
@@ -37,10 +37,10 @@ Scanner_IOE scanner_R(HIGH, port1, port0);
 
 // ---------------- RIGHT LEDs -----------------
 //right LEDs in order of appearance on PCB
-LED_IOE LED_R1Blue(port1, 1<<5);     //LED_2     NAS (TEN_KEY_OFF or TEN_KEY_ON)
-LED_IOE LED_R2Green(port1, 1<<6);    //LED_D6_3  NORMAL
-LED_IOE LED_R3Yellow(port0, 1<<7);   //LED_1     MF
-LED_IOE LED_R4Red(port0, 1<<6);      //LED_0     TEN_KEY_ON
+LED_Port LED_R1Blue(port1, 1<<5);    //LED_2     NAS (TEN_KEY_OFF or TEN_KEY_ON)
+LED_Port LED_R2Green(port1, 1<<6);   //LED_D6_3  NORMAL
+LED_Port LED_R3Yellow(port0, 1<<7);  //LED_1     MF
+LED_Port LED_R4Red(port0, 1<<6);     //LED_0     TEN_KEY_ON
 LEDInterface * ptrsLEDs_R[] = { &LED_R1Blue, &LED_R2Green, &LED_R3Yellow, &LED_R4Red };
 
 #endif
