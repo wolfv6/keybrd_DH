@@ -1,0 +1,24 @@
+/* 
+Tested on Teensy LC and one 74HC165 shift register
+*/
+// ################## GLOBAL ###################
+// ================= INCLUDES ==================
+#include <Scanner_ShiftRegsPISOSingleRow.h>
+
+// --------------- LEFT SCANNER ----------------
+Scanner_ShiftRegsPISOSingleRow scanner_L(HIGH, SS, 1); //active HIGH
+
+// ################### MAIN ####################
+void setup()
+{
+    int readState;
+
+    scanner_L.init(0);                  //strobe pin
+    scanner_L.begin();
+    readState = scanner_L.scan(0);      //strobe pin
+    delay(6000);
+    Keyboard.print("readState=");
+    Keyboard.print(readState);
+}
+
+void loop() { }

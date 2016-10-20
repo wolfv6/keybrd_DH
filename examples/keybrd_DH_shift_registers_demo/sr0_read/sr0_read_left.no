@@ -1,0 +1,56 @@
+/* 
+Tested on Teensy LC and one 74HC165 shift register
+pull-down resitor on shift reg 3
+strobe pin 16 on shift reg 3
+
+74HC165 is not an SPI device
+SH/LD is connected to Teensy SS
+Shift or Load input:
+    When High Data, shift the data toward a serial output
+    When Low data, enable parallel inputs to registers
+    datasheet p12 Fig 4. Typical Shift, Load, and Inhibit Sequence
+
+Scanner_ShiftRegsPISOMultiRow::scan() digitalWrite(slaveSelect, HIGH) is left HIGH after strobeOff
+could move LOW to after strobe off, but then data in parallel inputs would be old
+see how LarryD did it
+*/
+// ################## GLOBAL ###################
+// ================= INCLUDES ==================
+#include <Scanner_ShiftRegsPISOMultiRow.h>
+
+// --------------- LEFT SCANNER ----------------
+const uint8_t SS_L=10;
+const uint8_t STROBE_L=16;
+
+const uint8_t SS_R=9;
+const uint8_t STROBE_R=17;
+
+Scanner_ShiftRegsPISOMultiRow scanner_L(HIGH, SS_L, 1); //active HIGH, SS
+//Scanner_ShiftRegsPISOMultiRow scanner_R(HIGH, SS_R, 1); //active HIGH, SS
+
+// ################### MAIN ####################
+void setup()
+{
+    scanner_L.init(STROBE_L);                   //strobe pin
+    scanner_L.begin();
+    digitalWrite(SS_L, LOW);                    //so first scan is not missed
+
+//    scanner_R.init(STROBE_R);                   //strobe pin
+//    scanner_R.begin();
+
+    delay(3000);
+    Keyboard.print("3 ");
+    delay(3000);
+
+    int readState_L = scanner_L.scan(STROBE_L); //strobe pin
+    Keyboard.print("readState_L=");
+    Keyboard.print(readState_L);                //8
+
+    //delay(10);
+
+//    int readState_R = scanner_R.scan(STROBE_R); //strobe pin
+//    Keyboard.print("    readState_R=");
+//    Keyboard.println(readState_R);
+}
+
+void loop() { }
