@@ -1,4 +1,4 @@
-update=Wed 19 Oct 2016 12:59:43 AM MDT
+update=Sat 22 Oct 2016 08:16:59 PM MDT
 version=1
 last_client=kicad
 [pcbnew]
@@ -27,9 +27,9 @@ NetIExt=net
 version=1
 [eeschema]
 version=1
-LibDir=
+LibDir=../../schematics
 [eeschema/libraries]
-LibName1=dodohand-rescue
+LibName1=/home/wolfv/Documents/Arduino/keybrd_proj/keybrd_DH/schematics/DH_component
 LibName2=power
 LibName3=device
 LibName4=transistors
@@ -59,4 +59,3 @@ LibName27=opto
 LibName28=atmel
 LibName29=contrib
 LibName30=valves
-LibName31=DH_component

@@ -1,6 +1,6 @@
-update=Tue 18 Oct 2016 08:53:11 PM MDT
+update=22/05/2015 07:44:53
 version=1
-last_client=eeschema
+last_client=kicad
 [general]
 version=1
 RootSch=
@@ -60,4 +60,3 @@ LibName26=opto
 LibName27=atmel
 LibName28=contrib
 LibName29=valves
-LibName30=DH_component
