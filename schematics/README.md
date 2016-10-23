@@ -1,5 +1,6 @@
 # Overview
 This README explains two sets of schematics:
+
 1. dodohand_BB will be tested on a broadboard
 2. dodohand_PCB is for the DodoHand PCB
 
