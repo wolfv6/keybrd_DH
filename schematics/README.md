@@ -1,7 +1,7 @@
 # Overview
 This README explains two sets of schematics:
 
-1. dodohand_BB will be tested on a broadboard
+1. dodohand_BB will be tested on a breadboard
 2. dodohand_PCB is for the DodoHand PCB
 
 Both dodohand_BB and dodohand_PCB use one row of daisy chained shift registers per hand. 
@@ -9,7 +9,7 @@ Both dodohand_BB and dodohand_PCB use one row of daisy chained shift registers p
 dodohand_BB is a schematic for a proof-of-concept keyboard that fits on a breadboard.
 It has everything needed to develop and test DodoHand's scanner firmware.
 
-dodohand_PCB is a schematic for the full DodoHand circuit used to design a PCB.
+dodohand_PCB is a schematic for the full DodoHand circuit used to design the DodoHand PCB.
 dodohand_PCB is similar to dodohand_BB with the addition of:
 * more keys
 * LMC7101 buffer amplifiers
@@ -91,6 +91,7 @@ I don't know how many LMC7101 it will take; someone that understands buffer ampl
 
 One option is to design the PCB for three LMC7101, and only solder one on.
 And if the IR LED doesn't get enough voltage, add a another LMC7101.
+If there is too much current, change LMC7101 source from 5V to 3.3V.
 
 The keyboard has two rows of shift registers.
 The 74HC125 tri-state buffer chip only allows the active row to access the MISO line, so that only one row at a time can transmit on MISO.

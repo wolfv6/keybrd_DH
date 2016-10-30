@@ -40,7 +40,7 @@ Code_Sc s_6(KEY_6);
 
 // ================= SCANNERS ==================
 // --------------- LEFT SCANNER ----------------
-Scanner_ShiftRegsPISOMultiRow scanner_L(HIGH, SS, 2); //active HIGH
+Scanner_ShiftRegsPISOMultiRow scanner_L(HIGH, 10, 2); //active HIGH
 
 // =================== ROWS ====================
 // ----------------- LEFT ROWS -----------------
@@ -53,7 +53,7 @@ Key* ptrsKeys_L0[] = { &s_6, &s_5, &s_4, &s_3,  //74HC165 on right
 //in Scanner_ShiftRegsPISOMultiRow::scan(), delayMicroseconds(50) to stablize voltage
 //on Teensy 2.0 it only needs delayMicroseconds(3)
 //might be due to lower voltage on IRPhotoTrans and/or IR LED
-Row row_L0(scanner_L, 16, ptrsKeys_L0, sizeof(ptrsKeys_L0)/sizeof(*ptrsKeys_L0));
+Row row_L(scanner_L, 16, ptrsKeys_L0, sizeof(ptrsKeys_L0)/sizeof(*ptrsKeys_L0));
 
 // ################### MAIN ####################
 void setup()
@@ -65,7 +65,7 @@ void setup()
 void loop()
 {
     //left matrix
-    row_L0.process();
+    row_L.process();
 
     scanDelay.delay();
     //debug.printMicrosecondsPerScan();

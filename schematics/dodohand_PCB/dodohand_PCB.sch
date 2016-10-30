@@ -69,7 +69,7 @@ F7 "5V" I T 6550 3800 60
 $EndSheet
 NoConn ~ 2050 4100
 NoConn ~ 2500 4100
-NoConn ~ 2650 4100
+NoConn ~ 3400 4100
 NoConn ~ 2800 4100
 NoConn ~ 3800 4650
 NoConn ~ 3800 4800
@@ -203,9 +203,9 @@ Wire Wire Line
 Wire Wire Line
 	8250 1900 8250 3800
 Wire Wire Line
-	3250 2100 8050 2100
+	2650 2100 8050 2100
 Wire Wire Line
-	3250 4100 3250 2100
+	2650 4100 2650 2100
 Connection ~ 5550 3350
 Connection ~ 5750 3150
 Connection ~ 5950 2950
@@ -237,9 +237,9 @@ Wire Wire Line
 Wire Wire Line
 	3550 5750 5050 5750
 Wire Wire Line
-	3400 2350 6350 2350
+	3250 2350 6350 2350
 Wire Wire Line
-	3400 4100 3400 2350
+	3250 4100 3250 2350
 Wire Wire Line
 	5950 2950 5950 3800
 Wire Wire Line
@@ -254,8 +254,6 @@ Wire Wire Line
 	1900 4100 1900 3150
 Wire Wire Line
 	5550 3350 5550 3800
-Wire Wire Line
-	3100 4100 4350 4100
 Wire Wire Line
 	2500 5750 2500 6000
 Wire Wire Line
@@ -484,7 +482,7 @@ Wire Wire Line
 Wire Wire Line
 	4000 4400 4200 4400
 Wire Wire Line
-	4350 4100 4350 4400
+	4350 4050 4350 4400
 Wire Wire Line
 	4500 3850 4500 4400
 Wire Wire Line
@@ -497,4 +495,8 @@ Connection ~ 4900 3350
 Connection ~ 4650 5250
 Connection ~ 4500 5250
 Connection ~ 4350 5250
+Wire Wire Line
+	4350 4050 3100 4050
+Wire Wire Line
+	3100 4050 3100 4100
 $EndSCHEMATC
