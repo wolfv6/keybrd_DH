@@ -24,7 +24,7 @@ This sketch:
 //LEDs
 #include <LED_uC.h>
 #include <Port_ShiftRegs.h>
-#include <LED_ShiftReg.h>
+#include <LED_Port.h>
 
 // ============ SPEED CONFIGURATION ============
 ScanDelay scanDelay(9000);
@@ -39,8 +39,8 @@ LED_uC LED_left(4);                             //pin 4
 // ---------------- RIGHT LEDs -----------------
 Port_ShiftRegs shiftRegs(8);                    //slave select 8
 
-LED_ShiftReg LED_rightTop(shiftRegs, 1<<6);     //pin 6
-LED_ShiftReg LED_rightBot(shiftRegs, 1<<7);     //pin 7
+LED_Port LED_rightTop(shiftRegs, 1<<6);     //pin 6
+LED_Port LED_rightBot(shiftRegs, 1<<7);     //pin 7
 
 // =================== CODES ===================
 // ---------------- LAYER CODE -----------------
