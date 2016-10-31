@@ -23,7 +23,8 @@ This sketch:
 
 //LEDs
 #include <LED_uC.h>
-#include <LED_shiftRegs.h>
+#include <Port_ShiftRegs.h>
+#include <LED_ShiftReg.h>
 
 // ============ SPEED CONFIGURATION ============
 ScanDelay scanDelay(9000);
@@ -33,17 +34,19 @@ ScanDelay scanDelay(9000);
 Scanner_ShiftRegsPISOMultiRow scanner_L(HIGH, 6, 1); //active HIGH, SS pin 6, 1 byte
 
 // ----------------- LEFT LED ------------------
-LED_uC LED_capsLck(4);              //pin 4
+LED_uC LED_left(4);                             //pin 4
 
 // ---------------- RIGHT LEDs -----------------
-LED_shiftRegs LED_normal(8, 1<<6);  //SS 8, pin 6
-LED_shiftRegs LED_fn(8, 1<<7);      //SS 8, pin 7
+Port_ShiftRegs shiftRegs(8);                    //slave select 8
+
+LED_ShiftReg LED_rightTop(shiftRegs, 1<<6);     //pin 6
+LED_ShiftReg LED_rightBot(shiftRegs, 1<<7);     //pin 7
 
 // =================== CODES ===================
 // ---------------- LAYER CODE -----------------
 enum layerIds { NORMAL, FN };
 
-LEDInterface* prtsLayerLEDs[] = { &LED_normal, &LED_fn };
+LEDInterface* prtsLayerLEDs[] = { &LED_rightTop, &LED_left };
 LayerState_LED layerState(prtsLayerLEDs);
 
 Code_LayerHold l_fn(FN, layerState);
@@ -52,7 +55,7 @@ Code_LayerHold l_fn(FN, layerState);
 Code_Sc s_a(KEY_A);
 Code_Sc s_x(KEY_X);
 Code_Sc s_1(KEY_1);
-Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_capsLck);
+Code_LEDLock o_capsLock(KEY_CAPS_LOCK, LED_rightBot);
 
 // =================== KEYS ====================
 Key* const ptrsKeys_01[] = { &s_a, &s_1 };
