@@ -17,17 +17,17 @@ This sketch is a simple 2-layer keyboard with two rows of PISO shift registers
 #include <Row.h>
 
 //scanner
-#include <Scanner_ShiftRegsPISOMultiRow.h>
+#include <Scanner_ShiftRegsReadStrobed.h>
 
 // ============ SPEED CONFIGURATION ============
 ScanDelay scanDelay(9000);
 
 // ==================== ICs ====================
 // ---------------- LEFT SCANNER ---------------
-Scanner_ShiftRegsPISOMultiRow scanner_L(HIGH, 6, 1); //active HIGH, slave select 6, 1 byte
+Scanner_ShiftRegsReadStrobed scanner_L(HIGH, 6, 1); //active HIGH, slave select 6, 1 byte
 
 // ---------------- RIGHT SCANNER --------------
-Scanner_ShiftRegsPISOMultiRow scanner_R(HIGH, 7, 1); //active HIGH, slave select 7, 1 byte
+Scanner_ShiftRegsReadStrobed scanner_R(HIGH, 7, 1); //active HIGH, slave select 7, 1 byte
 
 // =================== CODES ===================
 // ---------------- SCAN CODES -----------------
