@@ -15,6 +15,7 @@ Indicator two LEDs are on POSI shift registers.
 #include <Key_LayeredKeys.h>
 #include <Code_Sc.h>
 #include <Row.h>
+#include <Debug.h>
 
 //scanner
 #include <Scanner_ShiftRegsReadStrobed.h>
@@ -24,7 +25,7 @@ Indicator two LEDs are on POSI shift registers.
 #include <LED_Port.h>
 
 // ============ SPEED CONFIGURATION ============
-ScanDelay scanDelay(9000);
+ScanDelay scanDelay(5000);
 
 // ==================== ICs ====================
 // ---------------- LEFT SCANNER ---------------
@@ -72,6 +73,8 @@ const uint8_t KEY_COUNT_R = sizeof(ptrsKeys_R)/sizeof(*ptrsKeys_R);
 Row row_R(scanner_R, 17, ptrsKeys_R, KEY_COUNT_R); //strobe pin 1
 
 // ################### MAIN ####################
+Debug debug;
+
 void setup()
 {
     Keyboard.begin();
@@ -87,6 +90,5 @@ void loop()
     row_R.process();
 
     scanDelay.delay();
-    //debug.print_scans_per_second();
-    //debug.print_microseconds_per_scan();
+    //debug.printMicrosecondsPerScan(); //63 microseconds per scan when delay is commented
 }
