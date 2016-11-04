@@ -1,9 +1,14 @@
 /* sr4_keys.ino
 
 This sketch is a simple 2-layer keyboard with two rows of PISO shift registers.
-Indicator two LEDs are on POSI shift registers.
 
-| Left  | **0** | **1** | | Right | **0** | **1** |
+IR LED rays are blocked by a square piece of tag board taped on.
+The tape acts as a hinge so that the tag board can be pushed out of the way with a paper-clip wire.
+
+Two indicator LEDs are on POSI shift registers.
+
+ Layout of left row         Layout of right row 
+|       | **0** | **1** | |       | **0** | **1** |
 |-------|-------|-------| |-------|-------|-------|
 | **1** |  fn   | a   1 | | **1** |   b   |   c   |
 */

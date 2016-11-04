@@ -26,7 +26,7 @@ void setup()
     digitalWrite(SS_R, LOW);
 
 // ------- begin -------
-    //SPI.begin(); //for clock? does not change volt readings
+    //SPI.begin(); //does not change volt readings
     delay(1000);
     Serial.println("begin");
 }

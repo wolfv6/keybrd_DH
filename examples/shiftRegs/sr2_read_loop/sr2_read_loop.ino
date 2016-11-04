@@ -1,5 +1,5 @@
 /* sr2_read_loop.ino
-demo reading shift register 74HC165.  "sr" means shift register.
+demo reading shift register 74HC165.
 strobe is not used
 
 breadboard setup:

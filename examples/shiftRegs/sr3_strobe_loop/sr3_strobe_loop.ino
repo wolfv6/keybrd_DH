@@ -1,5 +1,5 @@
 /* sr3_read_loop.ino
-demo reading shift register 74HC165.  "sr" means shift register.
+demo reading shift register 74HC165.
 each 74HC165 has one pin strobed
 breadboard pictures in sr2_read_loop/
 
