@@ -1,5 +1,5 @@
 EESchema Schematic File Version 2
-LIBS:DH_component
+LIBS:dodohand_PCB-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -29,15 +29,17 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:DH_component
+LIBS:strobe_buffer
 LIBS:dodohand_PCB-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 6 11
-Title "8 shift register and 2 photo interrupt switches"
+Title "8 shift registers and 2 keys"
 Date ""
-Rev ""
+Rev "1"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -65,7 +67,7 @@ AR Path="/580AEA89/58184E06/5809DC59" Ref="U12"  Part="1"
 AR Path="/580AEA89/580CDBF5/5809DC59" Ref="U13"  Part="1" 
 AR Path="/580AEA89/580F922E/5809DC59" Ref="U14"  Part="1" 
 AR Path="/580AEA89/580FCD1C/5809DC59" Ref="U15"  Part="1" 
-F 0 "U8" V 5904 2928 50  0000 L CNN
+F 0 "U15" V 5904 2928 50  0000 L CNN
 F 1 "74HC165" V 5995 2928 50  0000 L CNN
 F 2 "" H 5950 2350 50  0000 C CNN
 F 3 "" H 5950 2350 50  0000 C CNN
@@ -84,7 +86,7 @@ AR Path="/580AEA89/58184E06/580C1CC7" Ref="X20"  Part="1"
 AR Path="/580AEA89/580CDBF5/580C1CC7" Ref="X24"  Part="1" 
 AR Path="/580AEA89/580F922E/580C1CC7" Ref="X28"  Part="1" 
 AR Path="/580AEA89/580FCD1C/580C1CC7" Ref="X32"  Part="1" 
-F 0 "X16" V 7553 4822 60  0000 R CNN
+F 0 "X32" V 7553 4822 60  0000 R CNN
 F 1 "2buttons" V 7447 4822 60  0000 R CNN
 F 2 "" H 7550 5100 60  0000 C CNN
 F 3 "" H 7550 5100 60  0000 C CNN
@@ -103,7 +105,7 @@ AR Path="/580AEA89/58184E06/580C3691" Ref="RA10"  Part="1"
 AR Path="/580AEA89/580CDBF5/580C3691" Ref="RA12"  Part="1" 
 AR Path="/580AEA89/580F922E/580C3691" Ref="RA14"  Part="1" 
 AR Path="/580AEA89/580FCD1C/580C3691" Ref="RA16"  Part="1" 
-F 0 "RA8" H 6428 3703 60  0000 L CNN
+F 0 "RA16" H 6428 3703 60  0000 L CNN
 F 1 "resistor_array" H 6428 3597 60  0000 L CNN
 F 2 "" H 6200 3650 60  0001 C CNN
 F 3 "" H 6200 3650 60  0001 C CNN

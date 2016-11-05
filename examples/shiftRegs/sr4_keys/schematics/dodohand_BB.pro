@@ -1,4 +1,4 @@
-update=Fri 21 Oct 2016 02:27:19 AM MDT
+update=Fri 04 Nov 2016 10:45:15 AM MDT
 version=1
 last_client=kicad
 [pcbnew]
@@ -27,7 +27,7 @@ NetIExt=net
 version=1
 [eeschema]
 version=1
-LibDir=../../schematics
+LibDir=../../Eeschema_component_library
 [eeschema/libraries]
 LibName1=power
 LibName2=device
@@ -58,4 +58,5 @@ LibName26=opto
 LibName27=atmel
 LibName28=contrib
 LibName29=valves
-LibName30=/home/wolfv/Documents/Arduino/keybrd_proj/keybrd_DH/schematics/DH_component
+LibName30=DH_component
+LibName31=74hc595

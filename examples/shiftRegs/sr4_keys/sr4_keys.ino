@@ -30,7 +30,7 @@ Two indicator LEDs are on POSI shift registers.
 #include <LED_Port.h>
 
 // ============ SPEED CONFIGURATION ============
-ScanDelay scanDelay(5000);
+ScanDelay scanDelay(4000);
 
 // ==================== ICs ====================
 // ---------------- LEFT SCANNER ---------------
@@ -92,8 +92,10 @@ void setup()
 void loop()
 {
     row_L.process();
-    row_R.process();
+    //scanDelay.delay();                          //monitor trackball here
 
-    scanDelay.delay();
-    //debug.printMicrosecondsPerScan(); //63 microseconds per scan when delay is commented
+    row_R.process();
+    //scanDelay.delay();                          //monitor trackball here
+
+    //debug.printMicrosecondsPerScan(); //63 microseconds per scan when scanDelays are commented
 }

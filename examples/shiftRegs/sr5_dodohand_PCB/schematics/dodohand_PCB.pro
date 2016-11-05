@@ -1,4 +1,4 @@
-update=Sat 22 Oct 2016 08:16:59 PM MDT
+update=Fri 04 Nov 2016 10:23:12 PM MDT
 version=1
 last_client=kicad
 [pcbnew]
@@ -27,9 +27,9 @@ NetIExt=net
 version=1
 [eeschema]
 version=1
-LibDir=../../schematics
+LibDir=../../Eeschema_component_library;../../Eeschema_component_library
 [eeschema/libraries]
-LibName1=/home/wolfv/Documents/Arduino/keybrd_proj/keybrd_DH/schematics/DH_component
+LibName1=dodohand_PCB-rescue
 LibName2=power
 LibName3=device
 LibName4=transistors
@@ -59,3 +59,5 @@ LibName27=opto
 LibName28=atmel
 LibName29=contrib
 LibName30=valves
+LibName31=/home/wolfv/Documents/Arduino/keybrd_proj/keybrd_DH/examples/shiftRegs/Eeschema_component_library/DH_component
+LibName32=strobe_buffer
