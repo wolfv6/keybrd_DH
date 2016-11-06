@@ -14,7 +14,7 @@ sr4_keys and sr5_dodohand_PCB contain schematics.
 
 Each sketch was tested on a breadboard with Teensy LC.
 The breadboard bus strips are half the breadboard's length, separated by a gap in the center (picture below).
-Each breadboard half holds enough electronics for one row of 8 keys:
+Each breadboard half holds enough electronics for 8 keys:
 * one 74HC165 shift registers (DIP)
 * one 74AHC1G126 tri-state buffer chip (on red breakout adapter)
 
@@ -23,7 +23,7 @@ Each breadboard half holds enough electronics for one row of 8 keys:
 # sr4_keys overview
 dodohand_BB is a schematic for a proof-of-concept keyboard small enough to fit on a breadboard.
 It has indicator LEDs and two rows of keys just like the 52-key PCB.
-sr4_keys.ino sketch demonstrates shift-register keybrd classes as they would be used in DodoHand.
+The sr4_keys.ino sketch demonstrates shift-register keybrd classes as they would be used in DodoHand.
 
 The right row has two photoInterrupt switches, which consist of an IR LED and photo transistor.
 A 20mA Teensy pin strobes two IR LEDs.

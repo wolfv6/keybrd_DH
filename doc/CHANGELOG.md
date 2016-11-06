@@ -5,12 +5,17 @@ This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 keybrd_DH Version 0.x.x is for initial development.
 Version 1.0.0 will be released when the public API is stable.
 
-0.3.3 (2016-10-02)
+0.4.2 (2016-10-06)
+------------------
+* Enhancements
+  * update examples/shiftRegs/
+
+0.4.1 (2016-10-02)
 ------------------
 * Enhancements
   * Add proof of concept for shift registers implementation in examples/shiftRegs/
 
-0.3.2 (2016-09-28)
+0.4.0 (2016-09-28)
 ------------------
 * Enhancements
   * Updated keybrd_DH to be compatible with keybrd library release 0.6.0
