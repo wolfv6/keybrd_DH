@@ -7,25 +7,28 @@ The folders contain schematics, sketches, and pictures of breadboards.
 * sr4_keys/
 * sr5_dodohand_PCB/
 
-The prefix "sr" means "shift register".
-The folders are numbered from fundamental to practical.
+The "sr" prefix means "shift register".
+The folders number are ordered from fundamental to practical.
 The fist three folders test components.
 sr4_keys and sr5_dodohand_PCB contain schematics.
 
 Each sketch was tested on a breadboard with Teensy LC.
-The breadboard bus strips are half the breadboard's length, separated by a gap in the center.
+The breadboard bus strips are half the breadboard's length, separated by a gap in the center (picture below).
 Each breadboard half holds enough electronics for one row of 8 keys:
 * one 74HC165 shift registers (DIP)
 * one 74AHC1G126 tri-state buffer chip (on red breakout adapter)
 
+![sr2_read_loop breadboard](sr2_read_loop/front.JPG)
+
 # sr4_keys overview
 dodohand_BB is a schematic for a proof-of-concept keyboard small enough to fit on a breadboard.
-It has indicator LEDs and two rows just like the big 52-key DodoHand.
+It has indicator LEDs and two rows of keys just like the 52-key PCB.
 sr4_keys.ino sketch demonstrates shift-register keybrd classes as they would be used in DodoHand.
 
+The right row has two photoInterrupt switches, which consist of an IR LED and photo transistor.
 A 20mA Teensy pin strobes two IR LEDs.
-The 52-key DodoHand will use strobe buffers instead.
-Adding strobe buffers to the circuit does not affect the firmware.
+(The 52-key PCB will use strobe buffers instead.
+Adding strobe buffers to the circuit does not affect the firmware.)
 
 # sr5_dodohand_PCB overview
 dodohand_PCB is a schematic for the full 52-key circuit used to design the DodoHand PCB.
@@ -34,20 +37,20 @@ dodohand_PCB is similar to dodohand_BB with the addition of:
 * more indicator LEDs
 * strobe buffer
 
-Four SN74HC165N shift registers are daisy chained together for a total of 32 shift registers.
-26 input pins are connected to keys, and 6 unused input pins are grounded (26 + 6 = 32).
+Each hand has four SN74HC165N shift registers daisy chained together for a total of 32 input pins.
+26 of those input pins are connected to keys, and 6 unused input pins are grounded (26 + 6 = 32).
 The orientation of the daisy chain is important:
-* the 6 unused input pins go on the 74HC165 with unconnected SER pin
+* the 6 unused input pins go on the [74HC165 with unconnected SER pin](sr5_dodohand_PCB/pdf_schematics/shiftReg_2keys.pdf)
 
-Refer to [tutorial_4b_split_keyboard_with_shift_registers.md](https://github.com/wolfv6/keybrd/blob/master/tutorials/tutorial_4b_split_keyboard_with_shift_registers.md) for how to daisy chain 74HC165s.
+[tutorial_4b_split_keyboard_with_shift_registers.md](https://github.com/wolfv6/keybrd/blob/master/tutorials/tutorial_4b_split_keyboard_with_shift_registers.md) shows how to daisy chain 74HC165s.
 
 # 74HC165 shift registers (sr4_keys, sr5_dodohand_PCB)
-One row of keys is read by 74HC165 shift registers.
-The shift registers connect to Teensy controller via 6 wires:
+74HC165 shift registers read one row of keys.
+The 74HC165's are connected to Teensy controller via 6 wires:
 * GND
 * 3.3v
 * CLK
-* Slave Select
+* SS
 * MISO
 * strobe
 
@@ -63,13 +66,12 @@ These pages explain tri-state buffer chips:
 
 More details are in the [scan() function](https://github.com/wolfv6/keybrd/blob/master/src/Scanner_ShiftRegsReadStrobed.cpp)
 
-# Fast polling and trackball monitoring (sr5_dodohand_PCB)
-The scanner polls a row of keys quickly.
-Polling allows for the IR LEDs to be off most of the time, preserving IR LED life.
-
+# Polling keys and trackball monitoring (sr5_dodohand_PCB)
 The track ball requires constant monitoring.
-The polling is fast so that the controller can spend 99% of it's time monitoring the trackball.
-1% of the trackball signals are missed while polling the shift registers.
+The scanner polls one row of keys at a time.
+Polling consumes 1% of the controller's time.
+Which leaves 99% of the time for monitoring the trackball.
+1% of the trackball signals are missed due to polling the keys.
 
 Here is the math.
 There are two places in the code to monitor the track ball:
@@ -79,16 +81,16 @@ There are two places in the code to monitor the track ball:
 sr4_keys.ino consumes 63 microseconds per scan.
 40 of those microseconds are waiting for the photo-transistor to stabilize in the scan() function.
 
-    63 - 40 = 23 microseconds per scan, sr4_keys.ino can not monitor the trackball
+    63 - 40 = 23 microseconds per scan that sr4_keys.ino can not monitor the trackball
 
 A 52-key DodoHand has 4 times more shift registers as sr4_keys.ino
 
-    23 * 4 = 92 microseconds per scan, 52-key DodoHand can not monitor the trackball
+    23 * 4 = 92 microseconds per scan that 52-key DodoHand can not monitor the trackball
 
 A keyboard should be scanned at least every 10,000 microseconds (10 milliseconds).
 The remaining time can be used to monitor the trackball.
 
-    92us / 10000us = .92% of trackball signals are missed while scanning shift-register daisy chains
+    92us / 10000us = 0.92% of trackball signals are missed while scanning 52-key DodoHand
 
 # Strobe buffer (sr5_dodohand_PCB)
 To achieve fast polling, 26 keys are strobed simultaneously.
@@ -100,7 +102,7 @@ Strobing 26 IR LEDs simultaneously requires much current (high fan-out capabilit
     26 LEDs * 20 mA/(2 LEDs in series) = 260 mA
     26 LEDs *  5 mA/(2 LEDs in series) =  65 mA
 
-The dodohand_PCB schematic powers the IR LEDs with "strobe buffer".
+The dodohand_PCB schematic powers the IR LEDs with "strobe buffers".
 Some strobe buffer candidates are:
 * digital buffer
 * buffer amplifier e.g. LMC7101
@@ -112,10 +114,10 @@ I don't understand enough electronics to know which strobe buffer would work.
 Someone that understands electronics can can figure this out.
 
 # Indicator LEDs on Teensy LC (sr5_dodohand_PCB)
-Indicator LEDs connected to Teensy LC would be implemented same as current DodoHand on Teensy 2
+Indicator LEDs connected to Teensy LC would be implemented same as the current DodoHand on Teensy 2
 (for really bright indicator LEDs, use the 20mA pins).
 
-# Indicator LEDs on 74HC595 (sr5_dodohand_PCB)
+# Indicator LEDs on 74HC595 (sr4_keys, sr5_dodohand_PCB)
 Indicator LEDs not on Teensy are powered by 74HC595 shift registers.
 The 74HC595 is connected to Teensy controller via 2 additional wires:
 * SS
@@ -127,8 +129,8 @@ The 74HC595 runs on 3.3 volts from Teensy LC.
 
 I tested a blue LED with 3.4 typ forward voltage and 4.7k current-limiting resistor.
 74HC595 lit the blue LED; and it's output pin was 3.3 volts.
-A blue LED with a lower forward voltage would be reliable e.g.
-* Wurth Electronics Inc, 151053BS04500, blue, 2.7 forward voltage, 20mA, 45 deg viewing angle
+A blue LED with a lower forward voltage would be reliable
+(e.g. Wurth Electronics Inc, 151053BS04500 is: blue, 2.7 forward voltage, 20mA, 45 deg viewing angle).
 
 Teensy LC's 5-volt Vin was not used because it would add a 9th connecting wire.
 
@@ -141,8 +143,8 @@ It's available at Walmart if you want to feel the merchandise.
 # Alternative designs
 The track ball requires constant monitoring.
 There are a few ways to accomplish this.
-The alternatives are all more complicated than the daisy-chained shift registers described above.
-IHO the simplicity of the daisy chained shift registers saves development time.
+The simplicity of the daisy chained shift registers, described above, saves development time.
+The following alternatives are more complicated.
 
 ## Shift register matrix
 Each shift register matrix:
@@ -155,13 +157,13 @@ Compared to daisy-chained shift registers, a shift-register matrix would have 14
 
 The scan rate would be almost as fast, provided SPI full duplex can be exploited.
 One SPI.transfer() can simultaneously:
-* 74HC595 turn off strobe on current row, turn on strobe on next row, and 74HC165 shift
+* shift 74HC165 registers, 74HC595 turn off strobe of current row, and turn on strobe for next row
 
-But simultaneously turning off strobe and shifting might not work because of timing.
+But simultaneously shifting and turning off strobe might not work because of timing.
 Can 74HC165 read the key position reliably, just as the strobe is turning off?
 
-It's a rabbit hole that would take time to develop.
 This 2x2 matrix on a breadboard is suitable for key-matrix development and testing:  [tutorial_4c_split_keyboard_with_IOE.md](https://github.com/wolfv6/keybrd/blob/master/tutorials/tutorial_4c_split_keyboard_with_IOE.md).
+It's a rabbit hole that would take time to develop.
 
 ## Two controllers
 Two separate controllers:
@@ -173,20 +175,20 @@ Programming 2 controllers adds complexity.
 A second Teensy LC is a little pricey, but not a problem for a prototype.
 
 ## PCA9655E I/O expander with interrupts
-One I/O expander per 16 keys (four I/O expanders total).
+One I/O expander per 16 keys, for a total of four I/O expanders.
 I2C-safe Bi-directional Logic Level Converter between 3.3v Teeny LC and 5v PCA9655Es.
 
 When a key is pressed or released, PCA9655E sends an interrupt signal to Teensy, which then sends commands to the PCA9655E to read input pins.
-4 milliseconds of trackball signals are missed when a key is pressed or released.
+Trackball signals are missed while the interrupt is processed.
 Not a problem because people usually don't mouse and type at the same time.
 
 Interrupts add complexity.
-Debugging I/O expander code is hard because SPI or I2C protocol adds a level of indirection.
+Debugging I/O expander code is hard because I2C protocol adds a level of indirection.
 
 An I/O expander interrupt would require IR LEDs to be on all the time so key changes can be detected.
-IR LEDs might only last about 10 years, which would be long enough for prototyping.
+IR LED life might be 10 years, which is long enough for prototyping.
 
 I2C bus contention for interrupt signal might be an issue.
 Although changing keys on two I/O expanders at exactly the same time is rare.
 
-It would have about the same number of solder joints as daisy-chained shift registers.
+It would have about the same number of solder joints as daisy-chained shift registers because one pull-up resistor per key.

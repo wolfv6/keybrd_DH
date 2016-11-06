@@ -8,7 +8,7 @@ Version 1.0.0 will be released when the public API is stable.
 0.3.3 (2016-10-02)
 ------------------
 * Enhancements
-  * Add proof of concept for shift registers implementation in examples/shiftRegs/sr4_keys/
+  * Add proof of concept for shift registers implementation in examples/shiftRegs/
 
 0.3.2 (2016-09-28)
 ------------------
