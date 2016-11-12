@@ -48,6 +48,6 @@ void loop()
     indicatorLEDs.blink();
     mouseMove.send();
 
-    //debug.print_scans_per_second();
+    //debug.printScansPerSecond();
     //debug.print_microseconds_per_scan();
 }
