@@ -15,6 +15,9 @@ const uint8_t SS_R=7;
 
 void setup()
 {
+    delay(1000);
+    Serial.println("sr1_tri-state.ino");
+
 // ------- left --------
     //initialize slave select
     pinMode(SS_L, OUTPUT);
@@ -27,8 +30,6 @@ void setup()
 
 // ------- begin -------
     //SPI.begin(); //does not change volt readings
-    delay(1000);
-    Serial.println("begin");
 }
 
 void loop() {}

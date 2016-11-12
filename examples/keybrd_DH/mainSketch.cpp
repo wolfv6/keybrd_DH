@@ -31,7 +31,7 @@ void setup()
 
 void loop()
 {
-    //left matrix
+    left matrix
     row_L0.process();
     row_L1.process();
     row_L2.process();

@@ -8,7 +8,7 @@ The folders contain schematics, sketches, and pictures of breadboards.
 * sr5_dodohand_PCB/
 
 The "sr" prefix means "shift register".
-The folders number are ordered from fundamental to practical.
+The folder numbers are ordered from fundamental to practical.
 The fist three folders test components.
 sr4_keys and sr5_dodohand_PCB contain schematics.
 
