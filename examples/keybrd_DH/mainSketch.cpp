@@ -20,7 +20,6 @@ Debug debug;
 // ================== MAIN =====================
 void setup()
 {
-    Keyboard.begin();
     Mouse.begin();
     scanner_R.begin();
     indicatorLEDs.begin(&layerState_DH);

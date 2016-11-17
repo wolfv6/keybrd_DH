@@ -44,6 +44,21 @@ The orientation of the daisy chain is important:
 
 [tutorial_4b_split_keyboard_with_shift_registers.md](https://github.com/wolfv6/keybrd/blob/master/tutorials/tutorial_4b_split_keyboard_with_shift_registers.md) shows how to daisy chain 74HC165s.
 
+OldDataHands pointed out that
+* IR may hit an unwanted sensor if all IR LEDs of a cluster are turned on simultaneously.
+* IR LEDs should not be on all the time because too much phototransistor current.
+
+I think Teensy LC might handle the current; Teensy LC 3.3V pin capacity is 100mA.
+    26 phototransistor not strobed, Collector Dark Current .1mA
+    26 phototransistor strobed, On State Collector Current = 2mA
+    26*.1mA + 26*2mA = 54.8mA
+add other devices powered by 3.3V pin
+    1 595
+    4 indicator LEDs
+    2 74AHC1G126
+    8 74HC165
+    1 track ball
+
 # 74HC165 shift registers (sr4_keys, sr5_dodohand_PCB)
 74HC165 shift registers read one row of keys.
 The 74HC165's are connected to Teensy controller via 6 wires:
@@ -99,8 +114,12 @@ Strobing 26 IR LEDs simultaneously requires much current (high fan-out capabilit
 
     All the IR LEDs at DigiKey are at least 20mA.
     IR LED forward voltage: typ. 1.2 at 20 mA
-    26 LEDs * 20 mA/(2 LEDs in series) = 260 mA
-    26 LEDs *  5 mA/(2 LEDs in series) =  65 mA
+    Ohm's Law: If = (Vs - Vf) / R
+    R = 470 Ohms (IR LED current limiting resistor used in original DodoHand matrix)
+    Vs = 5 V
+    Vf = 1.2 V
+    If = (Vs - Vf) / R = (5 - 1.2) / 470 = 8 mA IR LEDs
+    13 IR LEDs * 8 mA / IR LED = 105 mA strobe buffer
 
 The dodohand_PCB schematic powers the IR LEDs with "strobe buffers".
 Some strobe buffer candidates are:
@@ -141,15 +160,36 @@ It's available at Walmart if you want to feel the merchandise.
 74HC595 does not need a tri-state because it is the only MOSI device on the keyboard.
 
 # Alternative designs
+The daisy chained shift registers, described above, is not suitable because
+ IR may hit an unwanted sensor when all IR LEDs of a cluster are turned on simultaneously.
+
 The track ball requires constant monitoring.
 There are a few ways to accomplish this.
-The simplicity of the daisy chained shift registers, described above, saves development time.
-The following alternatives are more complicated.
 
 ## Shift register matrix
+invultri is working on this
+
+build on what was learned from sr4_keys to drive matrix with shift registers.
+sr4_keys is just 1 row per hand; matrix will have 5 rows.
+
 Each shift register matrix:
 * 74HC595 strobes 5 rows, one row at a time
 * 74HC165 reads 6 columns before strobe turns off
+
+Current need per IR LED strobe row:
+    If = (Vs - Vf) / R = (5 - 1.2) / 470 = 8 mA IR LEDs
+    3 IR LEDs * 8 mA / IR LED = 24 mA per row
+    use FETs on 74HC595, or use a high-power shift register
+    TPIC6B595 is able to sink 150mA per pin
+    http://www.ti.com/lit/ds/symlink/tpic6b595.pdf Continuous drain current, each output: 150 mA Max
+    https://www.adafruit.com/products/457
+    (74HC595 has 6mA output drive, not enough for 3 IR LEDs, would need FETs on output pins)
+
+TPIC6B595 shift register can sink 150mA per pin, thus eliminating the need for FETs.
+On a 5x6 matrix, all phototransistor always powered is OK if LEDs are strobed one row at a time.
+    46 phototransistor not strobed, Collector Dark Current = .1mA
+     6 phototransistor strobed, On State Collector Current = 2mA
+    46*.1mA + 6*2mA = 16.6mA < 100mA max for Teensy LC 3.3V pin
 
 Compared to daisy-chained shift registers, a shift-register matrix would have 144 fewer solder joints because:
 * 20 fewer pull resistors per hand
@@ -161,9 +201,15 @@ One SPI.transfer() can simultaneously:
 
 But simultaneously shifting and turning off strobe might not work because of timing.
 Can 74HC165 read the key position reliably, just as the strobe is turning off?
+If not, there are some alternatives:
+* all IR LEDs on all the time
+* turned on two rows at a time: turn off strobe of previous row, turn on strobe of current row and next row.
+* use a monostable multivibrator.  https://en.wikipedia.org/wiki/Monostable
 
 This 2x2 matrix on a breadboard is suitable for key-matrix development and testing:  [tutorial_4c_split_keyboard_with_IOE.md](https://github.com/wolfv6/keybrd/blob/master/tutorials/tutorial_4c_split_keyboard_with_IOE.md).
-It's a rabbit hole that would take time to develop.
+
+## MCP23S18 + FETs martix
+Drive the matrix with a MCP23S18 (SPI I/O expander), with FETs on the MCP23S18 strobe pins.
 
 ## Two controllers
 Two separate controllers:
